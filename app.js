@@ -1,11 +1,8 @@
 const express = require('express');
 const useragent = require('express-useragent');
-const requestIp = require('request-ip');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const passport = require('passport');
-const session = require('express-session');
 const http = require('http');
 
 
@@ -13,7 +10,6 @@ const app = express();
 
 
 app.use(useragent.express());
-app.use(requestIp.mw());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
