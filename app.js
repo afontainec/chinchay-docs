@@ -47,7 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // vuepress static app files
 
-app.use('/docs', express.static(path.join(__dirname, '/docs/.vuepress/dist/')));
+app.use('/', express.static(path.join(__dirname, '/docs/.vuepress/dist/')));
 
 
 function normalizePort(val) {
