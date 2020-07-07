@@ -1,6 +1,6 @@
-![](./assets/images/logo.png)
+![](./assets/images/apanotupyme-transparente.png)
 
-Bienvenido al Manual de Inscripción de **ApañoTuPyme**
+Bienvenido Hi> al Manual de Inscripción de **ApañoTuPyme**
 [[toc]]
 *  [Registro de Pyme](./pages/pyme.html)
 *  [Añadir Productos](./pages/product.html)
