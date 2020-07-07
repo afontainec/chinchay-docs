@@ -1,4 +1,4 @@
-![](./assets/images/apanotupyme-transparente.png)
+![](./assets/images/logo.png)
 
 Bienvenido al Manual de Inscripción de **ApañoTuPyme**
 [[toc]]
