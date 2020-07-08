@@ -13,9 +13,11 @@ module.exports = {
     sidebar: 'auto',
     sidebar: [{
       title: 'Getting Started',   // required
-      collapsable: true, // optional, defaults to true
       path: '/pages/gettingstarted/ejs',
-      sidebarDepth: 2,    // optional, defaults to 1
+      children: []
+    }, {
+      title: 'Getting Started: Chinchay + Angular',   // required
+      path: '/pages/gettingstarted/angular',
       children: []
     }],
   },

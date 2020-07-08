@@ -1,4 +1,6 @@
-## Getting Started with chinchay + ejs
+## Getting Started with Chinchay + ejs
+
+This tutorial will walk you through building your fist app with Chinchay! We will use [ejs](https://ejs.co/) as our templating language to you generate HTML files with plain JavaScript. 
 
 ### Requirements
   * [npm](https://www.npmjs.com/get-npm)
