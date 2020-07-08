@@ -4,11 +4,10 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: 'Getting Started', link: '/pages/gettingstarted/ejs' },
-      { text: 'CLI Docs', link: 'https://pyme.apanotupyme.cl/index.php?p=login' },
+      { text: 'Docs', link: 'https://pyme.apanotupyme.cl/index.php?p=login' },
       { text: 'The Model', link: 'https://apanotupyme.cl/pages/preguntas-frecuentes'},
       { text: 'Middleware', link:'https://apanotupyme.cl/pages/terminos-y-condiciones'},
       { text: 'Error Handler', link: '/pages/contact'},
-      { text: 'Other', link: '/pages/contact'},
       { text: 'Collaborate!', link: '/pages/contact'}
     ],
     displayAllHeaders: true,
