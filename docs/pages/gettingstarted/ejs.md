@@ -1,4 +1,4 @@
-## CLI Tutorial
+## Getting Started with chinchay + ejs
 
 ### Requirements
   * [npm](https://www.npmjs.com/get-npm)
@@ -25,16 +25,19 @@ $ npm install knex -s
 ```
 <br/>
 Also we will use ejs instead of jade. So we need to run
+
 ```
 $ npm install ejs -s
 ```
 <br/>
-You can run the following commands to see the default express app
+Lets run the app to see what we have so far!
+
 ```
 $ npm install
 $ npm start
 ```
 <br/>
+
 Visit [http://localhost:3000](http://localhost:3000) to see the defaut express web app
 
 ## Create Postgresql Database
