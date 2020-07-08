@@ -14,6 +14,7 @@ module.exports = {
     sidebar: {
       '/gettingstarted/': [{
         title: 'Getting Started',   // required
+        depth: 2,
         path: '/gettingstarted/ejs',
         children: []
       }, {
@@ -24,6 +25,7 @@ module.exports = {
       '/docs/': [{
         title: 'Command Line Interface',   // required
         path: '/docs/cli',
+        depth: 4,
         children: []
       }, {
         title: 'Chainfile',   // required
