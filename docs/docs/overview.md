@@ -34,29 +34,56 @@ But in a nutshell, the code is logically separated in three areas. The model, wh
 
 The [Command Line Interface](./cli) will allow you to generate files in this pattern to keep everything organized and clean.
 
-## Updating the database
+## Updating the Database
 
 Chinchay works with [Postgres](https://www.postgresql.org/about/). This is the [database system](https://en.wikipedia.org/wiki/Database) that stores the data. As you may know the data is saved in tables. So how do we actually create or modify this tables?
 
-### Schema migrations
+### Schema Migrations
 
-  W
+  A schema migration is a piece of code that does one change to the database. It usually has the code to revert that change. For instance if we add the column user_id to the table coffees but then you regret that decision, you can rollback that migration. Here are some interesting articles you might find interesting:
 
-### knex
+  * [science direct article](https://www.sciencedirect.com/topics/computer-science/schema-migration)
+  * [perk article about migration and knex](http://perkframework.com/v1/guides/database-migrations-knex.html)
+  *  [The always useful Wikipedia article](https://en.wikipedia.org/wiki/Schema_migration)
+
+  I guess you are asking yourself how does this actually works, the answer is: knex.
+
+#### knex
+
+  [knex](http://knexjs.org/) is the magical tool that will manage all the migrations. Everytime you need to make a change to the database you make a knex migration as follows:
+
+  ```
+  $ knex migrate:make migration_name
+  ```
+
+  That will create a code that usually goes something like this: 
+
+  ```javascript
+    exports.up = function (knex) {
+      // code to make the change in the database
+    };
+
+    exports.down = function (knex) {
+      // code to revert the change in the database
+    };
+  ```
+
+  In the **up** function you write the code for the change and in the **down** function the code to revert the change of the **up** function.
+
+  Then just run the following to apply the change (it will execute the up function):
+  ```
+  $ knex migrate:make latest
+  ```
+  If you want to revert it, run the following (it will execute the down function):
+  ```
+  $ knex migrate:make rollback
+  ```
+
+  When you use the [Chinchay Command Line Interface](./cli) to create migrations it will use this. For more information on migrating with knex go to the [documentation](http://knexjs.org/). 
 
 ### Why postgres and not another database system?
 
 To be honest, just because. Postgres is one of the most popular databases and it seemed as a good starting point. At the moment we are working to make Chinchay compatible with mysql and other databases, actually if you are a database expert help us out making Chinchay compatible with more databases!
-
-#### Knex migration
-
-
-
-
-
-
-
-
 
 
 
