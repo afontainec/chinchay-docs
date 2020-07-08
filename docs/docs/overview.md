@@ -30,24 +30,30 @@ For starters, lets begin with a disclaimer: I did not reinvent the wheel. Chinch
 *  [The stackexchange forum](https://softwareengineering.stackexchange.com/questions/127624/what-is-mvc-really)
 *  [The always useful Wikipedia article](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 
-But in a nutshell, the code is logically separated in three areas. The model, here is where the logical-business code is written. They are the gateway to the database and would do most of the "important" job. The view manages all the UI logic and the controller is the interface that connects the view whith the model.
+But in a nutshell, the code is logically separated in three areas. The model, where the logical-business code is written. They are the gateway to the database and would do most of the "important" job. The view manages all the UI logic and the controller is the interface that connects the view with the model.
 
 The [Command Line Interface](./cli) will allow you to generate files in this pattern to keep everything organized and clean.
 
-## Database
+## Updating the database
 
+Chinchay works with [Postgres](https://www.postgresql.org/about/). This is the [database system](https://en.wikipedia.org/wiki/Database) that stores the data. As you may know the data is saved in tables. So how do we actually create or modify this tables?
 
-So what is actualy being created? Well it depends on how you have configured the [chainfile](./chainfile) and which flages are passed. But in a nutshel it will create a model, a controller, views, routes and a knex migration.
+### Schema migrations
+
+  W
+
+### knex
+
+### Why postgres and not another database system?
+
+To be honest, just because. Postgres is one of the most popular databases and it seemed as a good starting point. At the moment we are working to make Chinchay compatible with mysql and other databases, actually if you are a database expert help us out making Chinchay compatible with more databases!
 
 #### Knex migration
 
-Well everything starts with the database. So a migration to add the new table is created. If by this point your a thinking database, table, knex, migration? WTF are those? dont worry we are going to explain them right away.
 
-Chinchay works with [Postgres](https://www.postgresql.org/about/). This is the [database system](https://en.wikipedia.org/wiki/Database) that stores the data. 
 
-#### Why not another database system?
 
-To be honest, just because. Postgres is one of the most popular databases and it seemed as a good starting point. At the moment we are working to make Chinchay compatible with mysql and other databases.
+
 
 
 
