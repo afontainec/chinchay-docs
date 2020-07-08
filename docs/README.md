@@ -7,9 +7,9 @@ Building a web app can be very time consuming and tedious, but Chinchay will hel
 
 
 [[toc]]
-*  [Chinchay Getting Started](./chinchay/getting-started.html)
-*  [Añadir Productos](./pages/product.html)
-*  [Entrega de Productos](./pages/order.html)
-*  [Pagos](./pages/payments.html)
-*  [Consultas de Consumidores](./pages/costumer-queries.html)
-
+*  [See our tutorials to get started!](./gettingstarted)
+*  [Docs](./docs)
+*  [the full docs of our table gateway model](./table-gateway)
+*  [Protect your routes with our middleware](./middleware)
+*  [Manage your http responses with our ErrorHandler](./errorhandler)
+*  [Any help is welcome! If you want to collaborate see our collaboration manual!](./collaborate)

@@ -1,9 +1,9 @@
-![Chinchay](http://localhost:3000/assets/logo.png)
+![Chinchay](http://localhost:3000/assets/banner-getting-started.png)
 
 Welcome to the **Chinchay Getting Started**
 
 
-Lets get started! Follow any of the following tutorials:
+Lets get started! Here you will find tutorial to build an app with Chinchay and ejs or with angular. We are working on more integrations, spoiler alert: comming soon Chinchay + Vuej.js.Follow any of the following tutorials:
 
 
 [[toc]]
