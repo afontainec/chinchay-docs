@@ -1,13 +1,15 @@
 module.exports = {
-  title: 'ApañoTuPyme Manual de Inscripción',
+  title: 'Chinchay Docs',
   base: '/',
   themeConfig: {
     nav: [
-      { text: 'ApañoTuPyme', link: 'https://apañotupyme.cl' },
-      { text: 'ApañoTuPyme Dashboard', link: 'https://pyme.apanotupyme.cl/index.php?p=login' },
-      { text: 'Preguntas Frecuentes', link: 'https://apanotupyme.cl/pages/preguntas-frecuentes'},
-      { text: 'Términos y condiciones', link:'https://apanotupyme.cl/pages/terminos-y-condiciones'},
-      { text: 'Contacto', link: '/pages/contact'}
+      { text: 'Getting Started', link: '/pages/gettingstarted/ejs' },
+      { text: 'CLI Docs', link: 'https://pyme.apanotupyme.cl/index.php?p=login' },
+      { text: 'The Model', link: 'https://apanotupyme.cl/pages/preguntas-frecuentes'},
+      { text: 'Middleware', link:'https://apanotupyme.cl/pages/terminos-y-condiciones'},
+      { text: 'Error Handler', link: '/pages/contact'},
+      { text: 'Other', link: '/pages/contact'},
+      { text: 'Collaborate!', link: '/pages/contact'}
     ],
     displayAllHeaders: true,
     sidebar: 'auto',
