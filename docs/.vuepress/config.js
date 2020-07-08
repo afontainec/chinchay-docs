@@ -23,9 +23,12 @@ module.exports = {
         children: []
       }],
       '/docs/': [{
+        title: 'Overview: What is Chinchay?',   // required
+        path: '/docs/overview',
+        children: []
+      }, {
         title: 'Command Line Interface',   // required
         path: '/docs/cli',
-        depth: 4,
         children: []
       }, {
         title: 'Chainfile',   // required
