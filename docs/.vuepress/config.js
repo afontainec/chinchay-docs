@@ -1,62 +1,56 @@
 module.exports = {
-  title: 'ApañoTuPyme Manual de Inscripción',
+  title: 'Chinchay Docs',
   base: '/',
   themeConfig: {
     nav: [
-      { text: 'ApañoTuPyme', link: 'https://apañotupyme.cl' },
-      { text: 'ApañoTuPyme Dashboard', link: 'https://pyme.apanotupyme.cl/index.php?p=login' },
-      { text: 'Preguntas Frecuentes', link: 'https://apanotupyme.cl/pages/preguntas-frecuentes'},
-      { text: 'Términos y condiciones', link:'https://apanotupyme.cl/pages/terminos-y-condiciones'},
-      { text: 'Contacto', link: '/pages/contact'}
+      { text: 'Getting Started', link: '/gettingstarted/' },
+      { text: 'Docs', link: '/docs/' },
+      { text: 'The Model', link: 'https://apanotupyme.cl/pages/preguntas-frecuentes'},
+      { text: 'Middleware', link:'https://apanotupyme.cl/pages/terminos-y-condiciones'},
+      { text: 'Error Handler', link: 'https://apanotupyme.cl/pages/terminos-y-condiciones2'},
+      { text: 'Collaborate!', link: 'https://apanotupyme.cl/pages/terminos-y-condiciones3'}
     ],
     displayAllHeaders: true,
-    sidebar: 'auto',
-    sidebar: [
-      {
-        title: 'Registro de Pyme',   // required
-        collapsable: true, // optional, defaults to true
-        path: '/pages/pyme',
-        sidebarDepth: 2,    // optional, defaults to 1
-        children: [
-          // ['/pages/pyme', 'test'],
-          // ['/pages/pyme', 'Crear Usuario'],
-          // ['/pages/pyme', 'Actualizar datos'],
-          // ['/pages/pyme', 'Verificar Email'],
-          // ['/pages/pyme', 'Cargar Logo'],
-        ]
-      },
-      {
-        title: 'Añadir Productos',   // required
-        collapsable: true, // optional, defaults to true
-        sidebarDepth: 2,    // optional, defaults to 1
-        path: '/pages/product',
-        children: [
-        ]
-      },
-      {
-        title: 'Entrega de Productos',   // required
-        collapsable: true, // optional, defaults to true
-        sidebarDepth: 2,    // optional, defaults to 1
-        path: '/pages/order',
-        children: [
-        ]
-      },
-      {
-        title: 'Pagos',   // required
-        collapsable: true, // optional, defaults to true
-        sidebarDepth: 2,    // optional, defaults to 1
-        path: '/pages/payments',
-        children: [
-        ]
-      },
-      {
-        title: 'Consultas de Consumidores',   // required
-        collapsable: true, // optional, defaults to true
-        sidebarDepth: 2,    // optional, defaults to 1
-        path: '/pages/costumer-queries',
-        children: [
-        ]
-      },
-    ],
-  }
+    sidebar: {
+      '/gettingstarted/': [{
+        title: 'Getting Started',   // required
+        depth: 2,
+        path: '/gettingstarted/ejs',
+        children: []
+      }, {
+        title: 'Getting Started: Chinchay + Angular',   // required
+        path: '/gettingstarted/angular',
+        children: []
+      }],
+      '/docs/': [{
+        title: 'Overview: What is Chinchay?',   // required
+        path: '/docs/overview',
+        children: []
+      }, {
+        title: 'Command Line Interface',   // required
+        path: '/docs/cli',
+        children: []
+      }, {
+        title: 'Chainfile',   // required
+        path: '/docs/chainfile',
+        children: []
+      }, {
+        title: 'Hateoas Generator',   // required
+        path: '/docs/hateoas',
+        children: []
+      }, {
+        title: 'The TableGateway Model',   // required
+        path: '/docs/model',
+        children: []
+      }, {
+        title: 'Chinchay Middleware',   // required
+        path: '/docs/middleware',
+        children: []
+      }, {
+        title: 'Error Handler: Manage http responses',   // required
+        path: '/docs/errorhandler',
+        children: []
+      }] 
+    },
+  },
 }
