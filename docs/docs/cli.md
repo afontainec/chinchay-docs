@@ -35,7 +35,7 @@ module.exports = {
 Where the knex.js file exports the knex instance. Check the [Getting started tutorial](../ettingstarted/ejs.html#connecting-to-the-database), there you can see an example of a knex.js file. 
 
 
-### What is created?
+## What is created?
 
 So now that we have our minimal chainfile, what is actualy being created? It will create a knex migration, a model, a controller, views, and some routes. 
 
@@ -43,7 +43,7 @@ So now that we have our minimal chainfile, what is actualy being created? It wil
   Depending on how the chainfile is defined, the files created might vary.
 :::
 
-#### Knex migration
+### Knex migration
 
 Well everything starts with the database. So a migration to add the new table is created. If by this point your a thinking database, table, knex, migration? WTF are those? dont worry check the explanation [here](./overview.html#updating-the-database). 
 
@@ -99,7 +99,7 @@ $ knex migrate:latest
 
 For the migration to be taken into account!
 
-#### The Model
+### The Model
 
 The model is the one responsible to interacting with the table created by the knex migration. It is very simple and it should look like this:
 
@@ -141,15 +141,17 @@ module.exports = {
 };
 ```
 
+### The Controller
 
 
+### The Router
 
-## the frontend flag
+### The views
 
-## the backend flag
+
+## frontend vs backend
 
 ## the middleware flag
 
-## the backend flag
 
 ## Do I prefer camels or snakes?
