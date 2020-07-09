@@ -86,11 +86,22 @@ Chinchay works with [Postgres](https://www.postgresql.org/about/). This is the [
 To be honest, just because. Postgres is one of the most popular databases and it seemed as a good starting point. At the moment we are working to make Chinchay compatible with mysql and other databases, actually if you are a database expert help us out making Chinchay compatible with more databases!
 
 
-
 ## REST API
 
-### Hateoas
+The next big thing was: how to do a _good_ api?
 
+And the answer is a flexible RESTful API. If you do not know what a RESTful API I recommend to read [this article](https://restfulapi.net/). In a nutshet a RESTful API is an architectural style presented by Roy Fielding that suggest a way to model the client-server interaction.
+
+Not everyone API that say its REST actually is REST. Most of the APIs out there who declare themselfs as REST APIs actually their are not. REST enforces some strict protocols which are hardly ever filfilled. Aaaand enter Chinchay, Chinchay will separate the code in **layered system**  which is **stateless** and **cacheable**. Moreover, to make a **uniform interface** it a has fully flexible **HATEOAS generator**.
+
+### HATEOAS
+
+HATEOAS is one of the most distintive features of a REST API and is hardly ever present. HATEOAS tries to mimic our real-life browsing, when we visit a page all the posible links are presented (as buttons, images, etc). HATEOAS aims to do the same, which every API request a list of followup links are given. However, doing so its a pain in the *** for the developer, he is responsible to, for every API request, return all the followup link. So guess what does chinchay do? Yes it will make it veeery easy to do su with its [HATEOAS generator](./hateoas).
+
+You can read more about [HATEOAS here](https://restfulapi.net/hateoas/).
+
+
+### Client Queries
 
 ### oAuth 2.0
 
