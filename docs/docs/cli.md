@@ -101,11 +101,46 @@ For the migration to be taken into account!
 
 #### The Model
 
-So we have 
+The model is the one responsible to interacting with the table created by the knex migration. It is very simple and it should look like this:
+
+```javascript
+const { Table } = require('chinchay');
 
 
+class Coffee extends Table {
+  constructor() {
+    const tableName = 'coffee';
+    super(tableName);
+  }
+}
 
-### Where is everything created and why there?
+
+const instance = new Coffee();
+
+
+module.exports = instance;
+
+```
+
+As you may notice this is a [singleton](https://www.dofactory.com/javascript/design-patterns/singleton?s=40) (their will only be one instance of the Coffee class). This class extends the Table class from Chinchay, that has all the basic methods you need to get started. But if you need more, feel free to add more methods to the Coffee class. For more information on this, [click here](./model).
+
+::: warning
+  The tableName must match with the table created in the migration!
+:::
+
+By default the file will be created in a model directory in the root of the repository. This is customizable by adding a model configuration to the chainfile as follows: 
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'models'),
+  },
+  knex:  path.join(__dirname, 'knex.js')
+};
+```
+
 
 
 

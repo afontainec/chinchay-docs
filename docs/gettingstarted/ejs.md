@@ -204,16 +204,16 @@ const path = require('path');
 
 module.exports = {
   models: {
-    directory: path.join(__dirname, '/models'),
+    directory: path.join(__dirname, 'models'),
   },
   controllers: {
-    directory: path.join(__dirname, '/controllers')
+    directory: path.join(__dirname, 'controllers')
   },
   views: {
-    directory: path.join(__dirname, '/views')
+    directory: path.join(__dirname, 'views')
   },
   routes: {
-    directory: path.join(__dirname, '/routes')
+    directory: path.join(__dirname, 'routes')
   },
   knex:  path.join(__dirname, 'knex.js')
 };
