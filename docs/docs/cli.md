@@ -22,16 +22,53 @@ So what is actualy being created? Well it depends on how you have configured the
 
 #### Knex migration
 
-Well everything starts with the database. So a migration to add the new table is created. If by this point your a thinking database, table, knex, migration? WTF are those? dont worry we are going to explain them right away.
+Well everything starts with the database. So a migration to add the new table is created. If by this point your a thinking database, table, knex, migration? WTF are those? dont worry check the explanation [here](./overview.html#updating-the-database). 
 
-Chinchay works with [Postgres](https://www.postgresql.org/about/). This is the [database system](https://en.wikipedia.org/wiki/Database) that stores the data. 
+The migration should look like something like this:
 
-#### Why not another database system?
+```javascript
+exports.up = function (knex) {
+  return knex.schema.createTable('coffee', (table) => {
+    // Incremental id
+    table.increments();
+    // created_at and updated_at
+    table.timestamps();
+  });
+};
 
-To be honest, just because. Postgres is one of the most popular databases and it seemed as a good starting point. At the moment we are working to make Chinchay compatible with mysql and other databases.
+exports.down = function (knex) {
+  return knex.schema.dropTable('coffee');
+};
+```
 
+Lets explain every bit, we are creating a table called coffee, in this case the relation was named coffee, if we would have run `chinchay new tea` the table would have been called tea. the `table.increments()` add an id column that will auto-increment and `table.timestamps()` adds a created_at and updated_at columns. So far the table is something like this:
 
+| Column  | Type  |  Collation | Nullable  | Default  |
+|---|---|---|---|---|
+| id  | integer  |   | not null  | nextval('coffee_id_seq'::regclass)  |
+| created_at  | timestamp with time zone  |   |   |   |
+| updated_at  | timestamp with time zone  |   |   |   |
 
+So you must edit this file to add the columns you desire:
+
+```javascript
+exports.up = function (knex) {
+  return knex.schema.createTable('coffee', (table) => {
+    // Incremental id
+    table.increments();
+    table.string('name').notNullable();
+    table.integer('price');
+    // created_at and updated_at
+    table.timestamps();
+  });
+};
+
+exports.down = function (knex) {
+  return knex.schema.dropTable('coffee');
+};
+```
+
+For a complete guide on how to add columns visit the [knex documentation](http://knexjs.org/#Schema-createTable).
 
 
 
