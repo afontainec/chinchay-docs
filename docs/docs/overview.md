@@ -103,6 +103,10 @@ You can read more about [HATEOAS here](https://restfulapi.net/hateoas/).
 
 ### Client Queries
 
+Well so we now have a RESTful API with HATEOAS, is that a _good_ api? Well, not necessarily... A _GOOD_ API is an API that is both elegant and useful. The elegant :white_check_mark: (its REST, so yeah it is elegant) but how do we make it useful?
+
+For it to be useful, the client must be able to extract the information it needs through it. Chinchay provides a complete flexible interface where the client can build specific queries to consult information. The backend developer does not need to do a different API endpoint for each client need, with a few endpoint and a flexible querying interface everything is possible. Read more on how to do so [here](./clientside).
+
 ### oAuth 2.0
 
 ## the backend flag
