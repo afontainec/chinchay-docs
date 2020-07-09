@@ -16,9 +16,32 @@ This simple, but yet powerful, command will create all that is needed to create,
 $ chinchay new coffee
 ```
 
+## Chinchay Configurations: Chainfile
+
+All of the configurations needed will be in a file called .chainfile.js on the base of the repository. So before we go on we will explain the minimum chainfile neeeded for the new command to operate. For more information on the chainfile, visit the [chainfile documentation](./chainfile)
+
+### The mimimal chainfile
+
+The minimal chainfile needed by Chinchay is one that indicates where the [knex](http://knexjs.org/) instance is. So it should look something like this: 
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  knex:  path.join(__dirname, 'knex.js')
+};
+```
+
+Where the knex.js file exports the knex instance. Check the [Getting started tutorial](../ettingstarted/ejs.html#connecting-to-the-database), there you can see an example of a knex.js file. 
+
+
 ### What is created?
 
-So what is actualy being created? Well it depends on how you have configured the [chainfile](./chainfile) and which flages are passed. But in a nutshel it will create a model, a controller, views, routes and a knex migration.
+So now that we have our minimal chainfile, what is actualy being created? It will create a knex migration, a model, a controller, views, and some routes. 
+
+::: tip DISCLAIMER
+  Depending on how the chainfile is defined, the files created might vary.
+:::
 
 #### Knex migration
 
@@ -68,7 +91,17 @@ exports.down = function (knex) {
 };
 ```
 
-For a complete guide on how to add columns visit the [knex documentation](http://knexjs.org/#Schema-createTable).
+For a complete guide on how to add columns visit the [knex documentation](http://knexjs.org/#Schema-createTable). Dont forget to run:
+
+```
+$ knex migrate:latest
+```
+
+For the migration to be taken into account!
+
+#### The Model
+
+So we have 
 
 
 
