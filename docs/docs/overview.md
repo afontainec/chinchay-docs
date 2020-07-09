@@ -109,10 +109,35 @@ For it to be useful, the client must be able to extract the information it needs
 
 ### oAuth 2.0
 
-## the backend flag
+If by this point you are thinking, wait the client can ask whatever he wants, so is it unsafe or how do we control he only access what he should access? Do not worry! Chinchay has you cover!
 
-## the middleware flag
+You can easily transform your API in a oAuth 2.0 API, oAuth is a industry-standard protocol for authorization. In simple, you can protect so each users only access the endpoint you give him access to. 
 
-## the backend flag
+So the whole process go like this:
 
-## Do I prefer camels or snakes?
+  1. The user authenticate with its credentials (usually a username and password) 
+  2. If the credentials are correct an access token is generated and given to the user. This token has an expiration date.
+  3. Every request the user does to the API it must provide the access token, otherwise the connecting is denied.
+
+
+### So how does Chinchay make the API an oAuth 2.0 API?
+
+[The Chinchay Middleware](./middleware) will be in charge of inspect that the token is present, valid and that the user of that token has access to the given endpoint. The token is expected to be given as a [Bearer Token](https://stackoverflow.com/questions/25838183/what-is-the-oauth-2-0-bearer-token-exactly/25843058).
+
+The [Access Module](./middleware#access) will be in charge of generating the access token, the token follows the [json web token standard](https://jwt.io/), by generating the token with [the jsonwebtoken npm package](https://www.npmjs.com/package/jsonwebtoken). 
+
+To actually define which user has access to which endpoints, chinchay uses the [thewall npm package](https://www.npmjs.com/package/thewall). In the [Middleware documentation](./middleware) you will be guided on how to work with each of this tools.
+
+Moreover you might have one route that its accessible by different users but the content must be different. For instance, with chinchay (running locally) the route: _http://localhost/api/coffee/find_ will return all the coffees. If we have an customer1 user and a customer2 user, we might want to use that endpoint to return all the coffees that the user has access. So how do we filter them? With thewall we give access to both users to that route, but with the [Access Module](./middleware#access) we can add the corresponding filter so that when the information is fetched to the database only the corresponding coffees are given.
+
+::: tip REMINDER
+  Do remember that the using oAuth is optional, you might have an API that is accessible for everyone and if that's fine with you Chinchay will be fine as well
+:::
+
+
+If you have more doubts of how oAuth works, check this links:
+
+  * [OAuth 2.0](https://oauth.net/2/)
+  *  [The always useful wiki article](https://en.wikipedia.org/wiki/OAuth#:~:text=OAuth%20is%20an%20open%20standard,without%20giving%20them%20the%20passwords.&text=OAuth%20is%20a%20service%20that%20is%20complementary%20to%20and%20distinct%20from%20OpenID.)
+  * [Bearer Token](https://stackoverflow.com/questions/25838183/what-is-the-oauth-2-0-bearer-token-exactly/25843058)
+  * [json web token standard](https://jwt.io/introduction/)
