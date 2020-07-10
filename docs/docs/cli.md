@@ -245,12 +245,63 @@ Two routing files will be created. The first one for rendering ejs files and the
 
 Last but not least, a bunch of view files are created. This vary deeply if Chinchay is configured for ejs or angular. However, in any case the following will be generated:
 
-  * An index which lists all the entries. This will have buttons edit, delete and view each entry.
+  * An index which lists all the entries. This will have buttons edit, delete and view each entry. Also a button to create a new entry.
   * A view of the entry where you can see the properties of a given entry. Buttons to edit, delete and go to the index will be provided.
   * An editing page, where the properties of a given entry can be edited.
+  * An create page, where a new entry can be created.
   * A way to connect to the backend API (for instance an Angular service)
 
  This might vary depending on the frontend configuration. We strongly recommend you check the [Getting Started tutorial](../gettingstarted/ejs.html#using-chinchay) and/or the [Chinchay + Angular tutorial](../gettingstarted/angular) to get a grasp on how to work with these files.
+
+## frontend and backend
+
+Are you developing an API without frotend? Or is the API already created and you are just building an angular app? Well here we will explain you two flags that can be used when running the new command.
+
+### frontend flag
+
+This can be either `ejs`, `angular` or `disable`. So if you ran:
+
+```
+$ chinchay new coffee --frontend angular
+```
+
+The views generated will correspond to angular components, services and routes for the Angular router. If its ran with `ejs` the equivalent files will be created but in ejs.
+
+If you are building an API with no frontend, you may disable it creating zero view files:
+
+```
+$ chinchay new coffee --frontend disable
+```
+
+
+### backend flag
+
+This can be either `enable` or `disable`. So if you ran:
+
+```
+$ chinchay new coffee --backend disable
+```
+
+The model, controller and corresponding routes will be ommitted.
+
+
+### Adding it to the chainfilw
+
+Having to pass the flag everytime can be exhausting... thats why you might add it to the chainfile to make life easier:
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  frontend: 'angular',
+  backend: 'disable',
+  knex:  path.join(__dirname, 'knex.js')
+};
+```
+
+::: warning
+  If it is both defined in the chainfile and passed as a flag, Chinchay will use the flag configuration over the chainfile configuration.
+:::
 
 
 
