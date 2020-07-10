@@ -234,7 +234,18 @@ module.exports = {
 
 ### The Router
 
-Two routing files will be created. The first one for rendering ejs files and the other for the API endpoints. If the app is configured for angular, a file will be generated to work with the angular router.
+Two routing files will be created. The first one for rendering ejs files and the other for the API endpoints. If the app is configured for angular, a file will be generated to work with the angular router. They will be generated in the routes folder, however you can customize this by addind the following to the chainfile:
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'routes'),
+  },
+  knex:  path.join(__dirname, 'knex.js')
+};
+```
 
 ::: tip IMPORTANT!!!
   This must be added manually to the express router. Check the [Getting Started tutorial](../gettingstarted/ejs.html#using-chinchay) and/or the [Chinchay + Angular tutorial](../gettingstarted/angular) to see how they can be added.
