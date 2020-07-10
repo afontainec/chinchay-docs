@@ -99,6 +99,15 @@ $ knex migrate:latest
 
 For the migration to be taken into account!
 
+#### Where its created and why there?
+
+On the chainfile we defined where the knex instance is. The knex will have its own configuration on where it should create the migration. So its up to knex to decide where the file is created!
+
+::: tip
+  1. For the knex configuration we recommend having a [knexfile](http://knexjs.org/#knexfile), its cleaner and more elegant!
+  2. I usually have a db directory in the root, where all the database thingies are.
+:::
+
 ### The Model
 
 The model is the one responsible to interacting with the table created by the knex migration. It is very simple and it should look like this:
@@ -127,6 +136,8 @@ As you may notice this is a [singleton](https://www.dofactory.com/javascript/des
 ::: warning
   The tableName must match with the table created in the migration!
 :::
+
+#### Where its created and why there?
 
 By default the file will be created in a model directory in the root of the repository. This is customizable by adding a model configuration to the chainfile as follows: 
 
@@ -205,6 +216,20 @@ module.exports = {
   But what happens when the the model throws an error and goes to the catch block? For instance, maybe we are trying to filter by an unexisting column? Enters the [ErrorHandler](./errorhandler). For many years this troubled me greatly. Should I return a 500 error or a 400? what should be the message to show in the frontend? To tackle this, the ErrorHandlers maps backend errors to a human-readable message and a http code. The ErrorHandler comes with some translations predefined but you can override them, add more, etc. For more information, check the [ErrorHandler Documentation](./errorhandler).
 
 
+#### Where its created and why there?
+
+By default the file will be created in a controller directory in the root of the repository. This is customizable by adding a controller configuration to the chainfile as follows: 
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'controller'),
+  },
+  knex:  path.join(__dirname, 'knex.js')
+};
+```
 
 
 ### The Router
