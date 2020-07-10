@@ -224,8 +224,8 @@ By default the file will be created in a controller directory in the root of the
 const path = require('path');
 
 module.exports = {
-  models: {
-    directory: path.join(__dirname, 'server', 'controller'),
+  controllers: {
+    directory: path.join(__dirname, 'server', 'controllers'),
   },
   knex:  path.join(__dirname, 'knex.js')
 };
@@ -240,7 +240,7 @@ Two routing files will be created. The first one for rendering ejs files and the
 const path = require('path');
 
 module.exports = {
-  models: {
+  routes: {
     directory: path.join(__dirname, 'server', 'routes'),
   },
   knex:  path.join(__dirname, 'knex.js')
