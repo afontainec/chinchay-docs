@@ -202,8 +202,7 @@ module.exports = {
 
   #### Error handler
 
-  But what happens when the the model throws an error and goes to the catch block? For instance, maybe we are trying to filter by an unexisting column? Enters the [ErrorHandler](./errorhandler). 
-
+  But what happens when the the model throws an error and goes to the catch block? For instance, maybe we are trying to filter by an unexisting column? Enters the [ErrorHandler](./errorhandler). For many years this troubled me greatly. Should I return a 500 error or a 400? what should be the message to show in the frontend? To tackle this, the ErrorHandlers maps backend errors to a human-readable message and a http code. The ErrorHandler comes with some translations predefined but you can override them, add more, etc. For more information, check the [ErrorHandler Documentation](./errorhandler).
 
 
 
