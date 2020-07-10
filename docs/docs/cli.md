@@ -1,6 +1,6 @@
 ## Overview
 
-Work in progress!
+Chinchay offers a command line to help you get started. It will auto-generate the files you need to develop. So go ahead at take a look:
 
 ## The magical new command
 
@@ -347,7 +347,7 @@ module.exports = {
 
 ## Do I prefer :camel:camels or :snake:snakes?  
 
-Always a moot point... I usually go for camel except for databases and json properties. And well kebabs for  However Chinchay don't care. It will be able to process all of this:
+Always a moot point... I usually go for camel except for databases and json properties. And well kebabs for files. However Chinchay don't care. It will be able to process all of this:
 
 ```
 $ chinchay new tea_cup
