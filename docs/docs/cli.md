@@ -234,9 +234,11 @@ module.exports = {
 
 ### The Router
 
-#### API Routes
+Two routing files will be created. The first one for rendering ejs files and the other for the API endpoints.
 
-#### Routes
+::: tip IMPORTANT!!!
+  This must be added manually to the express router. Check the [Getting Started tutorial](../gettingstarted/ejs.html#using-chinchay) to see how they can be added.
+:::
 
 ### The views
 

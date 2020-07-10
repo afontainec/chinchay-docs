@@ -265,7 +265,7 @@ $ knex migrate:latest
 ```
 <br/>
 
-Last, but not least, i  the app.js file, right after these lines:
+Last but not least, in the app.js file, right after these lines:
 
 ```javascript
 app.use('/', routes);
