@@ -137,6 +137,37 @@ The most common use case is that the root of the Angular app is the same as the 
 
 ## frontend
 
+A `frontend` property can be added to the chainfile. this is equivalent to add the flag `--frontend` when running `chinchay new`. See the [cli documentation](./cli.html#frontend-flag) for more information.
+
+This can be either:
+
+  * ejs: The ejs templating language will be used to create the frontend app.
+  * angular: Angular will be used to create the frontend app. Several components, a service and a router file will be generated.
+  * disable: No frontend app will be generated.
+
+  So for angular the chainfile should look something like this:
+
+```javascript
+  module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'models'),
+  },
+  controllers: {
+    directory: path.join(__dirname, 'server', 'controllers'),
+  },
+  routes: {
+    directory: path.join(__dirname, 'server', 'routes'),
+  },
+  views: {
+    angular: path.join(__dirname, 'frontend'),
+  },
+  knex:  path.join(__dirname, 'knex.js'),
+  frontend: 'angular'
+};
+
+```
+
+
 ## backend
 
 ## middleware
