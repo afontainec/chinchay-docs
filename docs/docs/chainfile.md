@@ -74,6 +74,67 @@ If these configurations are not set, the model, controller and routes will be ge
 
 ## views
 
+For the views its _almost_ the same. If you desire to use the ejs templating language it would be exactly the same: 
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'models'),
+  },
+  controllers: {
+    directory: path.join(__dirname, 'server', 'controllers'),
+  },
+  routes: {
+    directory: path.join(__dirname, 'server', 'routes'),
+  },
+  views: {
+    directory: path.join(__dirname, 'frontend', 'views'),
+  },
+  knex:  path.join(__dirname, 'knex.js')
+};
+```
+
+In this cases the ejs files will be created within the `frontend/views` directory.
+
+However, if the app is an angular app, the root of the Angular app must be provided as follows:
+
+```javascript
+module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'models'),
+  },
+  controllers: {
+    directory: path.join(__dirname, 'server', 'controllers'),
+  },
+  routes: {
+    directory: path.join(__dirname, 'server', 'routes'),
+  },
+  views: {
+    directory: path.join(__dirname, 'frontend', 'views'),
+    angular: path.join(__dirname, 'frontend'),
+  },
+  knex:  path.join(__dirname, 'knex.js')
+};
+
+```
+
+If you are not sure what is the root of the Angular app, is the directory where you would normally run `ng generate component coffee`.
+
+The most common use case is that the root of the Angular app is the same as the root of the repository. in such a case, angular should be defined as follows:
+
+```javascript
+  views: {
+    angular: '.'
+  }
+```
+
+::: warning
+  For Angular this is not the path where the files will be created. It depends on how the angular is configured, but most certainly it will be created in the `src/app`.
+:::
+
+
 ## frontend
 
 ## backend
