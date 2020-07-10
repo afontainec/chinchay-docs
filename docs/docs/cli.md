@@ -143,10 +143,82 @@ module.exports = {
 
 ### The Controller
 
+  The next file created is the controller. This will control both the API and the view routes. For the view routes its quite simple, it will fetch, through the model, the needed data and render the ejs file. Things get more interesting with the API routes. 
+
+  A good function to analyze how the Chinchay controller adds value is the find function, so lets look at it first:
+  ```javascript
+    const find = (req, res) => {
+      const options = Table.extractOptions(req.query);
+      const columns = Table.extractColumns(req.query);
+      const query = Table.extractQuery(req.query);
+      Coffee.find(query, columns, options).then((results) => {
+        const json = httpResponse.success('Busqueda encontrada exitosamente', 'data', results);
+        for (let i = 0; i < json.data.length; i++) {
+          json.data[i].links = HATEOAS.get(json.data[i]);
+        }
+        return res.status(200).send(json);
+      }).catch((error) => {
+        const code = errorHandler.getHTTPCode(error);
+        const message = errorHandler.getHTTPMessage(error);
+        const json = httpResponse.error(message, error, code);
+        return res.status(code).send(json);
+      });
+    };
+  ```
+
+  #### Client Queries
+
+  So its starts by extracting the options, columns and query from the query, what is that? Chinchay offers a flexible API where the client can query and decide what it really wants. You can do stuff like this:
+
+  * `localhost:3000/api/coffee?`  Will return all the coffees
+  * `localhost:3000/api/coffee?price=100` Will return all the coffees where the price = 100
+  * `localhost:3000/api/coffee?price=100&columns=name` Will return only the names of all the coffees where the price = 100
+  * `localhost:3000/api/coffee?price=100&columns=["id","name"]&orderBy=id` Will return the names and ids of all the coffees where the price = 100, ordered by id.
+
+  There are tons of more things that can be done! Check the  [client side documentation](./clientside). Also if you are interested in knowing what is the difference between query, columns and options check the [model documentation](./model).
+
+  #### HATEOAS
+
+
+  Then the model goes and find all the data, filtering and sorting according to what was determined in the options, columns and query. If its successful we can see how HATEOAS is added to the property links of every element. If we look at the beginning of the API functions we will see that the a HateoasGenerator is initialed. Here all the links that the HATEOAS should have are added. It comes with some default values, if you need to add more, edit or delete just go ahead. The default configuration will add a link as follows:
+
+  ```javascript
+  {
+    "message": "Busqueda encontrada exitosamente",
+    "data": [{
+        "id": 2,
+        "created_at": "2018-11-21T11:57:02.767Z",
+        "links": [{ "rel": "self", "href": "/api/coffee/2", "type": "GET"},
+          { "rel": "edit", "href": "/api/coffee/2/edit", "type": "POST"},
+          { "rel": "delete", "href": "/api/coffee/2/delete", "type": "DELETE"},
+          { "rel": "new", "href": "/api/coffee/new", "type": "POST"},
+          { "rel": "all", "href": "/api/coffee/find", "type": "GET"},
+          { "rel": "count", "href": "/api/coffee/count", "type": "GET"}],
+      }],
+  }
+  ```
+
+  For more information on this, see the [HateoasGenerator documentation](./hateoas).
+
+  #### Error handler
+
+  But what happens when the the model throws an error and goes to the catch block? For instance, maybe we are trying to filter by an unexisting column? Enters the [ErrorHandler](./errorhandler). 
+
+
+
+
 
 ### The Router
 
+#### API Routes
+
+#### Routes
+
 ### The views
+
+#### ejs
+
+#### angular
 
 
 ## frontend vs backend
