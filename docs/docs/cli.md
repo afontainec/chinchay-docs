@@ -234,20 +234,25 @@ module.exports = {
 
 ### The Router
 
-Two routing files will be created. The first one for rendering ejs files and the other for the API endpoints.
+Two routing files will be created. The first one for rendering ejs files and the other for the API endpoints. If the app is configured for angular, a file will be generated to work with the angular router.
 
 ::: tip IMPORTANT!!!
-  This must be added manually to the express router. Check the [Getting Started tutorial](../gettingstarted/ejs.html#using-chinchay) to see how they can be added.
+  This must be added manually to the express router. Check the [Getting Started tutorial](../gettingstarted/ejs.html#using-chinchay) and/or the [Chinchay + Angular tutorial](../gettingstarted/angular) to see how they can be added.
 :::
+
 
 ### The views
 
-#### ejs
+Last but not least, a bunch of view files are created. This vary deeply if Chinchay is configured for ejs or angular. However, in any case the following will be generated:
 
-#### angular
+  * An index which lists all the entries. This will have buttons edit, delete and view each entry.
+  * A view of the entry where you can see the properties of a given entry. Buttons to edit, delete and go to the index will be provided.
+  * An editing page, where the properties of a given entry can be edited.
+  * A way to connect to the backend API (for instance an Angular service)
+
+ This might vary depending on the frontend configuration. We strongly recommend you check the [Getting Started tutorial](../gettingstarted/ejs.html#using-chinchay) and/or the [Chinchay + Angular tutorial](../gettingstarted/angular) to get a grasp on how to work with these files.
 
 
-## frontend vs backend
 
 ## the middleware flag
 
