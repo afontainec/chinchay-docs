@@ -285,7 +285,7 @@ $ chinchay new coffee --backend disable
 The model, controller and corresponding routes will be ommitted.
 
 
-### Adding it to the chainfilw
+### Adding it to the chainfile
 
 Having to pass the flag everytime can be exhausting... thats why you might add it to the chainfile to make life easier:
 
@@ -304,8 +304,34 @@ module.exports = {
 :::
 
 
-
 ## the middleware flag
+
+If you are developing an top secret app, and you need to protect your routes so they are publicly accesible you can add the middleware flag to protect your routes. The possible values are `api`, `frontend`, `enable` and `disable`. So if I ran the following command: 
+
+```
+$ chinchay new coffee --middleware api
+```
+
+Users accessing the api routes will have to show a valid token to pass. Whereare the ejs files are publicly accessible. If the command is ran with `--middleware frontend` its the other way around. As I guess you already figure it out, if the flag is defined and disable, all routes are public (this is the default configuration) and if its enable all the routes are protected.  Check the [Middleware documentation](./middleware) to see how to work around with it.
+
+::: danger
+  VERY IMPORTANT: if you are protecting your routes you **must** provide a secret for the middleware by defining the JWT_SECRET environment variable.
+:::
+
+This configuration can also be added to the chainfile:
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  middleware: 'api',
+  knex:  path.join(__dirname, 'knex.js')
+};
+```
+::: warning
+  If it is both defined in the chainfile and passed as a flag, Chinchay will use the flag configuration over the chainfile configuration.
+:::
+
 
 
 ## Do I prefer camels or snakes?
