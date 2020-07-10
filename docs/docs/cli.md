@@ -345,4 +345,15 @@ module.exports = {
 
 
 
-## Do I prefer camels or snakes?
+## Do I prefer :camel:camels or :snake:snakes?  
+
+Always a moot point... I usually go for camel except for databases and json properties. And well kebabs for  However Chinchay don't care. It will be able to process all of this:
+
+```
+$ chinchay new tea_cup
+$ chinchay new teaCup
+$ chinchay new TeaCup
+$ chinchay new tea-cup
+$ chinchay new TEA-CUP
+$ chinchay new TEA_CUP
+```
