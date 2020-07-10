@@ -284,6 +284,8 @@ If you are building an API with no frontend, you may disable it creating zero vi
 $ chinchay new coffee --frontend disable
 ```
 
+By default its set to `ejs`.
+
 
 ### backend flag
 
@@ -295,6 +297,7 @@ $ chinchay new coffee --backend disable
 
 The model, controller and corresponding routes will be ommitted.
 
+By default its enabled.
 
 ### Adding it to the chainfile
 

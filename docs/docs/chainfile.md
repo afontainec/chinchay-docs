@@ -170,6 +170,36 @@ This can be either:
 
 ## backend
 
+A `backend` property can be added to the chainfile. this is equivalent to add the flag `--backend` when running `chinchay new`. See the [cli documentation](./cli.html#backend-flag) for more information.
+
+This can be either:
+
+  * enable: Model, Controler and routes are generated.
+  * disable: No models, controllers and routes will be generated.
+
+  So if we want to disable the backend:
+
+```javascript
+  module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'models'),
+  },
+  controllers: {
+    directory: path.join(__dirname, 'server', 'controllers'),
+  },
+  routes: {
+    directory: path.join(__dirname, 'server', 'routes'),
+  },
+  views: {
+    angular: path.join(__dirname, 'frontend'),
+  },
+  knex:  path.join(__dirname, 'knex.js'),
+  frontend: 'angular',
+  backend: 'disable'
+};
+
+```
+
 ## middleware
 
 ## access
