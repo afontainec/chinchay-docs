@@ -22,6 +22,39 @@ Where the knex.js file exports the knex instance. Check the [Getting started tut
 
 ## Model
 
+The model property expects a json as follows:
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  models: {
+    directory: 'path/to/directory/containing/models'
+  },
+  knex:  path.join(__dirname, 'knex.js')
+};
+```
+
+
+where `models.directory` is the path of the directory where all the models should be located. For instance, if we want to create the models, on the `server/model` directory within the repo:
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'models'),
+  },
+  knex:  path.join(__dirname, 'knex.js')
+};
+```
+
+if no directory for the models is given, model files will be generated in a `models` directory on the repository.
+
+::: tip
+  I always group all the backend-related (models, controllers, routes, etc) in a server folder.
+:::
+
 ## Controller
 
 ## Routes
