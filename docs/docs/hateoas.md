@@ -118,3 +118,5 @@ const find = (req, res) => {
 
 ## removeLink
 
+This method is not used in the controller but is quite self explatory. If at any time you desire the dynamically delete links you can call `removeLink(name)` and the link with the given name will no longer be added when the `get` method is called.
+
