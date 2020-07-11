@@ -40,7 +40,7 @@ $ npm start
 ```
 <br/>
 
-Visit [http://localhost:3000](http://localhost:3000) to see the defaut express web app
+Visit [https://chinchay-docs.herokuapp.com](https://chinchay-docs.herokuapp.com) to see the defaut express web app
 
 ## Create Postgresql Database
 
