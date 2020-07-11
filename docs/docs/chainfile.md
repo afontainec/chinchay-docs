@@ -200,8 +200,90 @@ This can be either:
 
 ```
 
-## middleware
+## middleware + access + thewall
 
-## access
+Last, but definetely not least, how to restrict data access in your app. If you are designing an API that can be accessible by authentificated users only, and moreover, different users has access to different data, you will have to configure thewall, access and middleware property.
 
-## thewall
+### Middleware
+
+  Lets start with the middleware. The value can be either `frontend`, `api`, `enable` or `disable`. This is equivalent to the flag `--middleware` and will determine which routes will required a _valid token_ to be granted access. So if you only what to protect the API routes, the chainfile will look as follows:
+
+  ```javascript
+  module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'models'),
+  },
+  controllers: {
+    directory: path.join(__dirname, 'server', 'controllers'),
+  },
+  routes: {
+    directory: path.join(__dirname, 'server', 'routes'),
+  },
+  views: {
+    angular: path.join(__dirname, 'frontend'),
+  },
+  knex:  path.join(__dirname, 'knex.js'),
+  middleware: 'api',
+};
+```
+
+For more information check the full [Middleware Documentation](./middleware).
+
+::: tip NOTE
+  A valid token is an oAuth 2.0 token generated with json web token and added as a Bearer Token. IF you don know what is all this, check the [Middleware Documentation](./middleware) and/or the [oAuth introduction](./overview.html#oAuth-2.0).
+:::
+
+
+
+### thewall
+
+For most case uses just providing a valid token is not enough. Usually we have different user roles. For instance maybe, a venue-owner will be able to access some data, a client some other data and an admin can access everything. To configure this, Chinchay uses [thewall](https://www.npmjs.com/package/thewall). If you desire to use this functionality, a thewall property should be provided in the chainfile with the path to a file that exports a thewall instance. For example: 
+
+  ```javascript
+  module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'models'),
+  },
+  controllers: {
+    directory: path.join(__dirname, 'server', 'controllers'),
+  },
+  routes: {
+    directory: path.join(__dirname, 'server', 'routes'),
+  },
+  views: {
+    angular: path.join(__dirname, 'frontend'),
+  },
+  knex:  path.join(__dirname, 'knex.js'),
+  middleware: 'api',
+  thewall: path.join(__dirname, 'thewall.js')
+};
+```
+
+As you may have notice is very similar to the knex property. For more information on how to get this working and how thewal.js should be see the [middleware documentation](./middleware).
+
+
+### access
+
+Sometimes, just filtering who can access a route is not enough. Some routes must be accessible by different users but the content that route returns should differ. Here is where the access property comes to help. Where you can set which user roles has unrestricted access, for instance an admin may be able to access everything, and which roles are restricted. On the chainfile a `access` property should be defined to the path to the file that defines which roles are restricted and to which data are restricted. For example:
+
+  ```javascript
+  module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'models'),
+  },
+  controllers: {
+    directory: path.join(__dirname, 'server', 'controllers'),
+  },
+  routes: {
+    directory: path.join(__dirname, 'server', 'routes'),
+  },
+  views: {
+    angular: path.join(__dirname, 'frontend'),
+  },
+  knex:  path.join(__dirname, 'knex.js'),
+  middleware: 'api',
+  access: path.join(__dirname, 'access.js')
+};
+```
+
+For more information on how to configure the access.js file check the full [Middleware Documentation](./middleware).
