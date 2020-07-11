@@ -1,15 +1,9 @@
 {
-  "name": "guayo",
+  "name": "chinchay-docs",
   "version": "0.0.93",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "ng": "ng",
-    "serve": "ng serve --proxy-config ./proxy.config.json",
-    "build": "ng build",
-    "test": "nyc mocha --recursive --timeout 20000 test/ --exit",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
     "docs:dev": "vuepress dev docs --host localhost",
     "docs:build": "vuepress build docs"
   },
