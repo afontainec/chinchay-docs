@@ -111,12 +111,12 @@ This will create a coffee directory within src/app. This will include:
 
 ## Connecting Backend and Frontend
 
-To connect the backend to the frontend we need to configure one more thing. In the file src/environments/environment.ts we need to add the variable `backend = http://localhost:3000`. This will indicate that the backend is running in the port 3000 of our machine.
+To connect the backend to the frontend we need to configure one more thing. In the file src/environments/environment.ts we need to add the variable `backend = https://chinchay-docs.herokuapp.com`. This will indicate that the backend is running in the port 3000 of our machine.
 
 ```javascript
 export const environment = {
   production: false,
-  backend: 'http://localhost:3000'
+  backend: 'https://chinchay-docs.herokuapp.com'
 };
 ```
 
