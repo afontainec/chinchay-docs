@@ -1,4 +1,4 @@
-![Chinchay](http://localhost:3000/assets/logo.png)
+![Chinchay](https://chinchay-docs.herokuapp.com/assets/logo.png)
 
 Welcome to the **Chinchay Docs**
 
