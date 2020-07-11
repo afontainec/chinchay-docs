@@ -96,7 +96,7 @@ Not everyone API that say its REST actually is REST. Most of the APIs out there 
 
 ### HATEOAS
 
-HATEOAS is one of the most distintive features of a REST API and is hardly ever present. HATEOAS tries to mimic our real-life browsing, when we visit a page all the posible links are presented (as buttons, images, etc). HATEOAS aims to do the same, which every API request a list of followup links are given. However, doing so its a pain in the *** for the developer, he is responsible to, for every API request, return all the followup link. So guess what does chinchay do? Yes it will make it veeery easy to do su with its [HATEOAS generator](./hateoas).
+HATEOAS is one of the most distintive features of a REST API and is hardly ever present. HATEOAS tries to mimic our real-life browsing, when we visit a page all the posible links are presented (as buttons, images, etc). HATEOAS aims to do the same, which every API request a list of followup links are given. However, doing so its a pain in the *** for the developer, he is responsible to, for every API request, return all the followup link. So guess what does chinchay do? Yes it will make it veeery easy to do so with its [HATEOAS generator](./hateoas).
 
 You can read more about [HATEOAS here](https://restfulapi.net/hateoas/).
 
