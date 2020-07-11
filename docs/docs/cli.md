@@ -224,8 +224,8 @@ By default the file will be created in a controller directory in the root of the
 const path = require('path');
 
 module.exports = {
-  models: {
-    directory: path.join(__dirname, 'server', 'controller'),
+  controllers: {
+    directory: path.join(__dirname, 'server', 'controllers'),
   },
   knex:  path.join(__dirname, 'knex.js')
 };
@@ -240,7 +240,7 @@ Two routing files will be created. The first one for rendering ejs files and the
 const path = require('path');
 
 module.exports = {
-  models: {
+  routes: {
     directory: path.join(__dirname, 'server', 'routes'),
   },
   knex:  path.join(__dirname, 'knex.js')
@@ -284,6 +284,8 @@ If you are building an API with no frontend, you may disable it creating zero vi
 $ chinchay new coffee --frontend disable
 ```
 
+By default its set to `ejs`.
+
 
 ### backend flag
 
@@ -295,6 +297,7 @@ $ chinchay new coffee --backend disable
 
 The model, controller and corresponding routes will be ommitted.
 
+By default its enabled.
 
 ### Adding it to the chainfile
 
