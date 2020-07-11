@@ -71,6 +71,50 @@ So, 6 links are added. This generate a HATEOAS as such:
 
 ## get
 
+Lets look now when and how are this links added to each response. If we look the create function we see the the `links` property is added to the `json.data` which is the send as the response:
+
+```javascript
+const create = (req, res) => {
+  Coffee.save(req.body).then((results) => {
+    const json = httpResponse.success('Elemento guardado exitosamente', 'data', results);
+    json.data.links = HATEOAS.get(results);
+    return res.status(200).send(json);
+  }).catch((error) => {
+    const code = errorHandler.getHTTPCode(error);
+    const message = errorHandler.getHTTPMessage(error);
+    const json = httpResponse.error(message, error, code);
+    return res.status(code).send(json);
+  });
+};
+```
+
+Lets look to the `get(values)` method. This method recieves some _values_, in the previous example the `results`. For this it will create an array of all the defined links. if any links need to be compiled it will compiled and will use the values property to replace it. 
+
+  * values: A javascript object. The keys/properties it have will be used to compile every uri. For instance, if the uri is `'/api/coffee/:id'` and the values is `{id: 1}`, the compiled uri will be `'api/coffee/1'`.
+  * return: The returned is an Array of javascript object. Each object have a `rel`, `href` and `type` property. The rel provides a human-readable value for undestanding what is, `href` the link to the resource and the `type` is the http verb for the link.
+
+Take a look at the find function to check out how the HATEOAS is added when the results is an array:
+
+
+```javascript
+const find = (req, res) => {
+  const options = Table.extractOptions(req.query);
+  const columns = Table.extractColumns(req.query);
+  const query = Table.extractQuery(req.query);
+  Coffee.find(query, columns, options).then((results) => {
+    const json = httpResponse.success('Busqueda encontrada exitosamente', 'data', results);
+    for (let i = 0; i < json.data.length; i++) {
+      json.data[i].links = HATEOAS.get(json.data[i]);
+    }
+    return res.status(200).send(json);
+  }).catch((error) => {
+    const code = errorHandler.getHTTPCode(error);
+    const message = errorHandler.getHTTPMessage(error);
+    const json = httpResponse.error(message, error, code);
+    return res.status(code).send(json);
+  });
+};
+```
 
 ## removeLink
 
