@@ -26,7 +26,7 @@ In this section you are going to learn how to work with the API from a client si
 ### Example
 
 ```
-url --header "Content-Type: application/json" \
+curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"name":"this is the name","price":100}' \
   http://localhost:3000/api/coffee/new
@@ -77,10 +77,10 @@ The [RESTful API](https://restfulapi.net/http-methods/) recommends the PUT verb 
  ### Example
 
  ```
-url --header "Content-Type: application/json" \
-  --request POST \
-  --data '{"name":"this is the updated name" }' \
-  http://localhost:3000/api/coffee/1/edit
+  curl --header "Content-Type: application/json" \
+    --request POST \
+    --data '{"name":"this is the updated name" }' \
+    http://localhost:3000/api/coffee/1/edit
 ```
 
  ### Response
@@ -128,8 +128,7 @@ This URL deletes the entry with id = :id. Be very careful with this endpoint as 
  ### Example
 
  ```
-url --header "Content-Type: application/json" \
-  --request DELETE \
+curl --request DELETE \
   http://localhost:3000/api/coffee/1
 ```
 
@@ -156,6 +155,45 @@ url --header "Content-Type: application/json" \
 ```
 
 ## Find by ID 
+
+ ### Endpoint
+
+ ```
+ GET http://localhost:3000/coffee/:id
+ ```
+
+ ### Description
+
+Returns a JSON object representing the object with id = :id. If there is no such entry, it reports the error.
+
+ ### Example
+
+ ```
+curl --request GET \
+  http://localhost:3000/api/coffee/1
+```
+
+ ### Response
+
+ ```javascript
+{
+  "message": "Elemento eliminado exitosamente",
+  "data": {
+    "id": 1,
+    "name": "this is an updated name",
+    "price": 100,
+    "created_at": "2018-11-21T11:57:02.767Z",
+    "updated_at": "2018-12-12T11:52:32.750Z",
+    "links": [
+      { "rel": "self", "href": "/api/coffee/1", "type": "GET" },
+      { "rel": "edit", "href": "/api/coffee/1/edit", "type": "POST" },
+      { "rel": "delete", "href": "/api/coffee/1/delete", "type": "DELETE" },
+      { "rel": "new", "href": "/api/coffee/new", "type": "POST" },
+      { "rel": "all", "href": "/api/coffee/find", "type": "GET" },
+      { "rel": "count", "href": "/api/coffee/count", "type": "GET" }],
+  }
+}
+```
 
 
 ## Find
