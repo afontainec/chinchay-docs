@@ -205,7 +205,7 @@ curl --request GET \
 
  ### Description
 
-Returns an array with all the entries matching the given query. This is where the magic really happens. The user can customize the result by adding a query, in our first example we would look when no query is given (therefor returns all the entries), and the dig into all the options that can be added to filter and customize your search.
+Returns an array with all the entries matching the given query. This is where the magic really happens. The user can customize the result by adding a query, in our first example we would look when no query is given (therefore returns all the entries), and then dig into all the options that can be added to filter and customize your search.
 
 
  ### Example
@@ -421,3 +421,48 @@ It just does not end here! There are some more options to do your querying even 
 
 
 ## Count
+
+ ### Endpoint
+
+ ```
+ GET http://localhost:3000/coffee/count
+ ```
+
+ ### Description
+
+Returns an the amount with all the entries matching the given query. The user can customize the result by adding a query, all of the query examples given for the _find_ endpoint also work for the _count_ endpoint.
+
+ in our first example we would look when no query is given (therefore counts all the entries), and then dig into all the options that can be added to filter and customize your search.
+
+
+ ### Example
+
+ ```
+curl --request GET http://localhost:3000/api/coffee/count
+```
+
+ ### Response
+
+  Will return an array than counts all the entries:
+
+  ```javascript
+  {
+    "message": "Busqueda encontrada exitosamente",
+    "data": 4
+  }
+  ```
+
+### Other Examples
+
+```
+curl --request GET http://localhost:3000/api/coffee/count?price=100
+```
+ In this case will count all the entries where the price is 100. 
+
+
+ ```
+ curl --request GET http://localhost:3000/api/coffee/count?price=[">", 105]
+ ```
+ In this case will count all the entries where the price is greater than 105. 
+
+### Group by and Order by
