@@ -254,4 +254,64 @@ curl --request GET \
   }
   ```
 
+### Simple Queries
+
+  This is the simplest but powerful way of querying, the query will filter with the given format _key=value_.
+
+
+  #### Examples
+
+  ```
+  curl --request GET http://localhost:3000/api/coffee?price=100
+  ```
+ In this case will return all the entries where the price is 100. 
+
+
+  ```
+  curl --request GET http://localhost:3000/api/coffee?price=100&name=other
+  ```
+  In this case will return all the entries where the price is 100 and the name is other.
+
+### Complex Queries
+
+Here are some examples of how to work with more complex queries. In the query you should pass an array with two values, as such: key=["command",value]. The query will translate to SQL as follows `WHERE  key command value`.
+
+
+  * price=["<>", 90] will translate to `WHERE  price <> 90`
+
+  * price=["in", [90, 100]] will translate to `WHERE  price in {90, 100}`
+
+  * price=["not in", [90, 100]] will translate to `WHERE  price not in {90, 100}`
+
+  It is very important for the brackets to be before and after every array, otherwise it will be parse as a string, for instance:
+
+  price=">",90 will translate to `WHERE  price = '">", 90'`
+
+
+#### Examples
+
+ ```
+ curl --request GET http://localhost:3000/api/coffee?price=[">", 105]
+ ```
+ In this case will return all the entries where the price is greater than 105. 
+
+```
+curl --request GET http://localhost:3000/api/coffee?price=["<>", 90]
+```
+ In this case will return all the entries where the price is distinct to 90. 
+
+ ```
+curl --request GET http://localhost:3000/api/coffee?price=["in", [90, 100]]
+```
+
+ This is one of my favorites, in this case will return all the entries where the price is either 90 or 100. 
+
+```
+  curl --request GET http://localhost:3000/api/coffee?price=["not in", [90, 100]]
+```
+
+ This is one of my favorites, in this case will return all the entries except the ones where the price is either 90 or 100. 
+
+ And much more! Any postgresql command is supported!
+
 ## Count
