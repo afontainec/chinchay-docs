@@ -79,7 +79,7 @@ The [RESTful API](https://restfulapi.net/http-methods/) recommends the PUT verb 
  ```
 url --header "Content-Type: application/json" \
   --request POST \
-  --data '{"name":"this is the updated name","price":80}' \
+  --data '{"name":"this is the updated name" }' \
   http://localhost:3000/api/coffee/1/edit
 ```
 
@@ -91,7 +91,7 @@ url --header "Content-Type: application/json" \
   "data": {
     "id": 1,
     "name": "this is an updated name",
-    "price": 80,
+    "price": 100,
     "created_at": "2018-11-21T11:57:02.767Z",
     "updated_at": "2018-12-12T11:52:32.750Z",
     "links": [
@@ -105,8 +105,55 @@ url --header "Content-Type: application/json" \
 }
 ```
 
+Note that only the name was changed and the price was left intact, as the `data` did not provide a new price.
+
 
 ## Delete
+
+ ### Endpoint
+
+ ```
+ DELETE http://localhost:3000/coffee/:id
+ ```
+
+ ### Description
+
+This URL deletes the entry with id = :id. Be very careful with this endpoint as it is irreversible.
+
+
+:::tip
+  Rather than eliminating the entry you can add an "archived" column to the table. Where if an entry has `archived=true` it means it is "deleted". So if you screw up and delete something you can get it back (by setting `archived=false`).
+:::
+
+ ### Example
+
+ ```
+url --header "Content-Type: application/json" \
+  --request DELETE \
+  http://localhost:3000/api/coffee/1
+```
+
+ ### Response
+
+ ```javascript
+{
+  "message": "Elemento eliminado exitosamente",
+  "data": {
+    "id": 1,
+    "name": "this is an updated name",
+    "price": 100,
+    "created_at": "2018-11-21T11:57:02.767Z",
+    "updated_at": "2018-12-12T11:52:32.750Z",
+    "links": [
+      { "rel": "self", "href": "/api/coffee/1", "type": "GET" },
+      { "rel": "edit", "href": "/api/coffee/1/edit", "type": "POST" },
+      { "rel": "delete", "href": "/api/coffee/1/delete", "type": "DELETE" },
+      { "rel": "new", "href": "/api/coffee/new", "type": "POST" },
+      { "rel": "all", "href": "/api/coffee/find", "type": "GET" },
+      { "rel": "count", "href": "/api/coffee/count", "type": "GET" }],
+  }
+}
+```
 
 ## Find by ID 
 
