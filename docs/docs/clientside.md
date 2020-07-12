@@ -369,5 +369,28 @@ Sometimes we don't want to get all the information, just the essential stuff. Th
   }
   ```
 
+#### Options 
+
+It just does not end here! There are some more options to do your querying even more complete! If you already read the [Model Documentation](./model), this corresponds as the configurations passed in the `options` variable.
+
+#### startDate and endDate
+
+ ```
+ curl --request GET http://localhost:3000/api/coffee/find?startDate=2018-11-21T11:55:00.000Z
+ ```
+ 
+ In this case will return all the entries where the created_at is after the given startDate, in this case, after 2018-11-21T11:55:00.000Z.
+
+  ```
+ curl --request GET http://localhost:3000/api/coffee/find?endDate=2018-11-21T12:00:00.000Z
+ ```
+ 
+ In this case will return all the entries where the created_at is before the given endDate, in this case, before endDate=2018-11-21T12:00:00.000Z.
+
+   ```
+ curl --request GET http://localhost:3000/api/coffee/find?startDate=2018-11-21T11:55:00.000Z&endDate=endDate=2018-11-21T12:00:00.000Z
+ ```
+ 
+ In this case will return all the entries where the created_at is in between the given startDate and endDate, in this case, between 2018-11-21T11:55:00.000Z and 2018-11-21T12:00:00.000Z.
 
 ## Count
