@@ -50,6 +50,10 @@ module.exports = {
         title: 'Error Handler: Manage http responses',   // required
         path: '/docs/errorhandler',
         children: []
+      }, {
+        title: 'API: Client Querying',   // required
+        path: '/docs/clientside',
+        children: []
       }] 
     },
   },
