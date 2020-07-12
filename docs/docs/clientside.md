@@ -393,4 +393,31 @@ It just does not end here! There are some more options to do your querying even 
  
  In this case will return all the entries where the created_at is in between the given startDate and endDate, in this case, between 2018-11-21T11:55:00.000Z and 2018-11-21T12:00:00.000Z.
 
+ #### Order by, limit and offset
+
+  ```
+ curl --request GET http://localhost:3000/api/coffee/find?orderBy=id&limit=2
+ ```
+ 
+ In this case will return the first two entries ordered by id in ascending order.
+
+ ```
+ curl --request GET http://localhost:3000/api/coffee/find?orderBy=["id", "desc"]&limit=2
+ ```
+ 
+ In this case will return the first two entries ordered by id in descending order. 
+
+ ```
+ curl --request GET http://localhost:3000/api/coffee/find?orderBy=["id", "asc"]&limit=2&offset=1
+ ```
+ 
+ In this case will return the second and third entries ordered by id in ascending order. It skips the first one because of the offset given. 
+
+ ```
+ curl --request GET http://localhost:3000/api/coffee/find?orderBy=orderBy=[["price","desc"],["id", "asc"]]
+ ```
+ 
+ In this case will return the entries ordered by price in a descending order. In case that some entries have the same price, then they will be ordered by id in ascending order.
+
+
 ## Count
