@@ -200,7 +200,7 @@ curl --request GET \
  ### Endpoint
 
  ```
- GET http://localhost:3000/coffee
+ GET http://localhost:3000/coffee/find
  ```
 
  ### Description
@@ -212,7 +212,7 @@ Returns an array with all the entries matching the given query. This is where th
 
  ```
 curl --request GET \
-  http://localhost:3000/api/coffee
+  http://localhost:3000/api/coffee/find
 ```
 
  ### Response
@@ -262,17 +262,17 @@ curl --request GET \
   #### Examples
 
   ```
-  curl --request GET http://localhost:3000/api/coffee?price=100
+  curl --request GET http://localhost:3000/api/coffee/find?price=100
   ```
  In this case will return all the entries where the price is 100. 
 
 
   ```
-  curl --request GET http://localhost:3000/api/coffee?price=100&name=other
+  curl --request GET http://localhost:3000/api/coffee/find?price=100&name=other
   ```
   In this case will return all the entries where the price is 100 and the name is other.
 
-### Complex Queries
+### Queries for Masters
 
 Here are some examples of how to work with more complex queries. In the query you should pass an array with two values, as such: key=["command",value]. The query will translate to SQL as follows `WHERE  key command value`.
 
@@ -291,27 +291,83 @@ Here are some examples of how to work with more complex queries. In the query yo
 #### Examples
 
  ```
- curl --request GET http://localhost:3000/api/coffee?price=[">", 105]
+ curl --request GET http://localhost:3000/api/coffee/find?price=[">", 105]
  ```
  In this case will return all the entries where the price is greater than 105. 
 
 ```
-curl --request GET http://localhost:3000/api/coffee?price=["<>", 90]
+curl --request GET http://localhost:3000/api/coffee/find?price=["<>", 90]
 ```
  In this case will return all the entries where the price is distinct to 90. 
 
  ```
-curl --request GET http://localhost:3000/api/coffee?price=["in", [90, 100]]
+curl --request GET http://localhost:3000/api/coffee/find?price=["in", [90, 100]]
 ```
 
  This is one of my favorites, in this case will return all the entries where the price is either 90 or 100. 
 
 ```
-  curl --request GET http://localhost:3000/api/coffee?price=["not in", [90, 100]]
+  curl --request GET http://localhost:3000/api/coffee/find?price=["not in", [90, 100]]
 ```
 
  This is one of my favorites, in this case will return all the entries except the ones where the price is either 90 or 100. 
 
  And much more! Any postgresql command is supported!
+
+
+### Columns
+
+Sometimes we don't want to get all the information, just the essential stuff. The columns options comes handy. In an array you can specify all the columns you want to get.
+
+
+#### Examples
+
+ ```
+ curl --request GET http://localhost:3000/api/coffee/find?price=100&columns=id
+ ```
+ In this case will only return the id column of the entries where the price is 100. The price, created_at, updated_at and name will be omitted. The response will be something as such:
+
+   ```javascript
+  {
+    "message": "Busqueda encontrada exitosamente",
+    "data": [{
+        "id": 1,
+        "links": [Object, Object, Object, Object, Object, Object],
+      }, {
+        "id": 3,
+        "links": [Object, Object, Object, Object, Object, Object],
+      }],
+  }
+  ```
+
+ ```
+ curl --request GET http://localhost:3000/api/coffee/find?columns=["id", "price"]
+ ```
+ In this case will only return the id and price columns of each entry.
+
+  ```
+ curl --request GET http://localhost:3000/api/coffee/find?columns=["price as p"]
+ ```
+ In this case will only return the price columns of each entry, but rather than be called as price it will be called as p. As follows:
+
+   ```javascript
+  {
+    "message": "Busqueda encontrada exitosamente",
+    "data": [{
+        "p": 100,
+        "links": [Object, Object, Object, Object, Object, Object],
+      }, {
+        "p": null,
+        "links": [Object, Object, Object, Object, Object, Object],
+      }, {
+        "p": 100,
+        "links": [Object, Object, Object, Object, Object, Object],
+      }, {
+        "p": 110,
+        "links": [Object, Object, Object, Object, Object, Object],
+      }],
+  }
+  ```
+
 
 ## Count
