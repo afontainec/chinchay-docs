@@ -465,4 +465,38 @@ curl --request GET http://localhost:3000/api/coffee/count?price=100
  ```
  In this case will count all the entries where the price is greater than 105. 
 
-### Group by and Order by
+### Group by
+
+ If you want to know how many entries are of each price, you can group your answers by price. Lets 
+
+ ```
+ curl --request GET http://localhost:3000/api/coffee/count?groupBy=price
+ ```
+ In this case will count all the entries and group them by price, as follows:
+
+ ```javascript
+{
+  "message": "Busqueda encontrada exitosamente",
+  "data": [
+      {
+    "count": 1,
+    "price": 110
+    }, {
+    "count": 2,
+    "price": 100
+    }, {
+    "count": 1,
+    "price": null
+  }],
+}
+```
+
+ ```
+ curl --request GET http://localhost:3000/api/coffee/count?groupBy=price
+ ```
+ Moreover, you can order the list from the price most repeated up to the least repeated:
+
+ ```
+ curl --request GET http://localhost:3000/api/coffee/count?groupBy=price&orderBy=count
+ ```
+
