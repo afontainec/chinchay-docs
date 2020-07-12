@@ -61,27 +61,27 @@ module.exports = {
         children: []
       }, {
         title: 'Find',   // required
-        path: '/docs/find',
+        path: '/models/find',
         children: []
       }, {
         title: 'Count',   // required
-        path: '/docs/count',
+        path: '/models/count',
         children: []
       }, {
         title: 'Update',   // required
-        path: '/docs/update',
+        path: '/models/update',
         children: []
       }, {
         title: 'Delete',   // required
-        path: '/docs/delete',
+        path: '/models/delete',
         children: []
       }, {
         title: 'Sum',   // required
-        path: '/docs/sum',
+        path: '/models/sum',
         children: []
       }, {
         title: 'Miscelaneous',   // required
-        path: '/docs/miscelaneous',
+        path: '/models/miscelaneous',
         children: []
       }] 
     },
