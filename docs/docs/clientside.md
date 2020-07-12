@@ -177,7 +177,7 @@ curl --request GET \
 
  ```javascript
 {
-  "message": "Elemento eliminado exitosamente",
+  "message": "Elemento encontrada exitosamente",
   "data": {
     "id": 1,
     "name": "this is an updated name",
@@ -195,7 +195,63 @@ curl --request GET \
 }
 ```
 
-
 ## Find
+
+ ### Endpoint
+
+ ```
+ GET http://localhost:3000/coffee
+ ```
+
+ ### Description
+
+Returns an array with all the entries matching the given query. This is where the magic really happens. The user can customize the result by adding a query, in our first example we would look when no query is given (therefor returns all the entries), and the dig into all the options that can be added to filter and customize your search.
+
+
+ ### Example
+
+ ```
+curl --request GET \
+  http://localhost:3000/api/coffee
+```
+
+ ### Response
+
+  Will return an array with all the entries:
+
+  ```javascript
+  {
+    "message": "Busqueda encontrada exitosamente",
+    "data": [{
+        "id": 1,
+        "name": "this is an updated name",
+        "price": 100,
+        "created_at": "2018-11-21T11:54:42.840Z",
+        "updated_at": "2018-11-21T11:54:42.840Z",
+        "links": [Object, Object, Object, Object, Object, Object],
+      }, {
+        "id": 2,
+        "name": "this is the name",
+        "price": null,
+        "created_at": "2018-11-21T11:57:02.767Z",
+        "updated_at": "2018-11-21T11:57:02.767Z",
+        "links": [Object, Object, Object, Object, Object, Object],
+      }, {
+        "id": 3,
+        "name": "other",
+        "price": 100,
+        "created_at": "2018-11-21T12:06:04.065Z",
+        "updated_at": "2018-11-21T12:06:04.065Z",
+        "links": [Object, Object, Object, Object, Object, Object],
+      }, {
+        "id": 4,
+        "name": "expensive",
+        "price": 110,
+        "created_at": "2018-11-21T12:06:22.400Z",
+        "updated_at": "2018-11-21T12:06:22.400Z",
+        "links": [Object, Object, Object, Object, Object, Object],
+      }],
+  }
+  ```
 
 ## Count
