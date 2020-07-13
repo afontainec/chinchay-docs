@@ -1,6 +1,6 @@
 ## Overview
 
-Next in line, we will see about the `find` method. This is an asynchronous method that returs an array of javascript object, where each javascript object represent an entry of the database that meets with the parameters requested. This is one of the most flexible and powerful tool. With no more overdues, lets get to it.
+Next in line, we will see about the `find` method. This is an asynchronous method that returns an array of javascript object, where each javascript object represent an entry of the database that meets with the parameters requested. This is one of the most flexible and powerful tool. With no more overdues, lets get to it.
 
 
 ### Parameters
@@ -8,6 +8,38 @@ Next in line, we will see about the `find` method. This is an asynchronous metho
   * Search: Javascript object with the definition of what should be searched.
   * Columns: An array with the columns that should be return. If its null or 'all' will return all the columns.
   * Options: A javascript object for more configurations, such us sorting, grouping, etc.
+
+### Return value
+
+an array of javascript object, where each javascript object represent an entry of the database that meets with the parameters requested. An example could be:
+
+  ```javascript
+   [{
+      "id": 1,
+      "name": "this is an updated name",
+      "price": 100,
+      "created_at": "2018-11-21T11:54:42.840Z",
+      "updated_at": "2018-11-21T11:54:42.840Z",
+    }, {
+      "id": 2,
+      "name": "this is the name",
+      "price": null,
+      "created_at": "2018-11-21T11:57:02.767Z",
+      "updated_at": "2018-11-21T11:57:02.767Z",
+    }, {
+      "id": 3,
+      "name": "other",
+      "price": 100,
+      "created_at": "2018-11-21T12:06:04.065Z",
+      "updated_at": "2018-11-21T12:06:04.065Z",
+    }, {
+      "id": 4,
+      "name": "expensive",
+      "price": 110,
+      "created_at": "2018-11-21T12:06:22.400Z",
+      "updated_at": "2018-11-21T12:06:22.400Z" }],
+  ```
+
 
 
 ## Simple Queries
@@ -26,6 +58,16 @@ This will return all the coffees of price = 100.
 
 This will return all the coffees of price = 100 and name = 'latte'.
 
+
+```javascript
+  Coffee.find();
+```
+
+If no search is defined, it will return all the entries. The same behaviour will occur if an empty search is provided: 
+
+```javascript
+  Coffee.find({});
+```
 
 ## Queries for Masters
 
