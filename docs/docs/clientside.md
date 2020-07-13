@@ -310,7 +310,7 @@ curl --request GET http://localhost:3000/api/coffee/find?price=["in", [90, 100]]
   curl --request GET http://localhost:3000/api/coffee/find?price=["not in", [90, 100]]
 ```
 
- This is one of my favorites, in this case will return all the entries except the ones where the price is either 90 or 100. 
+ In this case will return all the entries except the ones where the price is either 90 or 100. 
 
  And much more! Any postgresql command is supported!
 
