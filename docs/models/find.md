@@ -46,9 +46,34 @@ This will return all the coffees where the price is distinct to 100 and the name
 
  As a general rule, you can define the property of the `search` as an array with two values, key=["command",value]. The query will translate to SQL as follows `WHERE  key command value`.
 
- 
+
+## columns
+
+Sometimes the entries have way to many information and you only desire to access some few attributes of each entry, or there are sensible information you do not want to expose. In this cases the second parameter can be used: the `columns`. Lets look at some examples:
+
+```javascript
+  Coffee.find({ price: 100 });
+```
+
+By default it will return the complete object will all the columns.
+
+
+```javascript
+  Coffee.find({ price: 100 }, 'all');
+```
+
+It will return the complete object will all the columns, this is the default configuration.
+
+```javascript
+  Coffee.find({ price: 100 }, ['id', 'name']);
+```
+
+If it is defined as an array, will return only the columns defined in the array. In this case, only the id and name of every entry where its price is 100.
+
+
 
 ## startDate and endDate
+
 
 ## Order by, limit and offset
 
