@@ -3,6 +3,13 @@
 Next in line, we will see about the `find` method. This is an asynchronous method that returs an array of javascript object, where each javascript object represent an entry of the database that meets with the parameters requested. This is one of the most flexible and powerful tool. With no more overdues, lets get to it.
 
 
+### Parameters
+
+  * Search: Javascript object with the definition of what should be searched.
+  * Columns: An array with the columns that should be return. If its null or 'all' will return all the columns.
+  * Options: A javascript object for more configurations, such us sorting, grouping, etc.
+
+
 ## Simple Queries
 
 The first parameter of the `find` method is the `search`: a javascript object where you define what you want to search for. Lets see some examples:
@@ -73,6 +80,33 @@ If it is defined as an array, will return only the columns defined in the array.
 
 
 ## startDate and endDate
+
+Lets assume you what to access all the coffees that where created before 2020? We could do it as follows:
+
+```javascript
+  Coffee.find({ created_at: ['<', '2020-01-01 00:00:00.000']);
+```
+
+And that totally fine, however this can also be achieved using the third parameter: `options`. The `startDate` and `endDate` can be define to return values created at a certain interval.
+
+ ```javascript
+   Coffee.find({}, 'all', { startDate:'2018-11-21T11:55:00.000Z' });
+ ```
+ 
+ In this case will return all the entries where the created_at is after the given startDate, in this case, after 2018-11-21T11:55:00.000Z.
+
+  ```javascript
+   Coffee.find({}, 'all', { endDate:'2018-11-21T12:00:00.000Z' });
+ ```
+ 
+ In this case will return all the entries where the created_at is after the given startDate, in this case, before 2018-11-21T12:00:00.000Z..
+
+  ```javascript
+   Coffee.find({}, 'all', { endDate:'2018-11-21T12:00:00.000Z', startDate: '2018-11-21T11:55:00.000Z&' });
+ ```
+ 
+ In this case will return all the entries where the created_at is in between the given startDate and endDate, in this case, between 2018-11-21T11:55:00.000Z and 2018-11-21T12:00:00.000Z.
+ 
 
 
 ## Order by, limit and offset

@@ -385,7 +385,7 @@ It just does not end here! There are some more options to do your querying even 
  curl --request GET http://localhost:3000/api/coffee/find?endDate=2018-11-21T12:00:00.000Z
  ```
  
- In this case will return all the entries where the created_at is before the given endDate, in this case, before endDate=2018-11-21T12:00:00.000Z.
+ In this case will return all the entries where the created_at is before the given endDate, in this case, before 2018-11-21T12:00:00.000Z.
 
    ```
  curl --request GET http://localhost:3000/api/coffee/find?startDate=2018-11-21T11:55:00.000Z&endDate=endDate=2018-11-21T12:00:00.000Z
