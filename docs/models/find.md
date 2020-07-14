@@ -188,7 +188,7 @@ In this case will return the first two entries ordered by id in ascending order.
 
 ## rawSelect and RawWhere
 
-  Now this is getting advanced, this is intended for people who knows SQL. Sometimes we have craaazy ideas and we need even more sophisticated queries. In the options we can pass a rawSelect and a rawWhere property. 
+  Now this is getting advanced, this is intended for people who knows SQL. Sometimes we have craaazy ideas and we need even more sophisticated queries. In the options we can pass a `rawSelect` and a `rawWhere` property. 
 
   ### rawSelect
 
@@ -205,9 +205,37 @@ In this case will return the first two entries ordered by id in ascending order.
 
   Alternative this can also be achieved by passing a `clearSelect`. If the clearSelect is defined as `true` the columns parameter is ignored and only the `rawSelect` is taken into account: 
 
-    ```javascript
+  ```javascript
    Coffee.find({}, 'all', { rawSelect: 'EXTRACT(MONTH FROM created_at) as month', clearSelect: true });
   ```
+
+  #### SQL Injection
+
+  :::danger
+  Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
+  :::
+
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+
+  ![SQL INJECTION](http://localhost:3000/assets/sql-injections.png)
+
+
+  To prevent sql injections you can defined the rawSelect as an array. An example: 
+
+  ```javascript
+   Coffee.find({}, 'all', { clearSelect: true, rawSelect: ['EXTRACT(MONTH FROM ??) as month', ['created_at']] });
+
+  ```
+  In this case the `created_at` is passed as `??` and passed in a second parameter.
+
+  :::warning
+  If by any chance a user input will be used to create the `rawSelect`, the `rawSelect` **MUST** by in array form and the user input passed as the second value of the array.
+  :::
+
+  ### rawWhere
+
+
+  
 
 ## Group By
 
