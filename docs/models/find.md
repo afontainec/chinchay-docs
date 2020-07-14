@@ -119,6 +119,12 @@ It will return the complete object will all the columns, this is the default con
 
 If it is defined as an array, will return only the columns defined in the array. In this case, only the id and name of every entry where its price is 100.
 
+```javascript
+  Coffee.find({ price: 100 }, ['id as identifier']);
+```
+
+In this case it will the id of return all the entries where the price is 100. However, instead of calling it id it will call it `identifier`.
+
 
 
 ## startDate and endDate
@@ -152,6 +158,33 @@ And that totally fine, however this can also be achieved using the third paramet
 
 
 ## Order by, limit and offset
+
+With the options, you can sort and limit your responses. Let see some examples: 
+
+```javascript
+   Coffee.find({}, 'all', { orderBy:'id', limit: '2' });
+```
+ 
+In this case will return the first two entries ordered by id in ascending order.
+
+```javascript
+   Coffee.find({}, 'all', { orderBy:['id', 'desc'], limit: '2' });
+```
+ 
+ In this case will return the first two entries ordered by id in descending order. 
+
+```javascript
+   Coffee.find({}, 'all', { orderBy:['id', 'asc'], limit: '2', offset: 1 });
+```
+
+ In this case will return the second and third entries ordered by id in ascending order. It skips the first one because of the offset given. 
+
+
+ ```javascript
+   Coffee.find({}, 'all', { orderBy: [["price","desc"],["id", "asc"]] });
+```
+ 
+ In this case will return the entries ordered by price in a descending order. In case that some entries have the same price, then they will be ordered by id in ascending order.
 
 ## rawSelect and RawWhere
 
