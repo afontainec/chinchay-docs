@@ -188,9 +188,31 @@ In this case will return the first two entries ordered by id in ascending order.
 
 ## rawSelect and RawWhere
 
-## Return as Query
+  Now this is getting advanced, this is intended for people who knows SQL. Sometimes we have craaazy ideas and we need even more sophisticated queries. In the options we can pass a rawSelect and a rawWhere property. 
+
+  ### rawSelect
+
+  RawSelect allows you to be even more specific on what you want to ask for. It can be given as a string or an array for sql injection. Fo instance:
+
+  ```javascript
+   Coffee.find({}, 'all', { rawSelect: 'EXTRACT(MONTH FROM created_at) as month'});
+  ```
+  Here we are using the rawSelect to use the psql function extract to return the month of creation. Note this will also return all the other attributes. To return only the months, run: 
+
+  ```javascript
+   Coffee.find({}, [], { rawSelect: 'EXTRACT(MONTH FROM created_at) as month'});
+  ```
+
+  Alternative this can also be achieved by passing a `clearSelect`. If the clearSelect is defined as `true` the columns parameter is ignored and only the `rawSelect` is taken into account: 
+
+    ```javascript
+   Coffee.find({}, 'all', { rawSelect: 'EXTRACT(MONTH FROM created_at) as month', clearSelect: true });
+  ```
 
 ## Group By
+
+## Return as Query
+
 
 ## FindById
 
