@@ -272,6 +272,14 @@ In this case will return the first two entries ordered by id in ascending order.
 
 ## Group By
 
+So with the `rawSelect` a whole world opens. Let assume we want to count how many coffees are of each price: 
+
+```javascript
+  Coffee.find({}, [], {groupBy: 'price', rawSelect: 'count(*) as amount' });
+```
+
+That query will return the amount of coffees at each price. For this previous example it might be easier to go with the [count method](./count), however it a good example to show how powerful this can be.
+
 ## Return as Query
 
 
