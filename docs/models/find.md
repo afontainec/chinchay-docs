@@ -226,13 +226,46 @@ In this case will return the first two entries ordered by id in ascending order.
    Coffee.find({}, 'all', { clearSelect: true, rawSelect: ['EXTRACT(MONTH FROM ??) as month', ['created_at']] });
 
   ```
-  In this case the `created_at` is passed as `??` and passed in a second parameter.
+  In this case the `created_at` is indicated as `??` and passed in a second parameter.
 
   :::warning
-  If by any chance a user input will be used to create the `rawSelect`, the `rawSelect` **MUST** by in array form and the user input passed as the second value of the array.
+  If by any chance a user input will be used to create the `rawSelect`, the `rawSelect` **MUST** by in array form and the user input passed as the second value of that array.
   :::
 
   ### rawWhere
+
+  RawWhere allows you to be even more specific on how you want to filter your results, sometime we just what wierd queries. It can be given as a string or an array for sql injection. Lets look at some examples:
+
+   ```javascript
+   Coffee.find({}, 'all', { rawWhere: "name = 'expensive' or price = 100 "});
+  ```
+
+  If you want to fetch all the coffees where they are either named expensive or priced at 100, the previous rawWhere will allow you to do so.
+
+  #### SQL Injection
+
+  I know I said this like 2 paragraphs before, but yeah it is so important that I am going to say it again!
+
+  :::danger
+  Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
+  :::
+
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+
+  ![SQL INJECTION](http://localhost:3000/assets/sql-injections.png)
+
+
+  To prevent sql injections you can defined the rawSelect as an array. An example: 
+
+  ```javascript
+   Coffee.find({}, 'all', { rawWhere: ["name = ? or price = ? ", ["expensive", 100]] });
+
+  ```
+  In this case `expensive` and `100` are indicated as `?` and passed in a second parameter.
+
+  :::warning
+  If by any chance a user input will be used to create the `rawWhere`, the `rawWhere` **MUST** by in array form and the user input passed as the second value of that array.
+  :::
 
 
   
