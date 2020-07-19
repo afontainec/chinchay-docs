@@ -282,6 +282,19 @@ That query will return the amount of coffees at each price. For this previous ex
 
 ## Return as Query
 
+Last but definetely not least: `returnAsQuery`. If this parameter is defined as `true`, it will return a knex query object. With it you can use all of knex options to build even more sophisticated queries. Lets look at an example:
+
+```javascript
+  const query = Coffee.find({}, [], { returnAsQuery: true });
+  query.join('tea', 'coffeee.id', '=', 'tea.id');
+```
+
+This way we can cross the tea table with the coffee relation. This is very powerful and can allow you to do many things!
+
+:::tip DEBUGGING TIP
+  For debugging, set `{ returnAsQuery: true }` and then do `console.log(query.toString())` and you will be able to see the psql command. 
+:::
+
 
 ## FindById
 
