@@ -5,7 +5,7 @@ module.exports = {
     nav: [
       { text: 'Getting Started', link: '/gettingstarted/' },
       { text: 'Docs', link: '/docs/' },
-      { text: 'The Model', link: 'https://apanotupyme.cl/pages/preguntas-frecuentes'},
+      { text: 'The Model', link: '/models/'},
       { text: 'Middleware', link:'https://apanotupyme.cl/pages/terminos-y-condiciones'},
       { text: 'Error Handler', link: 'https://apanotupyme.cl/pages/terminos-y-condiciones2'},
       { text: 'Collaborate!', link: 'https://apanotupyme.cl/pages/terminos-y-condiciones3'}
@@ -53,6 +53,35 @@ module.exports = {
       }, {
         title: 'API: Client Querying',   // required
         path: '/docs/clientside',
+        children: []
+      }],
+      '/models/': [{
+        title: 'New',   // required
+        path: '/models/newsave',
+        children: []
+      }, {
+        title: 'Find',   // required
+        path: '/models/find',
+        children: []
+      }, {
+        title: 'Count',   // required
+        path: '/models/count',
+        children: []
+      }, {
+        title: 'Update',   // required
+        path: '/models/update',
+        children: []
+      }, {
+        title: 'Delete',   // required
+        path: '/models/delete',
+        children: []
+      }, {
+        title: 'Sum',   // required
+        path: '/models/sum',
+        children: []
+      }, {
+        title: 'Miscelaneous',   // required
+        path: '/models/miscelaneous',
         children: []
       }] 
     },
