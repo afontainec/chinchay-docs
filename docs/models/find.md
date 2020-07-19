@@ -298,14 +298,79 @@ This way we can cross the tea table with the coffee relation. This is very power
 
 ## FindById
 
+This a _shortcut method_. The following are equivalent:
+
+
+```javascript
+const result = await Coffee.findById(1);
+```
+
+```javascript
+const [result] = await Coffee.find({id:1});
+```
+
+Note that the method find returns an array where the method findById returns a javascript object. The columns and options parameters can also be passed, all that applied for the `find` method also can be used in the `findById` method. 
+
 
 ## all
 
+Will bring all the entries. The following are equivalent:
+
+```javascript
+const result = await Coffee.all();
+```
+
+```javascript
+const  result = await Coffee.find({});
+```
+
+The columns and options parameters can also be passed, all that applied for the `find` method also can be used in the `all` method. 
+
 ## findIdIn
+
+This will return all the entries which id is in the array given in the first parameter. As following are the same:
+
+```javascript
+const result = await Coffee.findIdIn([1,2,3]);
+```
+
+```javascript
+const  result = await Coffee.find({id: ['in', [1,2,3]]});
+```
+
+After the array, it can receive a column, search and options paramenters. (in that order!). all that applied for the `find` method also can be used in the `findIdIn` method. 
 
 ## findIn
 
+The previous, can be extrapolated to not only id. Lets assume we want to find all that entries where the price is either 12 y 13.
+
+```javascript
+const result = await Coffee.findIn('price', [12, 13]);
+```
+ 
+ This is equivalent to:
+
+```javascript
+const  result = await Coffee.find({price: ['in', [12, 13]]});
+```
+
+After the array, it can receive a search, columns and options paramenters. (in that order!). All that applied for the `find` method also can be used in the `findIn` method. 
+
 ## arrayOfIds
+
+If you want to get all of the ids of the entries that matches a particular search, the arrayOfIds method can be very handy. The following are equivalent:
+
+```javascript
+const result = await Coffee.arrayOfIds({'price': 12});
+```
+ 
+
+```javascript
+const temp = await Coffee.find({'price': 12});
+const result = Object.values(temp);
+```
+
+After the array, it can receive a search and options paramenters. All that applied for the `find` method also can be used in the `findIn` method. 
 
 
 
