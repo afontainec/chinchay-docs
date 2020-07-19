@@ -310,7 +310,7 @@ curl --request GET http://localhost:3000/api/coffee/find?price=["in", [90, 100]]
   curl --request GET http://localhost:3000/api/coffee/find?price=["not in", [90, 100]]
 ```
 
- This is one of my favorites, in this case will return all the entries except the ones where the price is either 90 or 100. 
+ In this case will return all the entries except the ones where the price is either 90 or 100. 
 
  And much more! Any postgresql command is supported!
 
@@ -385,7 +385,7 @@ It just does not end here! There are some more options to do your querying even 
  curl --request GET http://localhost:3000/api/coffee/find?endDate=2018-11-21T12:00:00.000Z
  ```
  
- In this case will return all the entries where the created_at is before the given endDate, in this case, before endDate=2018-11-21T12:00:00.000Z.
+ In this case will return all the entries where the created_at is before the given endDate, in this case, before 2018-11-21T12:00:00.000Z.
 
    ```
  curl --request GET http://localhost:3000/api/coffee/find?startDate=2018-11-21T11:55:00.000Z&endDate=endDate=2018-11-21T12:00:00.000Z
@@ -414,7 +414,7 @@ It just does not end here! There are some more options to do your querying even 
  In this case will return the second and third entries ordered by id in ascending order. It skips the first one because of the offset given. 
 
  ```
- curl --request GET http://localhost:3000/api/coffee/find?orderBy=orderBy=[["price","desc"],["id", "asc"]]
+ curl --request GET http://localhost:3000/api/coffee/find?orderBy=[["price","desc"],["id", "asc"]]
  ```
  
  In this case will return the entries ordered by price in a descending order. In case that some entries have the same price, then they will be ordered by id in ascending order.
