@@ -11,7 +11,7 @@ Next in line, we will see about the `find` method. This is an asynchronous metho
 
 ### Return value
 
-an array of javascript object, where each javascript object represent an entry of the database that meets with the parameters requested. An example could be:
+An array of javascript object, where each javascript object represent an entry of the database that meets with the parameters requested. An example could be:
 
   ```javascript
    [{
@@ -217,7 +217,7 @@ In this case will return the first two entries ordered by id in ascending order.
 
   [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
-  ![SQL INJECTION](http://localhost:3000/assets/sql-injections.png)
+  ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 
 
   To prevent sql injections you can defined the rawSelect as an array. An example: 
@@ -252,7 +252,7 @@ In this case will return the first two entries ordered by id in ascending order.
 
   [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
-  ![SQL INJECTION](http://localhost:3000/assets/sql-injections.png)
+  ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 
 
   To prevent sql injections you can defined the rawSelect as an array. An example: 
@@ -286,7 +286,7 @@ Last but definetely not least: `returnAsQuery`. If this parameter is defined as 
 
 ```javascript
   const query = Coffee.find({}, [], { returnAsQuery: true });
-  query.join('tea', 'coffeee.id', '=', 'tea.id');
+  query.join('tea', 'coffee.id', '=', 'tea.id');
 ```
 
 This way we can cross the tea table with the coffee relation. This is very powerful and can allow you to do many things!
