@@ -201,7 +201,40 @@ This way we can cross the tea table with the coffee relation. This is very power
 
 ## countGroupBy
 
+  The same done by passing the groupBy in the options can be achieved with the countGroupBy method.
+
+  ```javascript
+  Coffee.count({}, { groupBy: 'price' });
+  ```
+
+Is equivalent to: 
+
+  ```javascript
+    Coffee.countGroupBy('price');
+  ```
+
+  :::tip
+  In my opinion is "cleaner" to just use the count method.
+  :::
+
 ## countIn
+
+
+  The `countIn` method will count all the entries where the `target` parameter is within the `validOptions`. This can also be done using the `count` method:
+
+```javascript
+  Coffee.count({ price: ['in', [100, 90]]});
+```
+
+Is equivalent to: 
+
+  ```javascript
+    Coffee.countIn('price', [100, 90]);
+  ```
+
+  :::tip
+  In my personal opinion is "cleaner" to just use the count method.
+  :::
 
 
 
