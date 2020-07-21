@@ -1,4 +1,4 @@
-![Chinchay](http://localhost:3000/assets/gateway.png)
+![Chinchay](https://chinchay-docs.herokuapp.com/assets/gateway.png)
 
 Welcome to the **Chinchay Docs of the Table Gateway Model**
 
