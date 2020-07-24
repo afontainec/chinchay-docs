@@ -46,6 +46,9 @@ An array of javascript object, where each javascript object represent an entry o
   There is one exception. If the search parameter is not given as a javascript object, it will assume you are [updating by id](#updateById). In this case the return value will be a javascript object representing the entry to the database with the given id. An example:
 
     ```javascript
+    Coffee.update(1, { name: "this is an updated name" });
+    ```
+    ```javascript
     {
       "id": 1,
       "name": "this is an updated name",
@@ -56,6 +59,54 @@ An array of javascript object, where each javascript object represent an entry o
   ```
 
 ## update
+
+So lets get into it. The `newValues` parameter is a javascript option where every `key` will be defined with its `value`. Let look at some examples:
+
+```javascript
+  Coffee.update({ id: 1 }, { price: 100 });
+```
+
+This will set the price to 100 of all the entries where id = 1.
+
+```javascript
+  Coffee.update({ id: ['in', [1, 2]] }, { price: 100 });
+```
+
+This will set the price to 100 of all the entries where id = 1 or id = 2.
+
+```javascript
+  Coffee.update({}, { price: 100 });
+```
+
+This will set the price to 100 of all the entries.
+
+
+:::tip
+  There is a lot you can do with the search, (first parameter). Look at the [find documentation](./find) to learn how to work with it. 
+:::
+
+
+### options
+
+You can also use the options variable. Look at some examples:
+
+```javascript
+  Coffee.update({ }, { price: 100 }, { rawWhere: ['name = ? or price < 100', 'expensive'] });
+```
+
+This will set the price to 100 of all the entries where either the name is 'expensive' or the price is less than 100.
+
+```javascript
+  Coffee.update({ name: 'latte' }, { price: 100 }, { startDate: '2020-01-01'}),
+```
+
+This will set the price to 100 of all the entries where the name is 'latte' and it was created after the first o.
+
+
+:::tip
+  There is a lot you can do with the options, (third parameter). Look at the [find documentation](./find) to learn how to work with it. 
+:::
+
 
 ## updateById
 
