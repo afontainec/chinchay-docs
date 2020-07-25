@@ -396,7 +396,7 @@ It just does not end here! There are some more options to do your querying even 
  #### Order by, limit and offset
 
   ```
- curl --request GET http://localhost:3000/api/coffee/find?orderBy=id&limit=2
+ curl --request GET 'http://localhost:3000/api/coffee/find?orderBy=id&limit=2'
  ```
  
  In this case will return the first two entries ordered by id in ascending order.
