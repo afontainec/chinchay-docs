@@ -45,10 +45,13 @@ An array of javascript object, where each javascript object represent an entry o
 
   There is one exception. If the search parameter is not given as a javascript object, it will assume you are [updating by id](#updateById). In this case the return value will be a javascript object representing the entry to the database with the given id. An example:
 
-    ```javascript
-    Coffee.update(1, { name: "this is an updated name" });
-    ```
-    ```javascript
+  ```javascript
+  Coffee.update(1, { name: "this is an updated name" });
+  ```
+
+  Will return:
+
+  ```javascript
     {
       "id": 1,
       "name": "this is an updated name",
