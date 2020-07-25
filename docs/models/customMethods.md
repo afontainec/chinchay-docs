@@ -25,7 +25,30 @@ module.exports = instance;
 
 ```
 
-Lets assume we what to add a method called `findByName`, where it will return all the entries where the name matches an input.
+Lets assume we what to add a method called `findByName`, where it will return all the entries where the name matches an input. We can easily add it at such: 
 
+
+```javascript
+const { Table } = require('chinchay');
+
+
+class Coffee extends Table {
+  constructor() {
+    const tableName = 'coffee';
+    super(tableName);
+  }
+
+  findByName(name) {
+    const search = {name}
+  }
+}
+
+
+const instance = new Coffee();
+
+
+module.exports = instance;
+
+```
 
 ## Overwriting exisiting methods
