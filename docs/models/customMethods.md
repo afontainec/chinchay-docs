@@ -4,7 +4,7 @@ If you want to extend the class and add your own methods it is very easy! Here w
 
 ## Creating custom methods
 
-When the `chinchay` new command the following model is created:
+When the `chinchay new ` command the following model is created:
 
 ```javascript
 const { Table } = require('chinchay');
@@ -25,7 +25,7 @@ module.exports = instance;
 
 ```
 
-Lets assume we what to add a method called `findByName`, where it will return all the entries where the name matches an input. We can easily add it at such: 
+Lets assume we what to add a method called `findByName`, where it will return all the entries where the name matches the given input. We can easily add it at such: 
 
 
 ```javascript
@@ -51,7 +51,7 @@ const instance = new Coffee();
 module.exports = instance;
 ```
 
-We have added a `findByName` method that parse the parameter to a search and call the find function.
+We have added a `findByName` method that parse the input to the search paremeter and call the find function.
 
 Here another example:
 
@@ -79,6 +79,6 @@ const instance = new Coffee();
 module.exports = instance;
 ```
 
-We have added a `expensive` method that will return all the coffee of a price higher than 100 ordered by price.
+We have added an `expensive` method that will return all the coffee of a price higher than 100 ordered by price.
 
 ## Overwriting exisiting methods
