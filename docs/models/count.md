@@ -72,7 +72,7 @@ This will count all the coffees where the price is distinct to 100 and the name 
 Lets assume you what to count all the coffees that where created before 2020? We could do it as follows:
 
 ```javascript
-  Coffee.count({ created_at: ['<', '2020-01-01 00:00:00.000']);
+  Coffee.count({ created_at: ['<', '2020-01-01 00:00:00.000']});
 ```
 
 And that totally fine, however this can also be achieved using the third parameter: `options`. The `startDate` and `endDate` can be define to count values created at a certain interval.
@@ -81,19 +81,19 @@ And that totally fine, however this can also be achieved using the third paramet
    Coffee.count({}, { startDate:'2018-11-21T11:55:00.000Z' });
  ```
  
- In this case will count all the entries where the created_at is after the given startDate, in this case, after 2018-11-21T11:55:00.000Z.
+ In this case itwill count all the entries where the created_at is after the given startDate, in this case, after 2018-11-21T11:55:00.000Z.
 
   ```javascript
    Coffee.count({}, { endDate:'2018-11-21T12:00:00.000Z' });
  ```
  
- In this case will count all the entries where the created_at is after the given startDate, in this case, before 2018-11-21T12:00:00.000Z..
+ In this case it will count all the entries where the created_at is after the given startDate, in this case, before 2018-11-21T12:00:00.000Z..
 
   ```javascript
    Coffee.count({}, { endDate:'2018-11-21T12:00:00.000Z', startDate: '2018-11-21T11:55:00.000Z&' });
  ```
  
- In this case will count all the entries where the created_at is in between the given startDate and endDate, in this case, between 2018-11-21T11:55:00.000Z and 2018-11-21T12:00:00.000Z.
+ In this case it will count all the entries where the created_at is in between the given startDate and endDate, in this case, between 2018-11-21T11:55:00.000Z and 2018-11-21T12:00:00.000Z.
  
 
 ## rawWhere
@@ -136,7 +136,7 @@ And that totally fine, however this can also be achieved using the third paramet
 
 ## Group By
 
-For same case uses grouping your response can be very helpful. For instance let assume we want to count all the entries by price, in other words how many coffees cost 1, how many cost 2, and so on. This can be achieved by the group by:
+For some use cases grouping your response can be very helpful. For instance let assume we want to count all the entries by price, in other words how many coffees cost 1, how many cost 2, and so on. This can be achieved by the group by:
 
 ```javascript
   Coffee.count({}, {groupBy: 'price' });
