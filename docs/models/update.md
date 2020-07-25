@@ -131,6 +131,10 @@ This will also return just a single entry and not an array of entries.
 
 ## what cannot be set
 
+There are some parameters that Chinchay will not let you change. These are the following:
 
+  * created_at
+  * updated_at
+  * id
 
 
