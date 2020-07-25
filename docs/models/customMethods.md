@@ -82,3 +82,28 @@ module.exports = instance;
 We have added an `expensive` method that will return all the coffee of a price higher than 100 ordered by price.
 
 ## Overwriting exisiting methods
+
+You may want to overwrite existing methods to change same aspect. For instance, let assume you have a users relation in the database. Were each user has a username and a password. When you `findById` you do not want to return the password property. Lets look at the example: 
+
+```javascript
+const { Table } = require('chinchay');
+
+
+class Users extends Table {
+  constructor() {
+    const tableName = 'users';
+    super(tableName);
+  }
+
+  async findById(id, columns, options) {
+    const result = await super.findById(id, columns, options);
+    delete result.password;
+    return result;
+  }
+}
+
+
+const instance = new Users();
+
+module.exports = instance;
+```
