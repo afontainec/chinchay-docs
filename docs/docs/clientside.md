@@ -262,13 +262,13 @@ curl --request GET \
   #### Examples
 
   ```
-  curl --request GET http://localhost:3000/api/coffee/find?price=100
+  curl --request GET 'http://localhost:3000/api/coffee/find?price=100'
   ```
  In this case will return all the entries where the price is 100. 
 
 
   ```
-  curl --request GET http://localhost:3000/api/coffee/find?price=100&name=other
+  curl --request GET 'http://localhost:3000/api/coffee/find?price=100&name=other'
   ```
   In this case will return all the entries where the price is 100 and the name is other.
 
@@ -291,23 +291,23 @@ Here are some examples of how to work with more complex queries. In the query yo
 #### Examples
 
  ```
- curl --request GET http://localhost:3000/api/coffee/find?price=[">", 105]
+ curl --request GET 'http://localhost:3000/api/coffee/find?price=[">", 105]'
  ```
  In this case will return all the entries where the price is greater than 105. 
 
 ```
-curl --request GET http://localhost:3000/api/coffee/find?price=["<>", 90]
+curl --request GET 'http://localhost:3000/api/coffee/find?price=["<>", 90]'
 ```
  In this case will return all the entries where the price is distinct to 90. 
 
  ```
-curl --request GET http://localhost:3000/api/coffee/find?price=["in", [90, 100]]
+curl --request GET 'http://localhost:3000/api/coffee/find?price=["in", [90, 100]]'
 ```
 
  This is one of my favorites, in this case will return all the entries where the price is either 90 or 100. 
 
 ```
-  curl --request GET http://localhost:3000/api/coffee/find?price=["not in", [90, 100]]
+  curl --request GET 'http://localhost:3000/api/coffee/find?price=["not in", [90, 100]]'
 ```
 
  In this case will return all the entries except the ones where the price is either 90 or 100. 
@@ -323,7 +323,7 @@ Sometimes we don't want to get all the information, just the essential stuff. Th
 #### Examples
 
  ```
- curl --request GET http://localhost:3000/api/coffee/find?price=100&columns=id
+ curl --request GET 'http://localhost:3000/api/coffee/find?price=100&columns=id'
  ```
  In this case will only return the id column of the entries where the price is 100. The price, created_at, updated_at and name will be omitted. The response will be something as such:
 
@@ -341,12 +341,12 @@ Sometimes we don't want to get all the information, just the essential stuff. Th
   ```
 
  ```
- curl --request GET http://localhost:3000/api/coffee/find?columns=["id", "price"]
+ curl --request GET 'http://localhost:3000/api/coffee/find?columns=["id", "price"]'
  ```
  In this case will only return the id and price columns of each entry.
 
   ```
- curl --request GET http://localhost:3000/api/coffee/find?columns=["price as p"]
+ curl --request GET 'http://localhost:3000/api/coffee/find?columns=["price as p"]'
  ```
  In this case will only return the price columns of each entry, but rather than be called as price it will be called as p. As follows:
 
@@ -376,19 +376,19 @@ It just does not end here! There are some more options to do your querying even 
 #### startDate and endDate
 
  ```
- curl --request GET http://localhost:3000/api/coffee/find?startDate=2018-11-21T11:55:00.000Z
+ curl --request GET 'http://localhost:3000/api/coffee/find?startDate=2018-11-21T11:55:00.000Z'
  ```
  
  In this case will return all the entries where the created_at is after the given startDate, in this case, after 2018-11-21T11:55:00.000Z.
 
   ```
- curl --request GET http://localhost:3000/api/coffee/find?endDate=2018-11-21T12:00:00.000Z
+ curl --request GET 'http://localhost:3000/api/coffee/find?endDate=2018-11-21T12:00:00.000Z'
  ```
  
  In this case will return all the entries where the created_at is before the given endDate, in this case, before 2018-11-21T12:00:00.000Z.
 
    ```
- curl --request GET http://localhost:3000/api/coffee/find?startDate=2018-11-21T11:55:00.000Z&endDate=endDate=2018-11-21T12:00:00.000Z
+ curl --request GET 'http://localhost:3000/api/coffee/find?startDate=2018-11-21T11:55:00.000Z&endDate=endDate=2018-11-21T12:00:00.000Z'
  ```
  
  In this case will return all the entries where the created_at is in between the given startDate and endDate, in this case, between 2018-11-21T11:55:00.000Z and 2018-11-21T12:00:00.000Z.
@@ -402,19 +402,19 @@ It just does not end here! There are some more options to do your querying even 
  In this case will return the first two entries ordered by id in ascending order.
 
  ```
- curl --request GET http://localhost:3000/api/coffee/find?orderBy=["id", "desc"]&limit=2
+ curl --request GET 'http://localhost:3000/api/coffee/find?orderBy=["id", "desc"]&limit=2'
  ```
  
  In this case will return the first two entries ordered by id in descending order. 
 
  ```
- curl --request GET http://localhost:3000/api/coffee/find?orderBy=["id", "asc"]&limit=2&offset=1
+ curl --request GET 'http://localhost:3000/api/coffee/find?orderBy=["id", "asc"]&limit=2&offset=1'
  ```
  
  In this case will return the second and third entries ordered by id in ascending order. It skips the first one because of the offset given. 
 
  ```
- curl --request GET http://localhost:3000/api/coffee/find?orderBy=[["price","desc"],["id", "asc"]]
+ curl --request GET 'http://localhost:3000/api/coffee/find?orderBy=[["price","desc"],["id", "asc"]]'
  ```
  
  In this case will return the entries ordered by price in a descending order. In case that some entries have the same price, then they will be ordered by id in ascending order.
@@ -455,13 +455,13 @@ curl --request GET http://localhost:3000/api/coffee/count
 ### Other Examples
 
 ```
-curl --request GET http://localhost:3000/api/coffee/count?price=100
+curl --request GET 'http://localhost:3000/api/coffee/count?price=100'
 ```
  In this case will count all the entries where the price is 100. 
 
 
  ```
- curl --request GET http://localhost:3000/api/coffee/count?price=[">", 105]
+ curl --request GET 'http://localhost:3000/api/coffee/count?price=[">", 105]'
  ```
  In this case will count all the entries where the price is greater than 105. 
 
@@ -470,7 +470,7 @@ curl --request GET http://localhost:3000/api/coffee/count?price=100
  If you want to know how many entries are of each price, you can group your answers by price. Lets 
 
  ```
- curl --request GET http://localhost:3000/api/coffee/count?groupBy=price
+ curl --request GET 'http://localhost:3000/api/coffee/count?groupBy=price'
  ```
  In this case will count all the entries and group them by price, as follows:
 
@@ -492,11 +492,11 @@ curl --request GET http://localhost:3000/api/coffee/count?price=100
 ```
 
  ```
- curl --request GET http://localhost:3000/api/coffee/count?groupBy=price
+ curl --request GET 'http://localhost:3000/api/coffee/count?groupBy=price'
  ```
  Moreover, you can order the list from the price most repeated up to the least repeated:
 
  ```
- curl --request GET http://localhost:3000/api/coffee/count?groupBy=price&orderBy=count
+ curl --request GET 'http://localhost:3000/api/coffee/count?groupBy=price&orderBy=count'
  ```
 
