@@ -107,3 +107,5 @@ const instance = new Users();
 
 module.exports = instance;
 ```
+
+Here we are removing the password property before returning. 
