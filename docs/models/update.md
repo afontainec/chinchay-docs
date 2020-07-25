@@ -66,19 +66,19 @@ So lets get into it. The `newValues` parameter is a javascript option where ever
   Coffee.update({ id: 1 }, { price: 100 });
 ```
 
-This will set the price to 100 of all the entries where id = 1.
+This will set the price to 100 of all the entries where id = 1. Will return an array with all the updated entries. In this case it will be an array of length 1.
 
 ```javascript
   Coffee.update({ id: ['in', [1, 2]] }, { price: 100 });
 ```
 
-This will set the price to 100 of all the entries where id = 1 or id = 2.
+This will set the price to 100 of all the entries where id = 1 or id = 2. Will return an array with all the updated entries.
 
 ```javascript
   Coffee.update({}, { price: 100 });
 ```
 
-This will set the price to 100 of all the entries.
+This will set the price to 100 of all the entries. Will return an array with all the updated entries.
 
 
 :::tip
@@ -94,22 +94,40 @@ You can also use the options variable. Look at some examples:
   Coffee.update({ }, { price: 100 }, { rawWhere: ['name = ? or price < 100', 'expensive'] });
 ```
 
-This will set the price to 100 of all the entries where either the name is 'expensive' or the price is less than 100.
+This will set the price to 100 of all the entries where either the name is 'expensive' or the price is less than 100. Will return an array with all the updated entries.
 
 ```javascript
   Coffee.update({ name: 'latte' }, { price: 100 }, { startDate: '2020-01-01'}),
 ```
 
-This will set the price to 100 of all the entries where the name is 'latte' and it was created after the first o.
+This will set the price to 100 of all the entries where the name is 'latte' and it was created after January First 2020. Will return an array with all the updated entries.
 
 
 :::tip
-  There is a lot you can do with the options, (third parameter). Look at the [find documentation](./find) to learn how to work with it. 
+  There is a lot you can do with the options (third parameter). Look at the [find documentation](./find) to learn how to work with it. 
 :::
 
 
 ## updateById
 
+What if we want to edit just one entry? the method `updateById` will only update the entry for the given id. Lets look at an example: 
+
+
+```javascript
+  Coffee.updateById(1, { price: 100 });
+```
+
+This will set the price to 100 of the entry with id = 1.
+
+THis method will not return an array (as the previous examples) but will return a Javascript Object representing the entry with id = 1.
+
+Note, that if the first parameter calling the `update` method is not an object, it will be equivalent to `updateById`. Therefore the latter example is equivalent to: 
+
+```javascript
+  Coffee.update(1, { price: 100 });
+```
+
+This will also return just a single entry and not an array of entries. 
 
 ## what cannot be set
 
