@@ -39,7 +39,8 @@ class Coffee extends Table {
   }
 
   findByName(name) {
-    const search = {name}
+    const search = { name };
+    return super.find(search);
   }
 }
 
@@ -48,7 +49,36 @@ const instance = new Coffee();
 
 
 module.exports = instance;
-
 ```
+
+We have added a `findByName` method that parse the parameter to a search and call the find function.
+
+Here another example:
+
+```javascript
+const { Table } = require('chinchay');
+
+
+class Coffee extends Table {
+  constructor() {
+    const tableName = 'coffee';
+    super(tableName);
+  }
+
+  expensive() {
+    const search = { price: ['>', 100] };
+    const options = { orderBy: 'price' };
+    return super.find(search, 'all', options);
+  }
+}
+
+
+const instance = new Coffee();
+
+
+module.exports = instance;
+```
+
+We have added a `expensive` method that will return all the coffee of a price higher than 100 ordered by price.
 
 ## Overwriting exisiting methods
