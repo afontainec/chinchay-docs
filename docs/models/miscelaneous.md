@@ -133,3 +133,35 @@ the `columns` would have been:
 ```javascript
   'all'
 ```
+
+
+### extractSearch
+
+It will return an object with the query in the correct format. It will parse all the arrays. If we request the following:
+
+
+```
+ curl --request GET "http://localhostfee/find?orderBy=id&limit=2&price=[\">\",100]" --globoff
+```
+
+:::tip info
+The `--globoff` flag is to allow the brackets characters: []
+:::
+
+The `req.query` object at the beggining will be:
+
+```javascript
+  { orderBy: 'id', limit: '2', price: '[">",100]' }
+```
+Note how the price is an string represint an array and not an array as we would have wanted.
+
+the following line fix that:
+```javascript
+  const search = Table.extractSearch(req.query);
+```
+
+thereore the  `search` will be:
+
+```javascript
+{ price: [ '>', 100 ] }
+```
