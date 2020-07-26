@@ -320,7 +320,7 @@ module.exports = {
 
 ## the middleware flag
 
-If you are developing an top secret app, and you need to protect your routes so they are publicly accesible you can add the middleware flag to protect your routes. The possible values are `api`, `frontend`, `enable` and `disable`. So if I ran the following command: 
+If you are developing a top secret app, and you need to protect your routes so they are publicly accesible you can add the middleware flag to protect your routes. The possible values are `api`, `frontend`, `enable` and `disable`. So if I ran the following command: 
 
 ```
 $ chinchay new coffee --middleware api
