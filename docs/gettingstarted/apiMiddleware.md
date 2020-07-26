@@ -1,6 +1,26 @@
-## Getting Started with Chinchay + ejs
+## Building our first RESTful API
 
-This tutorial will walk you through building your fist app with Chinchay! We will use [ejs](https://ejs.co/) as our templating language to you generate HTML files with plain JavaScript. 
+This tutorial will walk you through building your first API with Chinchay! It will not only be a RESTful API but we will also configure our middleware and access to filter which user can access which resources. 
+
+
+### Defining concepts
+
+
+ * [oAuth 2.0](https://oauth.net/2/): oAuth is a industry-standard protocol for authorization. In simple, you can protect so each users only access the endpoint you give him access to. The user authenticates given its credentials and is granted an access token. For every request he does after he must provide the token to prove his identity.
+
+ * [The Chinchay Middleware](./middleware) will be in charge of inspect that the token is present, valid and that the user of that token has access to the given endpoint. The token is expected to be given as a [Bearer Token](https://stackoverflow.com/questions/25838183/what-is-the-oauth-2-0-bearer-token-exactly/25843058).
+
+* [thewall npm package](https://www.npmjs.com/package/thewall). To actually define which user has access to which endpoints.
+
+ * The [Access Module](./middleware#access) will be in charge of generating the access token, the token follows the [json web token standard](https://jwt.io/), by generating the token with [the jsonwebtoken npm package](https://www.npmjs.com/package/jsonwebtoken). Also will be incharge of filtering 
+
+
+
+### Quick Overview
+
+So we are going to create an API with information about coffees and teas. Some users will only be allowed to read information about specific coffees, other only about specific teas, whereas other will be granted full access. So lets dive into how to configure this!
+
+
 
 ### Requirements
   * [npm](https://www.npmjs.com/get-npm)
@@ -14,9 +34,9 @@ $ npm install express -g
 
 ## Create nodejs app with express
 
-Create a nodejs app called: test_chinchay
+Create a nodejs app called: tutorial-chinchay-api
 ```
-$ express test_chinchay && cd test_chinchay
+$ express tutorial-chinchay-api && cd tutorial-chinchay-api
 ```
 <br/>
 We will install drivers to use PostgresSQL database. we will use knexjs and pg
