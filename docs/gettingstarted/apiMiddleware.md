@@ -12,7 +12,7 @@ This tutorial will walk you through building your first API with Chinchay! It wi
 
 * [thewall npm package](https://www.npmjs.com/package/thewall). To actually define which user has access to which endpoints.
 
- * The [Access Module](./middleware#access) will be in charge of generating the access token, the token follows the [json web token standard](https://jwt.io/), by generating the token with [the jsonwebtoken npm package](https://www.npmjs.com/package/jsonwebtoken). Also will be incharge of filtering 
+ * The [Access Module](./middleware#access) will be in charge of generating the access token, the token follows the [json web token standard](https://jwt.io/), by generating the token with [the jsonwebtoken npm package](https://www.npmjs.com/package/jsonwebtoken). Also will be incharge of filtering who has access to which data within a given endpoint.
 
 
 
@@ -48,10 +48,7 @@ $ npm install knex -s
 <br/>
 Also we will use ejs instead of jade. So we need to run
 
-```
-$ npm install ejs -s
-```
-<br/>
+
 Lets run the app to see what we have so far!
 
 ```
@@ -60,9 +57,9 @@ $ npm start
 ```
 <br/>
 
-Visit [http://localhost:3000](http://localhost:3000) to see the defaut express web app
+You can visit [http://localhost:3000](http://localhost:3000) to see the defaut express web app... but we are here for the API so lets move on!
 
-## Create Postgresql Database
+### Create Postgresql Database
 
 In this tutorial we will not dig in how Postgres fully work. For more information on how to work around Postgres visit [https://www.postgresql.org/](https://www.postgresql.org/).
 
@@ -74,7 +71,7 @@ $ psql
 This should open up postgresql console. Run the following command:
 
 ```
-postgres=# CREATE DATABASE test_chinchay;
+postgres=# CREATE DATABASE tutorial_chinchay_api;
 ```
 *NOTE:* Depending on your default user and psql version the syntax of the previous line may vary.
 
@@ -84,9 +81,9 @@ postgres=# \q
 ```
 
 
-## Connecting to the Database
+### Connecting to the Database
 
-In this tutorial we will not dig in how knex fully work. For more information on how to work around knex [click here](https://knex.org/).
+For connecting our app to the database chinchay uses [knex](https://knex.org/). In this tutorial we will not dig in how knex fully work. For more information on how to work around knex [click here](https://knex.org/).
 
 First of all, we highly recommend to install knex globally:
 
@@ -130,7 +127,7 @@ We will add the following:
 
 * database/migrations/ directory will hold all the migrations (changes) to the database.
 * database/seed/ directory will hold all the seed files. Every subdirectory will hold the seed corresponding to that environment.
-* knex.js Will be the instance to connect to the database.
+* knex.js Will be the instance that connects to the database and the knexfile.js will hold the configurations.
 <br/>
 Go ahead and create those files
 
@@ -158,7 +155,7 @@ module.exports = {
   },
   development: {
     client: 'pg',
-    connection: 'postgres://localhost:5432/test_chinchay',
+    connection: 'postgres://localhost:5432/tutorial_chinchay_api',
     migrations: {
       directory: path.join(__dirname, '/database/migrations'),
     },
@@ -169,7 +166,7 @@ module.exports = {
   },
   production: {
     client: 'pg',
-    connection: process.env.DATABASE_URL || 'postgres://localhost:5432/test_chinchay',
+    connection: process.env.DATABASE_URL || 'postgres://localhost:5432/tutorial_chinchay_api',
     migrations: {
       directory: path.join(__dirname, '/database/migrations'),
     },
@@ -180,7 +177,7 @@ module.exports = {
   },
   staging: {
     client: 'pg',
-    connection: process.env.DATABASE_URL || 'postgres://localhost:5432/test_chinchay',
+    connection: process.env.DATABASE_URL || 'postgres://localhost:5432/tutorial_chinchay_api',
     migrations: {
       directory: path.join(__dirname, '/database/migrations'),
     },
@@ -192,9 +189,11 @@ module.exports = {
 };
 
 ```
-_NOTE:_ If your Postgres user it is not postgres change it accordingly in the connection URL.
+:::warning
+ If your Postgres user it is not postgres change it accordingly in the connection URL.
+:::
 
-We will not get ni detail of how this file works, but basically we are telling knex were we want to save the migrations, the seeds and what is the url to connect to the database. Note that the knexfile defines this variables for every environment by separate.
+We will not get in detail of how this file works, but basically we are telling knex where we want to save the migrations, the seeds and what is the url to connect to the database. Note that the knexfile defines this variables for every environment by separate.
 
 
 Now we need to add the following code to the knex.js file:
@@ -204,15 +203,14 @@ const environment = process.env.NODE_ENV || 'development';
 const config = require('./knexfile')[environment];
 module.exports = require('knex')(config);
 ```
-<br/>
+
 Now knex is configured to connect to the database.
 
 
-## Using Chinchay
+## Creating the coffee + tea relations
 
-Now its the simple part. But before we need to create one last file:
-* .chainfile.js: This file holds all of the configurations for chinchay.
-<br/>
+Now lets get to the fun part: Chinchay. We will create the .chainfile.js, this file holds all of the configurations for chinchay.
+
 Go ahead and create this file.
 
 
@@ -238,7 +236,7 @@ module.exports = {
   knex:  path.join(__dirname, 'knex.js')
 };
 ```
-<br/>
+
 Here we are defining which directories will hold the models, the controllers, the views and the routes.
 
 Install chinchay:
@@ -249,12 +247,15 @@ $ npm install chinchay -g
 <br/>
 Installing chinchay globally will allow you to run chinchay CLI.
 
-Lets build a new relation called coffee and the files to create, view, update and delete entries to it:
+
+### Coffee
+
+Now its time to create the coffees!
 
 ```
-$ chinchay new coffee
+$ chinchay new coffee --middleware api --frontend disable
 ```
-<br/>
+
 This will create a model, a controllers, views, routes and a knex migration in the directories defined in .chainfile.js.
 
 
