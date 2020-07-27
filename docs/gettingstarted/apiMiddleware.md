@@ -449,6 +449,54 @@ exports.down = function (knex) {
   return knex.schema.dropTable('users');
 };
 ```
+Run the migration:
+
+```
+$ knex migrate:latest
+```
+
+On the generated model, we will add the following:
+
+```javascript
+const { Table } = require('chinchay');
+const bcrypt = require('bcrypt-nodejs');
+
+
+class Users extends Table {
+  constructor() {
+    const tableName = 'users';
+    super(tableName);
+  }
+
+  save(user) {
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8), null); // encrypt password
+    return super.save(user);
+  }
+
+  async checkCredentials(username, password) {
+    const user = await this.find({ username });
+    if (!user) return false;
+    return bcrypt.compareSync(password, user.password);
+  }
+}
+
+
+const instance = new Users();
+
+module.exports = instance;
+
+```
+
+:::danger
+  Password must **NEVER** be saved as plain text in the database and always should be encrypted.
+:::
+
+We added two methods. One that overwrites the `save` method by encrypting the password before saving the user The other method is to check that some given credentials are correct. For it to work we must add the following package:
+
+```
+  $ npm i bcrypt-nodejs -s
+```
+
 
 
 ## Configuring the Middleware
