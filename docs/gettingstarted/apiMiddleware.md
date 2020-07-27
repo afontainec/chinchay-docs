@@ -248,20 +248,23 @@ $ npm install chinchay -g
 Installing chinchay globally will allow you to run chinchay CLI.
 
 
-### Coffee
+### Coffee And Tea
 
-Now its time to create the coffees!
+Now its time to create the coffees and the teas!
 
 ```
 $ chinchay new coffee --middleware api --frontend disable
 ```
 
-This will create a model, a controllers, views, routes and a knex migration in the directories defined in .chainfile.js.
+```
+$ chinchay new tea --middleware api --frontend disable
+```
+
+These will create models, controllers, views, routes andknex migrations in the directories defined in .chainfile.js. We shall use this to work with both coffees and teas.
 
 
-The migrations will be saved in the directory database/migrations/. The name will vary, as it takes the current date and time to make the file, but it will be appended by an coffee.js
+The migrations will be saved in the directory `database/migrations/`. The name will vary, as it takes the current date and time to make the file, The file that has `coffee.js` appended add the following:
 
-In this file insert the following:
 ```javascript
 exports.up = function (knex) {
   return knex.schema.createTable('coffee', (table) => {
@@ -278,8 +281,30 @@ exports.down = function (knex) {
   return knex.schema.dropTable('coffee');
 };
 ```
-<br/>
+
 This piece of code will create a relation called coffee within our database with the variables name and price. Also will generate a id and a created_at and updated_at timestamps for every entry. To run this migration:
+
+
+We will do the sale with the file that ends in `tea.js`:
+```javascript
+exports.up = function (knex) {
+  return knex.schema.createTable('tea', (table) => {
+    // Incremental id
+    table.increments();
+    table.string('name').notNullable();
+    table.integer('price');
+    // created_at and updated_at
+    table.timestamps();
+  });
+};
+
+exports.down = function (knex) {
+  return knex.schema.dropTable('tea');
+};
+```
+
+
+Now we can run these migrations:
 
 ```
 $ knex migrate:latest
@@ -296,25 +321,134 @@ app.use('/users', users);
 add the following:
 
 ```javascript
-var coffee = require('./routes/coffee');
-var coffeeAPI = require('./routes/coffeeAPI');
-app.use('/', coffee);
+const teaAPI = require('./routes/teaAPI');
+const coffeeAPI = require('./routes/coffeeAPI');
+app.use('/', teaAPI);
 app.use('/', coffeeAPI);
 ```
-<br/>
-This lines makes the app use the routes for the CRUD operations to the coffee relation.
-<br/>
-Now run the app:
+This lines tell the app to use the generated API.
+
+Now if we ran the app:
+
 ```
 $ npm start
 ```
-<br/>
-and visit [localhost:3000/coffee](localhost:3000/coffee)
 
-Click new to create a coffee!
+We will get an error! Why? We have not configured the middleware yet!
 
-Enjoy!
+### Temporaring Middleware Configuration
 
-For more information to work around Chinchay CLI:
 
-[See the Command Line Interface Documentation!](https://afontainec.github.io/chinchay/clidocs)
+On the [Configure the Middleware](#configuring-the-middleware) part we will dig on ho to fully configure the middleware, for now lets add the following:
+
+#### access.js
+
+Creat an `access.js` file 
+
+```
+$ touch access.js
+```
+
+and add the following:
+```javascript
+const UNRESTRICTED_ROLES = {};
+const RESTRICTED_ROLES = {};
+
+module.exports = {
+  UNRESTRICTED_ROLES,
+  RESTRICTED_ROLES,
+};
+```
+
+#### thewall.js
+
+We need to add thewall to the project:
+
+```
+$ npm i thewall -s
+```
+
+Lets create a thewallfile that will hold all the configurations:
+
+```
+$ touch thewallfile.js
+```
+
+Fill the generate fill with:
+```javascript
+const path = require('path');
+
+module.exports = {
+  access: { },
+  knex: path.join(__dirname, 'knex.js'),
+};
+```
+
+Now create a `thewall` instance:
+
+```
+$ touch thewall.js
+```
+
+Fill the generate fill with:
+```javascript
+const config = require('./thewallfile');
+
+module.exports = require('thewall')(config);
+
+```
+
+#### chainfile.js
+
+Last but not least add the following to the chainfile:
+
+```javascript
+  access: path.join(__dirname, 'access.js'),
+  thewall: path.join(__dirname, 'thewall.js'),
+```
+
+Right after the line:
+
+```javascript
+  knex:  path.join(__dirname, 'knex.js')
+```
+
+Its time to rerun our app: 
+
+```
+$ npm start
+```
+
+Visit an API endpoint, for instance: [localhost:3000/api/coffee/find](http://localhost:3000/api/coffee/find)
+
+We will recieve a 401 Unauthorized error. This is because we added the `--middleware` flag and did not provide a valid authentication. Lets create users and start requesting with a valid authentication!
+
+
+## Creating the users
+
+We shall do the same than before for the users:
+
+```
+$ chinchay new users --middleware api --frontend disable
+```
+
+Replace the generated migration with the following:
+```javascript
+exports.up = function (knex) {
+  return knex.schema.createTable('users', (table) => {
+    // Incremental id
+    table.increments();
+    table.string('username').notNullable();
+    table.text('password');
+    // created_at and updated_at
+    table.timestamps();
+  });
+};
+
+exports.down = function (knex) {
+  return knex.schema.dropTable('users');
+};
+```
+
+
+## Configuring the Middleware
