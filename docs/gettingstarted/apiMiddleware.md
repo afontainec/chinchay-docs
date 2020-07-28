@@ -426,7 +426,7 @@ We will recieve a 401 Unauthorized error. This is because we added the `--middle
 
 ## Creating the users
 
-We shall do the same than before for the users:
+Lets create our users:
 
 ```
 $ chinchay new users --middleware api --frontend disable
@@ -496,6 +496,55 @@ We added two methods. One that overwrites the `save` method by encrypting the pa
 ```
   $ npm i bcrypt-nodejs -s
 ```
+
+For adding the routes, on the `app.js` replace:
+
+```javascript
+app.use('/users', users);
+```
+
+with: 
+
+```javascript
+const usersAPI = require('./routes/usersAPI');
+app.use('/', usersAPI);
+```
+
+Lets populate our database with a user:
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username": "firstUser", "password": "firstUserpwd" }' \
+  http://localhost:3000/api/users/new
+```
+:::tip remember
+  Remember to restart the server: `npm start`
+:::
+
+BUT we see a 403 error! We need a user to create a user but to have that user we must create a user first! We are in a loophole!
+
+To fix this, on the `usersAPI.js` file we will remove the middleware for creating users, replace:
+
+```javascript
+router.post('/api/users/new', Middleware.hasAccess, (req, res, next) => {
+```
+
+with: 
+
+```javascript
+router.post('/api/users/new', (req, res, next) => {
+```
+
+Now run again, and the user will be created! We have defeated the loophole.
+
+:::warning
+  Depending on your use case, you may want to add the Middleware back again.
+:::
+
+
+
+## Getting the token
 
 
 
