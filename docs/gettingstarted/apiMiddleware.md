@@ -505,7 +505,7 @@ We added three methods. One that overwrites the `save` method by encrypting the 
 
 The second method is to check that some given credentials are correct. And the third, will return the user with the given username/password. If there is no user with that combination it will reject with an error. Why do we throw a ChinchayError and not a regular Error? So that the controller be able to reject it with the correct code and message, we will talk more about this in the [Returning a 401 Code](#returning-a-401-code) section.
 
-For adding the routes, on the `app.js` replace:
+For adding the users routes, on the `app.js` replace:
 
 ```javascript
 app.use('/users', users);
@@ -578,9 +578,51 @@ module.exports = router;
 On the `usersController` create the login function:
 
 
+```javascript
+const login = (req, res) => {
+  const { username, password } = req.body;
+  Users.getUserByCredentials(username, password).then((user) => {
+    const accessToken = Access.generateToken(user);
+    const json = httpResponse.success('Ok', 'accessToken', accessToken);
+    return res.status(200).send(json);
+  }).catch((error) => {
+    const code = errorHandler.getHTTPCode(error);
+    const message = errorHandler.getHTTPMessage(error);
+    const json = httpResponse.error(message, error, code);
+    return res.status(code).send(json);
+  });
+};
 
-This check that given username and password are correct, if so returns an accessToken.
+module.exports = {
+  new: newElement,
+  template,
+  show,
+  index,
+  edit,
+  create,
+  find,
+  findById,
+  count,
+  update,
+  delete: del,
+  login,
+};
+```
 
+So if we restar the server, run again `npm start` and run the following:
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username": "firstUser", "password": "firstUserpwd" }' \
+  http://localhost:3000/api/login
+```
+
+We will recieve our token!
+
+:::warning
+TO DO PROCESS.ENV
+:::
 
 ### #Returning a 401 Code
 
