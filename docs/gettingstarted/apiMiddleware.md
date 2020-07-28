@@ -458,7 +458,7 @@ $ knex migrate:latest
 On the generated model, we will add the following:
 
 ```javascript
-const { Table } = require('chinchay');
+const { Table, ChinchayError } = require('chinchay');
 const bcrypt = require('bcrypt-nodejs');
 
 
@@ -473,10 +473,16 @@ class Users extends Table {
     return super.save(user);
   }
 
-  async checkCredentials(username, password) {
-    const user = await this.find({ username });
+  checkCredentials(user, password) {
     if (!user) return false;
     return bcrypt.compareSync(password, user.password);
+  }
+
+  async getUserByCredentials(username, password) {
+    const result = await this.find({ username });
+    const user = result[0];
+    if (!this.checkCredentials(user, password)) throw new ChinchayError('username password do not match', 'wrong_credentials');
+    return user;
   }
 }
 
@@ -491,11 +497,13 @@ module.exports = instance;
   Password must **NEVER** be saved as plain text in the database and always should be encrypted.
 :::
 
-We added two methods. One that overwrites the `save` method by encrypting the password before saving the user The other method is to check that some given credentials are correct. For it to work we must add the following package:
+We added three methods. One that overwrites the `save` method by encrypting the password before saving the user. For it to work we must add the following package to encrypt:
 
 ```
   $ npm i bcrypt-nodejs -s
 ```
+
+The second method is to check that some given credentials are correct. And the third, will return the user with the given username/password. If there is no user with that combination it will reject with an error. Why do we throw a ChinchayError and not a regular Error? So that the controller be able to reject it with the correct code and message, we will talk more about this in the [Returning a 401 Code](#returning-a-401-code) section.
 
 For adding the routes, on the `app.js` replace:
 
@@ -545,6 +553,37 @@ Now run again, and the user will be created! We have defeated the loophole.
 
 
 ## Getting the token
+
+So we have our first user created! But how do we give him an access token so that he can use the database? 
+
+We will create a login endpoint in `usersAPI.js`:
+
+```javascript
+// DELETE
+
+router.delete('/api/users/:id', Middleware.hasAccess, (req, res, next) => {
+  usersController.delete(req, res, next);
+});
+
+// LOGIN
+
+router.post('/api/login', (req, res, next) => {
+  usersController.login(req, res, next);
+});
+
+
+module.exports = router;
+```
+
+On the `usersController` create the login function:
+
+
+
+This check that given username and password are correct, if so returns an accessToken.
+
+
+### #Returning a 401 Code
+
 
 
 
