@@ -931,3 +931,76 @@ So... its play time! You can now see what user can do what. Remember to first as
 
 ## Configuring Access
 
+In your play time, did you tried out: `http://localhost:300/api/coffee/find`. Does it work correctly?
+
+If you try access that endpoint with the a coffeeDrinker, all the coffees will be return, where it should only return the coffees that he haw access. TheWall filter on a per-endpoint basis, however in this case is the same endpoint, so TheWall is insufficient: Enter Chinchay's Access Module.
+
+### roles
+
+This module also works with roles. It has to type of roles:
+
+  * RESTRICTED ROLES: roles that has access to a particular entry. Its accessibility is limited. For instance a coffeeDrinker only has access to certain coffees.
+  * UNRESTRICTED_ROLES: roles that have complete access on a particular module or subdivision of the app. Usually used for a certain database relation. For instance a coffeeAdmin has unrestriced access to the coffees.
+
+  ### Cofiguring access.js
+
+  Let's replace the configuration of the `access.js` created [in this step](#access-js):
+
+  ```javascript
+
+  const UNRESTRICTED_ROLES = {
+    coffee: ['admin', 'coffeeAdmin'],
+    tea: ['admin', 'teaAdmin'],
+  };
+
+  const RESTRICTED_ROLES = {
+    coffee: ['coffeeDrinker'],
+    tea: ['teaDrinker'],
+  };
+
+  module.exports = {
+    UNRESTRICTED_ROLES,
+    RESTRICTED_ROLES,
+  };
+  ```
+
+Now, we will replace the find function of the `coffeeController` for this one:
+
+
+```javascript
+const find = (req, res) => {
+  const userAccess = req.user.access || [];
+  const options = Table.extractOptions(req.query);
+  const columns = Table.extractColumns(req.query);
+  let search = Table.extractSearch(req.query);
+  search = Access.addAccessibleToSearch(search, userAccess, 'coffee', 'id');
+  Tea.find(search, columns, options).then((results) => {
+    const json = httpResponse.success('Busqueda encontrada exitosamente', 'data', results);
+    for (let i = 0; i < json.data.length; i++) {
+      json.data[i].links = HATEOAS.get(json.data[i]);
+    }
+    return res.status(200).send(json);
+  }).catch((error) => {
+    const code = errorHandler.getHTTPCode(error);
+    const message = errorHandler.getHTTPMessage(error);
+    const json = httpResponse.error(message, error, code);
+    return res.status(code).send(json);
+  });
+};
+```
+
+Note that here we are adding to the search this access so it will filter which data should be returned. For it to work Access must be required at the beginning of the file:
+
+```javascript
+const { Table, ErrorHandler, Access } = require('chinchay');
+```
+
+
+## Conclusion
+
+
+
+
+
+
+  
