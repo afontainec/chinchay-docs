@@ -21,6 +21,10 @@ module.exports = {
         title: 'Getting Started: Chinchay + Angular',   // required
         path: '/gettingstarted/angular',
         children: []
+      }, {
+        title: 'Getting Started: RESTful API',   // required
+        path: '/gettingstarted/apiMiddleware',
+        children: []
       }],
       '/docs/': [{
         title: 'Overview: What is Chinchay?',   // required
