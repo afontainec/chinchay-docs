@@ -618,10 +618,13 @@ curl --header "Content-Type: application/json" \
   http://localhost:3000/api/login
 ```
 
-We will recieve our token!
+We recieve our token!
 
-:::warning
-TO DO PROCESS.ENV
+
+### Token Encryption
+
+:::danger
+This is **VERY IMPORTANT**: The token is a jsonwebtoken encrypted by the [environment variable](https://en.wikipedia.org/wiki/Environment_variable) `JWT_SECRET`. You must define your own `JWT_SECRET` that must be kept confidential. If this variable is not defined, Chinchay will use a default secret, this will make your app prone to cyberattacks. 
 :::
 
 ### #Returning a 401 Code
@@ -629,4 +632,13 @@ TO DO PROCESS.ENV
 
 
 
-## Configuring the Middleware
+## Configuring TheWall
+
+### roles
+
+### add admin role
+
+### create more users
+
+
+
