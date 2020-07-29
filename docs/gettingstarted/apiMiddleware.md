@@ -629,10 +629,55 @@ This is **VERY IMPORTANT**: The token is a jsonwebtoken encrypted by the [enviro
 
 ### #Returning a 401 Code
 
+So as you may have noticed, if we request the login endpoint with wrong credentials we get a 500 http code. Try it out:
 
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username": "firstUser", "password": "wrong password" }' \
+  http://localhost:3000/api/login
+```
+
+In case you don't know, the error 500 is a "server-side" error. Meaning something has gone wrong in the server. Not truly the case though right? The problem is that the client (us) provided the wrong username/password combination. So how can we make it so that this request respond with a more suitable code, such as 401?
+
+#### ErrorHandler
+
+  Enter the.... ErrorHandler! The ErrorHandler is the one responsible for deciding the code to respond and an auxiliar message. It works hand by hand with the ChinchayError to map each error to a given code and message.
+
+  So if we look at the users model we can see the following: 
+
+
+```javascript
+  async getUserByCredentials(username, password) {
+    const result = await this.find({ username });
+    const user = result[0];
+    if (!this.checkCredentials(user, password)) throw new ChinchayError('username password do not match', 'wrong_credentials');
+    return user;
+  }
+```
+
+We see that we threw here a Chinchay Error. The second parameters is the identifier we what to provide to this error. In this case 'wrong_credentials'. So we need to tell the Error Handler that when it recieves an Error with this identifier it should return a 401 code. 
+
+So we will add the following to the controller: 
+
+```javascript
+
+const Users = require('../models/users');
+
+const ERROR_TRANSLATE = {
+  wrong_credentials: { code: 401, message: 'The combination username/password provided do not exist' },
+};
+
+const errorHandler = new ErrorHandler(ERROR_TRANSLATE);
+
+const viewPath = '../views/users';
+```
+
+Here we are indicating that the error 'wrong_credentials' should be mapped to the code 401. Go ahead and try it out!
 
 
 ## Configuring TheWall
+
 
 ### roles
 
