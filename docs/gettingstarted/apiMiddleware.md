@@ -638,7 +638,7 @@ curl --header "Content-Type: application/json" \
   http://localhost:3000/api/login
 ```
 
-In case you don't know, the error 500 is a "server-side" error. Meaning something has gone wrong in the server. Not truly the case though right? The problem is that the client (us) provided the wrong username/password combination. So how can we make it so that this request respond with a more suitable code, such as 401?
+In case you don't know, the error 500 is a "server-side" error. Meaning something has gone wrong in the server. It is usually the http way of saying "we do not know what the heck happen". Not truly the case though right? The problem is that the client (us) provided the wrong username/password combination. So how can we configure it so that this request respond with a more suitable code, such as 401 Unauthorized?
 
 #### ErrorHandler
 
@@ -678,12 +678,27 @@ Here we are indicating that the error 'wrong_credentials' should be mapped to th
 
 ## Configuring TheWall
 
+  So now we have our token!
 
 ### roles
+
+  With TheWall you will assign roles to each user. One user can have many roles. Each role will give him access to certain data. On this tutorial we will have the following roles:
+
+  * admin: This will have access to everything. is kind of a superuser.
+  * coffeeAdmin: Access to everything coffee related, can create, read, edit and delete coffees.
+  * teaAdmin: Access to everything tea related, can create, read, edit and delete teas.
+  * teaDrinker: Access to a specific tea (the one its drinking). It can only read it. It cannot add, edit nor delete teas.
+  * coffeeDrinker: Access to a specific coffee (the one its drinking). It can only read it. It cannot add, edit nor coffee teas.
+
+:::tip
+  I always recommend to create an admin role that has access to everything. 
+:::
+
+
 
 ### add admin role
 
 ### create more users
 
-
+## Configuring Access
 
