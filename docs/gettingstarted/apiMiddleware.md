@@ -311,20 +311,26 @@ $ knex migrate:latest
 ```
 <br/>
 
-Last but not least, in the app.js file, right after these lines:
+Last but not least, in the app.js file, replace these lines:
 
 ```javascript
 app.use('/', routes);
 app.use('/users', users);
 ```
 
-add the following:
+with these :
 
 ```javascript
+Middleware.prerouting(app);
+app.use('/', routes);
+
 const teaAPI = require('./routes/teaAPI');
 const coffeeAPI = require('./routes/coffeeAPI');
 app.use('/', teaAPI);
 app.use('/', coffeeAPI);
+
+Middleware.postrouting(app);
+
 ```
 This lines tell the app to use the generated API.
 
@@ -505,15 +511,12 @@ We added three methods. One that overwrites the `save` method by encrypting the 
 
 The second method is to check that some given credentials are correct. And the third, will return the user with the given username/password. If there is no user with that combination it will reject with an error. Why do we throw a ChinchayError and not a regular Error? So that the controller be able to reject it with the correct code and message, we will talk more about this in the [Returning a 401 Code](#returning-a-401-code) section.
 
-For adding the users routes, on the `app.js` replace:
+For adding the users routes, on the `app.js` add the following right after the `Middleware.prerouting(app)`:
+
 
 ```javascript
-app.use('/users', users);
-```
-
-with: 
-
-```javascript
+Middleware.prerouting(app);
+app.use('/', routes);
 const usersAPI = require('./routes/usersAPI');
 app.use('/', usersAPI);
 ```
@@ -779,7 +782,7 @@ module.exports = {
 };
 ```
 
-Note we need to import TheWall. This is the file we created [in this step](#thewall.js). Add the following line at the beginning of the `usersController`:
+Note we need to import TheWall. This is the file we created [in this step](#thewall-js). Add the following line at the beginning of the `usersController`:
 
 ```javascript
 const TheWall = require('../thewall');
@@ -801,6 +804,18 @@ router.post('/api/users/:id/add/access', Middleware.hasAccess, (req, res, next) 
   usersController.addAccess(req, res, next);
 });
 ```
+
+ITS TIME! Lets test our API(and not get a forbidden error)!
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"name": "latte", "price": "100" }' \
+  http://localhost:3000/api/coffee/new
+```
+
+Note we added an Authorization Header, Replace `ACCESS_TOKEN` with the token recieved [earlier](#getting-the-token).
 
 
 ### create more users
