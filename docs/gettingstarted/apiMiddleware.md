@@ -710,12 +710,12 @@ Here we are indicating that the error 'wrong_credentials' should be mapped to th
       coffeeAdmin: ['/api/coffee/*'], // access to all routes starting with /api/coffee/
       coffeeDrinker: [
         '/api/coffee/find', /* index with all the coffee it has access to */
-        ['/api/coffee/find/:id', 'id', 'get'], /* view the coffee with id=:id, only if it has the role coffeeDrinker to that :id. */
+        ['/api/coffee/:id', 'id', 'get'], /* view the coffee with id=:id, only if it has the role coffeeDrinker to that :id. */
       ], 
       teaAdmin: ['/api/tea/*'], /* access to all routes starting with /api/tea/ */
       teaDrinker: [
         '/api/tea/find', /* index with all the tea it has access to */
-        ['/api/tea/find/:id', 'id', 'get'], /* view the tea with id=:id, only if it has the role teaDrinker to that :id. */
+        ['/api/tea/:id', 'id', 'get'], /* view the tea with id=:id, only if it has the role teaDrinker to that :id. */
       ],
     },
     knex: path.join(__dirname, 'knex.js'),
@@ -817,8 +817,117 @@ curl --header "Content-Type: application/json" \
 
 Note we added an Authorization Header, Replace `ACCESS_TOKEN` with the token recieved [earlier](#getting-the-token).
 
+### populate ddbb
+
+So we are going to use our user to create 1 more coffee and 2 teas:
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"name": "cappuccino", "price": "100" }' \
+  http://localhost:3000/api/coffee/new
+```
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"name": "black tea", "price": "10" }' \
+  http://localhost:3000/api/tea/new
+```
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"name": "green tea", "price": "20" }' \
+  http://localhost:3000/api/tea/new
+```
 
 ### create more users
+
+Here we are going to create users. Note that only the admin can add access to to each user, so for the add/access use the access token of the admin! 
+
+#### coffeeAdmin
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username": "User2", "password": "second" }' \
+  http://localhost:3000/api/users/new
+```
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"role": "coffeeAdmin" }' \
+  http://localhost:3000/api/users/2/add/access
+```
+
+#### teaAdmin
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username": "User3", "password": "password" }' \
+  http://localhost:3000/api/users/new
+```
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"role": "teaAdmin" }' \
+  http://localhost:3000/api/users/3/add/access
+```
+
+#### coffeeDrinker
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username": "User4", "password": "password" }' \
+  http://localhost:3000/api/users/new
+```
+This user will be drinking a latte, this is the coffee with id 1, so we define the filter as 1:
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"role": "coffeeDrinker", "filter": 1 }' \
+  http://localhost:3000/api/users/4/add/access
+```
+
+#### teaDrinker
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username": "User5", "password": "password" }' \
+  http://localhost:3000/api/users/new
+```
+This user will be drinking a green tea, this is the tea with id 2, so we define the filter as 2:
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"role": "teaDrinker", "filter": 2 }' \
+  http://localhost:3000/api/users/5/add/access
+```
+
+### play time
+
+So... its play time! You can now see what user can do what. Remember to first ask the access token for each user.
+
+  * What users can create a new coffee? 
+  * What users can create a new tea? 
+  * What users can access the data of the coffee latte? What about cappuccino?
+  * What users can access the data of black tea? What about green tea?
+  * What users can access the view the data of a certain user?
+
+
 
 ## Configuring Access
 
