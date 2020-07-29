@@ -678,7 +678,7 @@ Here we are indicating that the error 'wrong_credentials' should be mapped to th
 
 ## Configuring TheWall
 
-  So now we have our token!
+  So now we have our token! So far so good. Next step is to configure TheWall. Defining which user can access which data.
 
 ### roles
 
@@ -694,9 +694,114 @@ Here we are indicating that the error 'wrong_credentials' should be mapped to th
   I always recommend to create an admin role that has access to everything. 
 :::
 
+### thewallfile
+
+  Let's replace the configuration of the `thewallfile`:
+
+  ```javascript
+  const path = require('path');
+
+  module.exports = {
+    access: {
+      admin: ['*'], // access everything
+      coffeeAdmin: ['/api/coffee/*'], // access to all routes starting with /api/coffee/
+      coffeeDrinker: [
+        '/api/coffee/find', /* index with all the coffee it has access to */
+        ['/api/coffee/find/:id', 'id', 'get'], /* view the coffee with id=:id, only if it has the role coffeeDrinker to that :id. */
+      ], 
+      teaAdmin: ['/api/tea/*'], /* access to all routes starting with /api/tea/ */
+      teaDrinker: [
+        '/api/tea/find', /* index with all the tea it has access to */
+        ['/api/tea/find/:id', 'id', 'get'], /* view the tea with id=:id, only if it has the role teaDrinker to that :id. */
+      ],
+    },
+    knex: path.join(__dirname, 'knex.js'),
+  };
+  ```
+
+For more information on how to configure TheWall check [TheWall documentation](https://www.npmjs.com/package/thewall).
+
 
 
 ### add admin role
+
+We will add an endpoint to add roles to users. On the `usersAPI.js` we add the endpoint:
+
+```javascript
+// LOGIN
+
+router.post('/api/login', (req, res, next) => {
+  usersController.login(req, res, next);
+});
+
+// ACCESS
+
+router.post('/api/users/:id/add/access', (req, res, next) => {
+  usersController.addAccess(req, res, next);
+});
+
+
+module.exports = router;
+```
+
+Next in the `usersController` we add:
+
+```javascript
+const addAccess = (req, res) => {
+  const { id } = req.params;
+  const { role, filter } = req.body;
+  TheWall.addAccess(id, role, filter).then((access) => {
+    const json = httpResponse.success('Ok');
+    return res.status(200).send(json);
+  }).catch((error) => {
+    const code = errorHandler.getHTTPCode(error);
+    const message = errorHandler.getHTTPMessage(error);
+    const json = httpResponse.error(message, error, code);
+    return res.status(code).send(json);
+  });
+};
+
+
+module.exports = {
+  new: newElement,
+  template,
+  show,
+  index,
+  edit,
+  create,
+  find,
+  findById,
+  count,
+  update,
+  delete: del,
+  login,
+  addAccess,
+};
+```
+
+Note we need to import TheWall. This is the file we created [in this step](#thewall.js). Add the following line at the beginning of the `usersController`:
+
+```javascript
+const TheWall = require('../thewall');
+```
+
+Now we run the following: 
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"role": "admin" }' \
+  http://localhost:3000/api/users/1/add/access
+```
+
+Now our user with id 1 is an admin! Lastly lets add the Middleware to the route we created:
+
+```javascript
+router.post('/api/users/:id/add/access', Middleware.hasAccess, (req, res, next) => {
+  usersController.addAccess(req, res, next);
+});
+```
+
 
 ### create more users
 
