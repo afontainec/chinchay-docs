@@ -28,7 +28,7 @@ Note you must have imported the Middleware first:
   const { Middleware } = require('chinchay');
 ```
 
-So before actually runnig the controller function, the `Middleware.hasAccess` will be ran, checking that the Bearer token is present, valid and that the user can access it. If it can pass then the controller function will be ran, otherwise it will reject the connection with a 401 code. 
+So before actually running the controller function, the `Middleware.hasAccess` will be ran, checking that the Bearer token is present, valid and that the user can access it. Only then the controller function will be ran, otherwise it will reject the connection with a 401 code. 
 
 ## Configuring: prerouting and postrouting
 
