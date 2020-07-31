@@ -311,20 +311,26 @@ $ knex migrate:latest
 ```
 <br/>
 
-Last but not least, in the app.js file, right after these lines:
+Last but not least, in the app.js file, replace these lines:
 
 ```javascript
 app.use('/', routes);
 app.use('/users', users);
 ```
 
-add the following:
+with these :
 
 ```javascript
+Middleware.prerouting(app);
+app.use('/', routes);
+
 const teaAPI = require('./routes/teaAPI');
 const coffeeAPI = require('./routes/coffeeAPI');
 app.use('/', teaAPI);
 app.use('/', coffeeAPI);
+
+Middleware.postrouting(app);
+
 ```
 This lines tell the app to use the generated API.
 
@@ -505,15 +511,12 @@ We added three methods. One that overwrites the `save` method by encrypting the 
 
 The second method is to check that some given credentials are correct. And the third, will return the user with the given username/password. If there is no user with that combination it will reject with an error. Why do we throw a ChinchayError and not a regular Error? So that the controller be able to reject it with the correct code and message, we will talk more about this in the [Returning a 401 Code](#returning-a-401-code) section.
 
-For adding the users routes, on the `app.js` replace:
+For adding the users routes, on the `app.js` add the following right after the `Middleware.prerouting(app)`:
+
 
 ```javascript
-app.use('/users', users);
-```
-
-with: 
-
-```javascript
+Middleware.prerouting(app);
+app.use('/', routes);
 const usersAPI = require('./routes/usersAPI');
 app.use('/', usersAPI);
 ```
@@ -678,7 +681,7 @@ Here we are indicating that the error 'wrong_credentials' should be mapped to th
 
 ## Configuring TheWall
 
-  So now we have our token!
+  So now we have our token! So far so good. Next step is to configure TheWall. Defining which user can access which data.
 
 ### roles
 
@@ -694,11 +697,312 @@ Here we are indicating that the error 'wrong_credentials' should be mapped to th
   I always recommend to create an admin role that has access to everything. 
 :::
 
+### thewallfile
+
+  Let's replace the configuration of the `thewallfile`:
+
+  ```javascript
+  const path = require('path');
+
+  module.exports = {
+    access: {
+      admin: ['*'], // access everything
+      coffeeAdmin: ['/api/coffee/*'], // access to all routes starting with /api/coffee/
+      coffeeDrinker: [
+        '/api/coffee/find', /* index with all the coffee it has access to */
+        ['/api/coffee/:id', 'id', 'get'], /* view the coffee with id=:id, only if it has the role coffeeDrinker to that :id. */
+      ], 
+      teaAdmin: ['/api/tea/*'], /* access to all routes starting with /api/tea/ */
+      teaDrinker: [
+        '/api/tea/find', /* index with all the tea it has access to */
+        ['/api/tea/:id', 'id', 'get'], /* view the tea with id=:id, only if it has the role teaDrinker to that :id. */
+      ],
+    },
+    knex: path.join(__dirname, 'knex.js'),
+  };
+  ```
+
+For more information on how to configure TheWall check [TheWall documentation](https://www.npmjs.com/package/thewall).
+
 
 
 ### add admin role
 
+We will add an endpoint to add roles to users. On the `usersAPI.js` we add the endpoint:
+
+```javascript
+// LOGIN
+
+router.post('/api/login', (req, res, next) => {
+  usersController.login(req, res, next);
+});
+
+// ACCESS
+
+router.post('/api/users/:id/add/access', (req, res, next) => {
+  usersController.addAccess(req, res, next);
+});
+
+
+module.exports = router;
+```
+
+Next in the `usersController` we add:
+
+```javascript
+const addAccess = (req, res) => {
+  const { id } = req.params;
+  const { role, filter } = req.body;
+  TheWall.addAccess(id, role, filter).then((access) => {
+    const json = httpResponse.success('Ok');
+    return res.status(200).send(json);
+  }).catch((error) => {
+    const code = errorHandler.getHTTPCode(error);
+    const message = errorHandler.getHTTPMessage(error);
+    const json = httpResponse.error(message, error, code);
+    return res.status(code).send(json);
+  });
+};
+
+
+module.exports = {
+  new: newElement,
+  template,
+  show,
+  index,
+  edit,
+  create,
+  find,
+  findById,
+  count,
+  update,
+  delete: del,
+  login,
+  addAccess,
+};
+```
+
+Note we need to import TheWall. This is the file we created [in this step](#thewall-js). Add the following line at the beginning of the `usersController`:
+
+```javascript
+const TheWall = require('../thewall');
+```
+
+Now we run the following: 
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"role": "admin" }' \
+  http://localhost:3000/api/users/1/add/access
+```
+
+Now our user with id 1 is an admin! Lastly lets add the Middleware to the route we created:
+
+```javascript
+router.post('/api/users/:id/add/access', Middleware.hasAccess, (req, res, next) => {
+  usersController.addAccess(req, res, next);
+});
+```
+
+ITS TIME! Lets test our API(and not get a forbidden error)!
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"name": "latte", "price": "100" }' \
+  http://localhost:3000/api/coffee/new
+```
+
+Note we added an Authorization Header, Replace `ACCESS_TOKEN` with the token recieved [earlier](#getting-the-token).
+
+### populate ddbb
+
+So we are going to use our user to create 1 more coffee and 2 teas:
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"name": "cappuccino", "price": "100" }' \
+  http://localhost:3000/api/coffee/new
+```
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"name": "black tea", "price": "10" }' \
+  http://localhost:3000/api/tea/new
+```
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"name": "green tea", "price": "20" }' \
+  http://localhost:3000/api/tea/new
+```
+
 ### create more users
+
+Here we are going to create users. Note that only the admin can add access to to each user, so for the add/access use the access token of the admin! 
+
+#### coffeeAdmin
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username": "User2", "password": "second" }' \
+  http://localhost:3000/api/users/new
+```
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"role": "coffeeAdmin" }' \
+  http://localhost:3000/api/users/2/add/access
+```
+
+#### teaAdmin
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username": "User3", "password": "password" }' \
+  http://localhost:3000/api/users/new
+```
+
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"role": "teaAdmin" }' \
+  http://localhost:3000/api/users/3/add/access
+```
+
+#### coffeeDrinker
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username": "User4", "password": "password" }' \
+  http://localhost:3000/api/users/new
+```
+This user will be drinking a latte, this is the coffee with id 1, so we define the filter as 1:
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"role": "coffeeDrinker", "filter": 1 }' \
+  http://localhost:3000/api/users/4/add/access
+```
+
+#### teaDrinker
+
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username": "User5", "password": "password" }' \
+  http://localhost:3000/api/users/new
+```
+This user will be drinking a green tea, this is the tea with id 2, so we define the filter as 2:
+```
+curl --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ACCESS_TOKEN" \
+  --request POST \
+  --data '{"role": "teaDrinker", "filter": 2 }' \
+  http://localhost:3000/api/users/5/add/access
+```
+
+### play time
+
+So... its play time! You can now see what user can do what. Remember to first ask the access token for each user.
+
+  * What users can create a new coffee? 
+  * What users can create a new tea? 
+  * What users can access the data of the coffee latte? What about cappuccino?
+  * What users can access the data of black tea? What about green tea?
+  * What users can access the view the data of a certain user?
+
+
 
 ## Configuring Access
 
+In your play time, did you tried out: `http://localhost:300/api/coffee/find`. Does it work correctly?
+
+If you try access that endpoint with the a coffeeDrinker, all the coffees will be return, where it should only return the coffees that he haw access. TheWall filter on a per-endpoint basis, however in this case is the same endpoint, so TheWall is insufficient: Enter Chinchay's Access Module.
+
+### roles
+
+This module also works with roles. It has to type of roles:
+
+  * RESTRICTED ROLES: roles that has access to a particular entry. Its accessibility is limited. For instance a coffeeDrinker only has access to certain coffees.
+  * UNRESTRICTED_ROLES: roles that have complete access on a particular module or subdivision of the app. Usually used for a certain database relation. For instance a coffeeAdmin has unrestriced access to the coffees.
+
+  ### Cofiguring access.js
+
+  Let's replace the configuration of the `access.js` created [in this step](#access-js):
+
+  ```javascript
+
+  const UNRESTRICTED_ROLES = {
+    coffee: ['admin', 'coffeeAdmin'],
+    tea: ['admin', 'teaAdmin'],
+  };
+
+  const RESTRICTED_ROLES = {
+    coffee: ['coffeeDrinker'],
+    tea: ['teaDrinker'],
+  };
+
+  module.exports = {
+    UNRESTRICTED_ROLES,
+    RESTRICTED_ROLES,
+  };
+  ```
+
+Now, we will replace the find function of the `coffeeController` for this one:
+
+
+```javascript
+const find = (req, res) => {
+  const userAccess = req.user.access || [];
+  const options = Table.extractOptions(req.query);
+  const columns = Table.extractColumns(req.query);
+  let search = Table.extractSearch(req.query);
+  search = Access.addAccessibleToSearch(search, userAccess, 'coffee', 'id');
+  Tea.find(search, columns, options).then((results) => {
+    const json = httpResponse.success('Busqueda encontrada exitosamente', 'data', results);
+    for (let i = 0; i < json.data.length; i++) {
+      json.data[i].links = HATEOAS.get(json.data[i]);
+    }
+    return res.status(200).send(json);
+  }).catch((error) => {
+    const code = errorHandler.getHTTPCode(error);
+    const message = errorHandler.getHTTPMessage(error);
+    const json = httpResponse.error(message, error, code);
+    return res.status(code).send(json);
+  });
+};
+```
+
+Note that here we are adding to the search this access so it will filter which data should be returned. For it to work Access must be required at the beginning of the file:
+
+```javascript
+const { Table, ErrorHandler, Access } = require('chinchay');
+```
+
+
+## Conclusion
+
+So thats it! We have a functional API with different roles. We learned how to work with oAuth in Chinchay, how to configure TheWall and the Chinchay Access Module.
+
+For further reading go to the [Chinchay Documentation](../docs)
+
+
+
+
+  
