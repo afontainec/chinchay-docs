@@ -55,5 +55,10 @@ The prerouting must be before the `app.use(...)` and the postrouting must be aft
 
 When running the `chinchay new`, you can pass a `--middleware` to automatically add the `Middleware.hasAccess`. You can read more on how to work with it in the [documentation of the middleware flag](../docs/cli.html#the-middleware-flag).
 
+## Token Encryption
+
+:::danger
+This is **VERY IMPORTANT**: The token is a jsonwebtoken encrypted by the [environment variable](https://en.wikipedia.org/wiki/Environment_variable) `JWT_SECRET`. You must define your own `JWT_SECRET` that must be kept confidential. If this variable is not defined, Chinchay will use a default secret, this will make your app prone to cyberattacks. 
+:::
 
 
