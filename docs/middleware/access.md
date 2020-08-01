@@ -111,6 +111,60 @@ Now create a `thewall` instance:
 
 ## isAdmin
 
+  There is a special role in Access: the `admin` role, by default, this role will have unrestricted access to everything.
+
+  There are two ways you can make a user an `admin`:
+
+  ### The Correct Way: Add a TheWall role called `admin`
+
+  The correct way to indicate that a user is an admin is by adding a TheWall role to that user:
+  ```javascript
+    const access = await TheWall.addAccess(1, 'admin');
+  ```
+  With the following, we have indicated that the user with id=1 is an admin.
+
+
+  ### The Incorrect Way: add a is_admin
+
+  Well maybe a went a bit too far, it is not "incorrect", its more the old fashioned way. Just add a `is_admin` boolean to the user relation, for example: 
+
+  ```javascript
+  exports.up = function (knex) {
+    return knex.schema.createTable('users', (table) => {
+      // Incremental id
+      table.increments();
+      table.string('username').notNullable();
+      table.text('password');
+      table.boolean('is_admin');
+      // created_at and updated_at
+      table.timestamps();
+    });
+  };
+  ```
+
+  ### Using the Function
+
+  Either way, you can call the function as such:
+
+  ```javascript
+
+  Access.isAdmin(req.user);
+  
+  ```
+
+  ### Parameter
+
+  * user: javacript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+
+  :::tip Common Use
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  :::
+
+  #### Return Value
+
+  * isAdmin: Boolean indicating if the given user is or not an admin.
+
+
 ## hasAccessToAll
 
 ## accessiblesIds
