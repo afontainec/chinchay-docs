@@ -102,13 +102,12 @@ Now create a `thewall` instance:
   
   For more information as to how add TheWall instance look at the [API tutorial](../gettingstarted/apiMiddleware) and/or the [Chainfile Docs](../chainfile.html#middleware-access-thewall).
   
-  
-
-
-
-
 
 ### bootstrap
+
+  The bootstrap function will be the one that actually loads the configuration files. It will also Bootstrap the [accessToken](./accessToken). This function will be automatically called when requiring Chinchay, developers will hardly ever need to use it. Manually calling this function is a code smell of Chinchay not being properly configured.
+
+
 
 ## isAdmin
 
