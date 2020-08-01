@@ -13,7 +13,7 @@
 ## Configure
 
 
-  ### Restriced and Unrestricted Roles
+  ### Restricted and Unrestricted Roles
 
   To configure it, we need to pass it a configuration file indicating which roles are unrestricted and which are restricted. For example lets create a `access.js` file with the following:
 
@@ -233,6 +233,55 @@ Now create a `thewall` instance:
   ```
 
 ## accessiblesIds
+
+  ### Overview
+
+  Returns all the ids/filters to which a given user has access on a particular module or subdivision of the app. In otherwords it will return an Array with all the `filter` property of every access it has to a given module/subdivision.
+
+  This method is intended to be used only for users that do not have unrestricted access.
+
+  ### Parameter
+
+  * user: javacript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+
+  :::tip Common Use
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  :::
+
+  * to: module or subdivision at issue. 
+
+  ### Return Value
+
+  * ids: Array of all the filters of that user's accesses.
+  
+  
+  ### Examples
+
+  This examples assumes [this configuration](#configure).
+
+  ```javascript
+  req.user = {
+    id: 1,
+    access: [{role: 'coffeeDrinker', filter: '1' }, {role: 'coffeeDrinker', filter: '2' }]
+  };
+  Access.accessiblesIds(req.user, 'coffee'); // returns ['1', '2']
+  ```
+
+  ```javascript
+  req.user = {
+    id: 2,
+    access: [{role: 'coffeeDrinker', filter: '1' }, {role: 'teaDrinker', filter: '2' }]
+  };
+  Access.accessiblesIds(req.user, 'coffee'); // returns ['1']
+  ```
+
+  ```javascript
+  req.user = {
+    id: 3,
+    access: [{role: 'teaDrinker', filter: '1' }, {role: 'teaDrinker', filter: '2' }]
+  };
+  Access.accessiblesIds(req.user, 'coffee'); // returns []
+  ```
 
 ## addAccessibleToSearch
 
