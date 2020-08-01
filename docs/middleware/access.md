@@ -111,11 +111,12 @@ Now create a `thewall` instance:
 
 ## isAdmin
 
+  ### Overview
   There is a special role in Access: the `admin` role, by default, this role will have unrestricted access to everything.
 
   There are two ways you can make a user an `admin`:
 
-  ### The Correct Way: Add a TheWall role called `admin`
+  #### The Correct Way: Add a TheWall role called `admin`
 
   The correct way to indicate that a user is an admin is by adding a TheWall role to that user:
   ```javascript
@@ -124,7 +125,7 @@ Now create a `thewall` instance:
   With the following, we have indicated that the user with id=1 is an admin.
 
 
-  ### The Incorrect Way: add a is_admin
+  #### The Incorrect Way: add a is_admin
 
   Well maybe a went a bit too far, it is not "incorrect", its more the old fashioned way. Just add a `is_admin` boolean to the user relation, for example: 
 
@@ -142,15 +143,43 @@ Now create a `thewall` instance:
   };
   ```
 
-  ### Using the Function
+  ### Parameter
 
-  Either way, you can call the function as such:
+  * user: javacript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+
+  :::tip Common Use
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  :::
+
+  ### Return Value
+
+  * isAdmin: Boolean indicating if the given user is or not an admin.
+
+
+  ### Example
+
+  
+  ```javascript
+  req.user = {
+    id: 1,
+    access: [{role: 'admin' }]
+  };
+  Access.isAdmin(req.user); // returns true
+  ```
 
   ```javascript
-
-  Access.isAdmin(req.user);
-  
+  req.user = {
+    id: 1,
+    access: [{role: 'coffeeAdmin' }]
+  };
+  Access.isAdmin(req.user); // returns false 
   ```
+
+## hasAccessToAll
+
+  ### Overview
+
+  Check if the given user has complete access to a particular module or subdivision of the app, in otherwords if it hold an unrestricted role for the asked module/subdivision. If the user is admin it will assume it has access to it.
 
   ### Parameter
 
@@ -160,12 +189,48 @@ Now create a `thewall` instance:
   The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
   :::
 
-  #### Return Value
+  * to: module or subdivision at issue. 
 
-  * isAdmin: Boolean indicating if the given user is or not an admin.
+  ### Return Value
 
+  * hasAccess: Boolean indicating if the given user has unrestricted access to the module or subdivision at issue.
+  
+  
+  ### Examples
 
-## hasAccessToAll
+  This examples assumes [this configuration](#configure).
+
+  ```javascript
+  req.user = {
+    id: 1,
+    access: [{role: 'admin' }]
+  };
+  Access.hasAccessToAll(req.user, 'coffee'); // returns true
+  ```
+
+  ```javascript
+  req.user = {
+    id: 2,
+    access: [{role: 'coffeeAdmin' }]
+  };
+  Access.hasAccessToAll(req.user, 'coffee'); // returns true 
+  ```
+
+  ```javascript
+  req.user = {
+    id: 3,
+    access: [{role: 'teaAdmin' }]
+  };
+  Access.hasAccessToAll(req.user, 'coffee'); // returns false 
+  ```
+
+  ```javascript
+  req.user = {
+    id: 4,
+    access: [{role: 'coffeeDrinker', filter: 1 }]
+  };
+  Access.hasAccessToAll(req.user, 'coffee'); // returns false 
+  ```
 
 ## accessiblesIds
 
