@@ -345,7 +345,7 @@ We will get an error! Why? We have not configured the middleware yet!
 ### Temporaring Middleware Configuration
 
 
-On the [Configure the Middleware](#configuring-the-middleware) part we will dig on ho to fully configure the middleware, for now lets add the following:
+On the [Configure the Middleware](#configuring-the-middleware) part we will dig on how to fully configure the middleware, for now lets add the following:
 
 #### access.js
 
