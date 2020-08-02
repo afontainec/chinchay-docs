@@ -303,6 +303,9 @@ Now create a `thewall` instance:
   The most common way of using this method is by passing the `req.user.acess` property as the `access` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
   :::
 
+  ### Return value
+
+  * search: The filtered search parameter.
 
   ### Examples
 
@@ -372,6 +375,30 @@ Now create a `thewall` instance:
   ```
 
 ## find
+
+  ### Overview
+
+    This is intendend for searching access. It translate directly to [TheWall](https://www.npmjs.com/package/thewall) `findAccess` function.
+
+  ### Parameter
+
+  * access: javascript object indicating what should be searched. Similar to the `search` parameter of [The Model](../models/find.html#parameters).
+
+  ### Return value
+
+  * accesses: Array of javascript object. Where each javascript object represent a role. 
+
+  ### Examples
+
+  If you want to search for all the accesses/roles of the user with id=1: 
+  ```javascript
+  Access.find({ user_id: 1 });
+  ```
+
+  To find all the users who have coffeeDriker role on coffee 4.
+  ```javascript
+  Access.find({ role: 'coffeeDrinker', filter: '4' });
+  ```
 
 ## hasAccessTo
 
