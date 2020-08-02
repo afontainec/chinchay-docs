@@ -285,6 +285,92 @@ Now create a `thewall` instance:
 
 ## addAccessibleToSearch
 
+  ### Overview
+
+  This is one of the most useful methods. Its intended to filter the `search` parameter of [The Model](../models/find.html#parameters) so it does not access data it should not. It will either edit, remove or add properties to the search in order to return only what it is accessible by the user.
+
+  It is usually used in a controller right before the [find](../models/find) or [count](../models/count) method of the model are called.
+
+  ### Parameter
+
+  * search: The search parameter to filter
+  * access: The users access. An array with all its roles/accesses.
+  * tableName: module or subdivision of the app at issue.
+  * key: The key/property corresponding to the `filter` property of the access.
+
+
+  :::tip Common Use: access
+  The most common way of using this method is by passing the `req.user.acess` property as the `access` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  :::
+
+
+  ### Examples
+
+  1. If the user is an admin the search will not be changed:
+  ```javascript
+  req.user = {id: 1, access: [{ role: 'admin' }] };
+  const userAccess = req.user.access || [];
+  let search = { id: 1 };
+  search = Access.addAccessibleToSearch(search, userAccess, 'coffee', 'id');
+  ```
+
+  Filtered search:
+  ```javascript
+  { id: 1 }
+  ```
+
+  2. Access to several entries
+  ```javascript
+  req.user = {id: 1, access: [{ role: 'coffeeDrinker', filter: '2' }, { role: 'coffeeDrinker', filter: '3' }] };
+  const userAccess = req.user.access || [];
+  let search = { price: 100 };
+  search = Access.addAccessibleToSearch(search, userAccess, 'coffee', 'id');
+  ```
+
+  Filtered search:
+  ```javascript
+  { price: 100, id: [ 'in', [ 2, 3 ] ] }
+  ```
+
+  3. Searching for a given entry
+  ```javascript
+  req.user = {id: 1, access: [{ role: 'coffeeDrinker', filter: '2' }, { role: 'coffeeDrinker', filter: '3' }] };
+  const userAccess = req.user.access || [];
+  let search = { id: 2 };
+  search = Access.addAccessibleToSearch(search, userAccess, 'coffee', 'id');
+  ```
+
+  Filtered search:
+  ```javascript
+  { id: 2 }
+  ```
+
+  4. Searching for a given entry, without access
+  ```javascript
+  req.user = {id: 1, access: [{ role: 'coffeeDrinker', filter: '2' }, { role: 'coffeeDrinker', filter: '3' }] };
+  const userAccess = req.user.access || [];
+  let search = { id: 4 };
+  search = Access.addAccessibleToSearch(search, userAccess, 'coffee', 'id');
+  ```
+
+  Filtered search:
+  ```javascript
+  { id: [ 'in', [] ] }
+  ```
+
+  5. Searching for an array of options
+  ```javascript
+  req.user = {id: 1, access: [{ role: 'coffeeDrinker', filter: '2' }, { role: 'coffeeDrinker', filter: '3' }] };
+  const userAccess = req.user.access || [];
+  let search = { id: ['in', ['2', '4']] };
+  search = Access.addAccessibleToSearch(search, userAccess, 'coffee', 'id');
+  ```
+
+  Filtered search:
+  ```javascript
+  { id: [ 'in', ['2'] ] }
+  ```
+
 ## find
 
 ## hasAccessTo

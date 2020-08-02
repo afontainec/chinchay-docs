@@ -974,7 +974,7 @@ const find = (req, res) => {
   const columns = Table.extractColumns(req.query);
   let search = Table.extractSearch(req.query);
   search = Access.addAccessibleToSearch(search, userAccess, 'coffee', 'id');
-  Tea.find(search, columns, options).then((results) => {
+  Coffee.find(search, columns, options).then((results) => {
     const json = httpResponse.success('Busqueda encontrada exitosamente', 'data', results);
     for (let i = 0; i < json.data.length; i++) {
       json.data[i].links = HATEOAS.get(json.data[i]);
