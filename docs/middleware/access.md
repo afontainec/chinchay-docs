@@ -402,4 +402,45 @@ Now create a `thewall` instance:
 
 ## hasAccessTo
 
+  ### Overview
+
+   It will indicate of the given user has or not access to the requested id. This is equivalent to asking, does the user have a role with access to the requested filter?
+
+  ### Parameter
+
+  * user: javacript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+  * to: The subdivision/module at issue.
+  * filterId: the given specific filter being asked.
+
+  :::tip Common Use
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  ::: 
+
+  ### Return value
+
+  * hasAccess: Boolean indicating if the user has access to the filterId of that subdivision/module. 
+
+  ### Examples
+
+  ```javascript
+  req.user = {id: 1, access: [{ role: 'coffeeAdmin' }]};
+  Access.hasAccessTo(req.user, 'coffee', 2); // returns true
+  ```
+
+  ```javascript
+  req.user = {id: 1, access: [{ role: 'coffeeDrinker', filter: '2' }]};
+  Access.hasAccessTo(req.user, 'coffee', 2); // returns true
+  ```
+
+  ```javascript
+  req.user = {id: 1, access: [{ role: 'coffeeDrinker', filter: '2' }]};
+  Access.hasAccessTo(req.user, 'coffee', 3); // returns false
+  ```
+
+  ```javascript
+  req.user = {id: 1, access: [{ role: 'coffeeDrinker', filter: '2' }]};
+  Access.hasAccessTo(req.user, 'tea', 2); // returns false
+  ```
+
+  
 ## generateToken
