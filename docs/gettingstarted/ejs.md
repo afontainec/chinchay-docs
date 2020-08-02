@@ -40,7 +40,7 @@ $ npm start
 ```
 <br/>
 
-Visit [https://chinchay-docs.herokuapp.com](https://chinchay-docs.herokuapp.com) to see the defaut express web app
+Visit [http://localhost:3000](http://localhost:3000) to see the defaut express web app
 
 ## Create Postgresql Database
 
@@ -174,7 +174,7 @@ module.exports = {
 ```
 _NOTE:_ If your Postgres user it is not postgres change it accordingly in the connection URL.
 
-We will not get ni detail of how this file works, but basically we are telling knex were we want to save the migrations, the seeds and what is the url to connect to the database. Note that the knexfile defines this variables for every environment by separate.
+We will not get in details of how this file works, but basically we are telling knex wjere we want to save the migrations, the seeds and what is the url to connect to the database. Note that the knexfile defines this variables for every environment by separate.
 
 
 Now we need to add the following code to the knex.js file:
