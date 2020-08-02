@@ -455,7 +455,7 @@ Now create a `thewall` instance:
 
   ### Return value
 
-  * accessToken: Javascript object with two properties. The token, as a string, and the expiration. 
+  * accessToken: Javascript object with two properties. The token, as an encrypted string, and the expiration. 
 
   ### Example
 
@@ -470,3 +470,9 @@ Now create a `thewall` instance:
   expiration: '2020-08-09T16:40:04.789Z' 
   }
   ```
+
+## Token Encryption
+
+:::danger
+This is **VERY IMPORTANT**: The token is a jsonwebtoken encrypted by the [environment variable](https://en.wikipedia.org/wiki/Environment_variable) `JWT_SECRET`. You must define your own `JWT_SECRET` that must be kept confidential. If this variable is not defined, Chinchay will use a default secret, this will make your app prone to cyberattacks. 
+:::
