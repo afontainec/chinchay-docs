@@ -97,10 +97,6 @@ module.exports = {
         path: '/middleware/access',
         children: []
       }, {
-        title: 'accessToken',   // required
-        path: '/middleware/accessToken',
-        children: []
-      }, {
         title: 'Middleware',   // required
         path: '/middleware/middleware',
         children: []
