@@ -442,5 +442,31 @@ Now create a `thewall` instance:
   Access.hasAccessTo(req.user, 'tea', 2); // returns false
   ```
 
-  
+
 ## generateToken
+
+  ### Overview
+
+   It will generate an access token for the given user. It will expire in 7 days. 
+
+  ### Parameter
+
+  * user: javacript object representing the user.
+
+  ### Return value
+
+  * accessToken: Javascript object with two properties. The token, as a string, and the expiration. 
+
+  ### Example
+
+  ```javascript
+  req.user = {id: 1 };
+  Access.generatToken(req.user); // returns true
+  ```
+
+  ```javascript
+  { token:
+   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoxLCJpYXQiOjE1OTYzODY0MDQsImV4cCI6MTU5Njk5MTIwNH0.UssIWi2QgutT3IKR4WImW7WTHpOi518hEgMW7mIHyi4',
+  expiration: '2020-08-09T16:40:04.789Z' 
+  }
+  ```
