@@ -5,8 +5,8 @@ module.exports = {
     nav: [
       { text: 'Getting Started', link: '/gettingstarted/' },
       { text: 'Docs', link: '/docs/' },
-      { text: 'The Model', link: '/models/'},
-      { text: 'Middleware', link:'https://apanotupyme.cl/pages/terminos-y-condiciones'},
+      { text: 'The Model', link: '/models/' },
+      { text: 'Middleware', link: '/middleware/' },
       { text: 'Error Handler', link: 'https://apanotupyme.cl/pages/terminos-y-condiciones2'},
       { text: 'Collaborate!', link: 'https://apanotupyme.cl/pages/terminos-y-condiciones3'}
     ],
@@ -90,6 +90,15 @@ module.exports = {
       }, {
         title: 'Creating my own methods',   // required
         path: '/models/customMethods',
+        children: []
+      }],
+      '/middleware/': [{
+        title: 'Access',   // required
+        path: '/middleware/access',
+        children: []
+      }, {
+        title: 'Middleware',   // required
+        path: '/middleware/middleware',
         children: []
       }] 
     },
