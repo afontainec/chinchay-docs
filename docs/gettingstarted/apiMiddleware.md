@@ -332,7 +332,11 @@ app.use('/', coffeeAPI);
 Middleware.postrouting(app);
 
 ```
-This lines tell the app to use the generated API.
+This lines tell the app to use the generated API. Note that we must require the `Middleware` at the beggining of the `app.js` file:
+
+```javascript
+const { Middleware } = require('chinchay');
+```
 
 Now if we ran the app:
 
@@ -427,7 +431,7 @@ $ npm start
 
 Visit an API endpoint, for instance: [localhost:3000/api/coffee/find](http://localhost:3000/api/coffee/find)
 
-We will recieve a 401 Unauthorized error. This is because we added the `--middleware` flag and did not provide a valid authentication. Lets create users and start requesting with a valid authentication!
+We will recieve a 403 Forbidden error. This is because we added the `--middleware` flag and did not provide a valid authentication. Lets create users and start requesting with a valid authentication!
 
 
 ## Creating the users
@@ -612,7 +616,14 @@ module.exports = {
 };
 ```
 
-So if we restar the server, run again `npm start` and run the following:
+Note that we are using the `Access` to generate the token, for it to work must be required at the beginning of the file:
+
+```javascript
+const { Table, ErrorHandler, Access } = require('chinchay');
+```
+
+
+So if we restart the server, run again `npm start` and run the following:
 
 ```
 curl --header "Content-Type: application/json" \
@@ -933,7 +944,7 @@ So... its play time! You can now see what user can do what. Remember to first as
 
 In your play time, did you tried out: `http://localhost:300/api/coffee/find`. Does it work correctly?
 
-If you try access that endpoint with the a coffeeDrinker, all the coffees will be return, where it should only return the coffees that he haw access. TheWall filter on a per-endpoint basis, however in this case is the same endpoint, so TheWall is insufficient: Enter Chinchay's Access Module.
+If you try access that endpoint with the a coffeeDrinker, all the coffees will be return, where it should only return the coffees that he has access. TheWall filter on a per-endpoint basis, however in this case is the same endpoint, so TheWall is insufficient: Enter Chinchay's Access Module.
 
 ### roles
 
