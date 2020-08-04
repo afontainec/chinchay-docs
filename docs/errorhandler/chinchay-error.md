@@ -5,23 +5,51 @@
 ### parameters
 
   * error: A given Error. If you want to mantain an Error but add the chinchayCode, pass it as the first argument. See more in the [Map to Another Error Section](#map-to-another-error).
-  * code: 
-  * message:
+  * chinchayCode: A code to define what type of error it is. It will be later on used by the ErrorHandler to identify the error. Read more about it in the [next section](#chinchaycode).
+  * message: A friendly message to elaborate more on what happen. The chinchayCode is intended to be machine-readable, this is intended to be human-readable, or well at least developer-readable. 
 
 
 
 ## chichayCode
 
+ A code to define what type of error it is. It will be later on used by the ErrorHandler to identify the error. It can be a string or a number. Later on, the ErrorHandler will map each `chinchayCode` to a HTTP status code. It is intended to be short, it is not necessary for it to be self explanatory, that what the `message` property is for.
+
+ :::tip protip
+    Eventhough it is the `message`'s job to explain the error, do think of a `chinchayCode` that would give a hint of what happen. Avoid meaningless codes such as an incremental hexadecimal number.
+ :::
 
 
-## chinchayMessage
+
+```javascript
+  const error = new Error('example message');
+  const chinchayError = new ChinchayError(error, 'test_error', 'example message');
+```
+
+```javascript
+  const chinchayError = new ChinchayError('example message', 'test_error');
+```
 
 
+
+## Message
+
+A friendly message to elaborate more on what happen. The chinchayCode is intended to be machine-readable, this is intended to be human-readable, or well at least developer-readable. This message can be passed as the first parameter. The following codes are equivalent:
+
+
+```javascript
+  const error = new Error('example message');
+  const chinchayError = new ChinchayError(error, 'test_error', 'example message');
+```
+
+```javascript
+  const chinchayError = new ChinchayError('example message', 'test_error');
+```
 
 
 ## Map to Another Error
 
 Sometimes you do not want to create a new Error, rather you desire to transform a given error into a ChinchayError. For example, you are working with an external API and the its the API the one that throws the Error:
+
 
 
 ```javascript
