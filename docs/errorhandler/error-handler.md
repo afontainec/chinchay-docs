@@ -135,7 +135,16 @@
   :::
 
 
-
-
-
 ## getHTTPCodeAndMessage
+
+  If you have been reading through, well this part is going to seem a bit obvious. THe ErrorHandler has a `getHTTPCodeAndMessage` that recieves an error and return what `code` and `message` should be returned to the client.
+
+
+  ### Parameters
+
+  * error: A ChinchayError or Error instance. This is the error that should be mapped to a HTTP status code and a message.
+
+  ### Return value
+
+  * code&Message: A javascript object with two properties: `code`, and `message`. This are the http status code and a friendly human-readable message expected to be returned to the requesting client.
+
