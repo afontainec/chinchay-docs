@@ -7,7 +7,7 @@ module.exports = {
       { text: 'Docs', link: '/docs/' },
       { text: 'The Model', link: '/models/' },
       { text: 'Middleware', link: '/middleware/' },
-      { text: 'Error Handler', link: 'https://apanotupyme.cl/pages/terminos-y-condiciones2'},
+      { text: 'Error Handler', link: '/errorhandler/'},
       { text: 'Collaborate!', link: 'https://apanotupyme.cl/pages/terminos-y-condiciones3'}
     ],
     displayAllHeaders: true,
@@ -99,6 +99,18 @@ module.exports = {
       }, {
         title: 'Middleware',   // required
         path: '/middleware/middleware',
+        children: []
+      }], '/errorhandler/': [{
+        title: 'ChinchayError',   // required
+        path: '/errorhandler/chinchay-error',
+        children: []
+      }, {
+        title: 'ErrorHandler',   // required
+        path: '/errorhandler/error-handler',
+        children: []
+      }, {
+        title: 'GoodPractices',   // required
+        path: '/errorhandler/good-practices',
         children: []
       }] 
     },
