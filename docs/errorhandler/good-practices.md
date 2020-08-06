@@ -115,8 +115,7 @@ There are plenty of more errors, here is a [complete list](https://www.restapitu
 
 ## Developer Alert
 
-If you are deploying to production is a must to monitor the health of your server. This will let you know when something unexpected happen and act accordingly. 
+If you are deploying to production it's a must to monitor the health of your server. This will let you know when something unexpected happen and act accordingly. There are plenty of tools to monitor the health of your code and let you know whenever a code 4XX or 5XX occurs, amount of requests, , CPU usage, logs analyzers and much more.
 
-In my experience, I usually do not do much of error handeling at the beggining. Lets just return 500 to every error (or well, almost every error) and place an alert that would notify me everytime an error 500 occurs. When this alert triggers, I then analyze the request, see what happened and what would be the correct code and message, add it to the errorHandler and move on. This allows me to only populate the errorHandler with real cases, rather than overthinking everything that can go wrong.
-
+In my experience, I usually do not do much of error handling at the beggining, just the basic and obvious errors. All the rest I just return 500 and place an alert that would notify me everytime an error 500 occurs. When this alert triggers, I then analyze the request, see what happened and what would be the correct code and message, add it to the errorHandler and move on. This allows me to only populate the errorHandler with real cases, rather than overthinking everything that can go wrong.
 
