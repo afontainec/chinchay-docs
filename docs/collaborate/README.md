@@ -112,6 +112,8 @@ Full disclosure, this is not the tiddiest part of the package and if you are loo
 
 ### db
 
+There isn't much to tell about this directory, is where the migrations and seeds for the database are defined. If by this point you are thinking why on earth does Chinchay needs a database for? Well actually it doesn't! The database is just for testing and developing. 
+
 ### docs
 
 ### example
