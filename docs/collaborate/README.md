@@ -142,7 +142,10 @@ If, when compiled a `VARIABLE` key is passed, the in-text variable will be chang
 
 ### test
 
+Here all the tests are located. As a general guidance, each function is tested in one file, each file holds all the test of that function. The relative path to this test file, from the test folder, is equivalent to the relative path from the base of the repo to where that function is located.
 
+For example, the function `isAdmin` of the file `models/access.js` is located at:
+`test/models/access/isAdmin.js`
 
 ## Running Locally and Debugging
 
