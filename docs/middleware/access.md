@@ -4,8 +4,8 @@
 
   Second, it restrict which users can access different content, functionalities, functions, etc. It work with roles, were each user can have many roles. Each role will give him access to certain data and/or functionalities. There are two types of roles:
 
-  * RESTRICTED ROLES: roles that has access to a particular entry. Its accessibility is limited to that entry. For example, lets assume you have an app with information about coffees, if a user can only access 1 particular coffee, he should be granted a restricted role.
-  * UNRESTRICTED_ROLES: roles that have complete access on a particular module or subdivision of the app. Usually used for a certain database relation. lets assume you have an app with information about coffees and teas, if a user can access all the coffees but not the teas, he should be granted an unrestricted role to coffees.
+  * RESTRICTED ROLES: roles that has access to a particular entry. Its accessibility is limited to that entry. For example, let's assume you have an app with information about coffees, if a user can only access 1 particular coffee, he should be granted a restricted role.
+  * UNRESTRICTED_ROLES: roles that have complete access on a particular module or subdivision of the app. Usually used for a certain database relation. let's assume you have an app with information about coffees and teas, if a user can access all the coffees but not the teas, he should be granted an unrestricted role to coffees.
 
   This module works side by side with [TheWall](https://www.npmjs.com/package/thewall). and will require a working instance of TheWall to work properly.
 
@@ -15,7 +15,7 @@
 
   ### Restricted and Unrestricted Roles
 
-  To configure it, we need to pass it a configuration file indicating which roles are unrestricted and which are restricted. For example lets create a `access.js` file with the following:
+  To configure it, we need to pass it a configuration file indicating which roles are unrestricted and which are restricted. For example let's create a `access.js` file with the following:
 
   ```javascript
   const UNRESTRICTED_ROLES = {
@@ -127,7 +127,7 @@ Now create a `thewall` instance:
 
   #### The Incorrect Way: add a is_admin
 
-  Well maybe a went a bit too far, it is not "incorrect", its more the old fashioned way. Just add a `is_admin` boolean to the user relation, for example: 
+  Well maybe a went a bit too far, it is not "incorrect", it's more the old fashioned way. Just add a `is_admin` boolean to the user relation, for example: 
 
   ```javascript
   exports.up = function (knex) {
@@ -294,7 +294,7 @@ Now create a `thewall` instance:
   ### Parameter
 
   * search: The search parameter to filter
-  * access: The users access. An array with all its roles/accesses.
+  * access: The users access. An array with all it's roles/accesses.
   * tableName: module or subdivision of the app at issue.
   * key: The key/property corresponding to the `filter` property of the access.
 

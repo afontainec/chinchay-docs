@@ -46,7 +46,7 @@ One interesting way of organizing the ErrorHandler is to have 1 errorHandler for
   };
 ```
 
-Then, in another file, lets call it `errorhandler.js`, we add the following:
+Then, in another file, let's call it `errorhandler.js`, we add the following:
 
 ```javascript
   const errorTranslate = require('path/to/errorhandlerfile');
@@ -91,7 +91,7 @@ Success, when everything go as expected.
 
 ### 400
 
-This is basically a "its not my fault" code. Whenever an error is thrown because the client made a wierd request.
+This is basically a "it's not my fault" code. Whenever an error is thrown because the client made a wierd request.
 
 ### 401 
 

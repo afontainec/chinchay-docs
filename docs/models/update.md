@@ -63,7 +63,7 @@ An array of javascript object, where each javascript object represent an entry o
 
 ## update
 
-So lets get into it. The `newValues` parameter is a javascript option where every `key` will be defined with its `value`. Let look at some examples:
+So let's get into it. The `newValues` parameter is a javascript option where every `key` will be defined with it's `value`. Let look at some examples:
 
 ```javascript
   Coffee.update({ id: 1 }, { price: 100 });

@@ -6,11 +6,11 @@ This tutorial will walk you through building your first API with Chinchay! It wi
 ### Defining concepts
 
 
- * [oAuth 2.0](https://oauth.net/2/): oAuth is a industry-standard protocol for authorization. In simple, you can protect so each users only access the endpoint you give him access to. The user authenticates given its credentials and is granted an access token. For every request he does after he must provide the token to prove his identity.
+ * [oAuth 2.0](https://oauth.net/2/): oAuth is an industry-standard protocol for authorization. In simple terms, you can protect so each user only access the endpoint you give him access to. The user authenticates given it's credentials and is granted an access token. For every request he does after he must provide the token to prove his identity.
 
- * [The Chinchay Middleware](./middleware) will be in charge of inspect that the token is present, valid and that the user of that token has access to the given endpoint. The token is expected to be given as a [Bearer Token](https://stackoverflow.com/questions/25838183/what-is-the-oauth-2-0-bearer-token-exactly/25843058).
+ * [The Chinchay Middleware](./middleware) will be in charge of inspecting that the token is present, valid and that the user of that token has access to the given endpoint. The token is expected to be given as a [Bearer Token](https://stackoverflow.com/questions/25838183/what-is-the-oauth-2-0-bearer-token-exactly/25843058).
 
-* [thewall npm package](https://www.npmjs.com/package/thewall). To actually define which user has access to which endpoints.
+* [TheWall npm package](https://www.npmjs.com/package/thewall). To actually define which user has access to which endpoints.
 
  * The [Access Module](./middleware#access) will be in charge of generating the access token, the token follows the [json web token standard](https://jwt.io/), by generating the token with [the jsonwebtoken npm package](https://www.npmjs.com/package/jsonwebtoken). Also will be incharge of filtering who has access to which data within a given endpoint.
 
@@ -18,7 +18,7 @@ This tutorial will walk you through building your first API with Chinchay! It wi
 
 ### Quick Overview
 
-So we are going to create an API with information about coffees and teas. Some users will only be allowed to read information about specific coffees, other only about specific teas, whereas other will be granted full access. So lets dive into how to configure this!
+So we are going to create an API with information about coffees and teas. Some users will only be allowed to read information about specific coffees, others only about specific teas, whereas others will be granted full access. So let's dive into how to configure this!
 
 
 
@@ -57,7 +57,7 @@ $ npm start
 ```
 <br/>
 
-You can visit [http://localhost:3000](http://localhost:3000) to see the defaut express web app... but we are here for the API so lets move on!
+You can visit [http://localhost:3000](http://localhost:3000) to see the defaut express web app... but we are here for the API so let's move on!
 
 ### Create Postgresql Database
 
@@ -68,14 +68,14 @@ In order to connect to Postgres, we need to create a database. If you have postg
 $ psql
 ```
 <br/>
-This should open up postgresql console. Run the following command:
+This should open up the postgresql console. Run the following command:
 
 ```
 postgres=# CREATE DATABASE tutorial_chinchay_api;
 ```
 *NOTE:* Depending on your default user and psql version the syntax of the previous line may vary.
 
-if its successful close psql, run:
+if it's successful close psql, run:
 ```
 postgres=# \q
 ```
@@ -83,7 +83,7 @@ postgres=# \q
 
 ### Connecting to the Database
 
-For connecting our app to the database chinchay uses [knex](https://knex.org/). In this tutorial we will not dig in how knex fully work. For more information on how to work around knex [click here](https://knex.org/).
+For connecting our app to the database chinchay uses [knex](https://knex.org/). In this tutorial we will not dig in how knex fully works. For more information on how to work around knex [click here](https://knex.org/).
 
 First of all, we highly recommend to install knex globally:
 
@@ -209,7 +209,7 @@ Now knex is configured to connect to the database.
 
 ## Creating the coffee + tea relations
 
-Now lets get to the fun part: Chinchay. We will create the .chainfile.js, this file holds all of the configurations for chinchay.
+Now let's get to the fun part: Chinchay. We will create the .chainfile.js, this file holds all of the configurations for chinchay.
 
 Go ahead and create this file.
 
@@ -250,7 +250,7 @@ Installing chinchay globally will allow you to run chinchay CLI.
 
 ### Coffee And Tea
 
-Now its time to create the coffees and the teas!
+Now it's time to create the coffees and the teas!
 
 ```
 $ chinchay new coffee --middleware api --frontend disable
@@ -260,7 +260,7 @@ $ chinchay new coffee --middleware api --frontend disable
 $ chinchay new tea --middleware api --frontend disable
 ```
 
-These will create models, controllers, views, routes andknex migrations in the directories defined in .chainfile.js. We shall use this to work with both coffees and teas.
+These will create models, controllers, views, routes and knex migrations in the directories defined in .chainfile.js. We shall use this to work with both coffees and teas.
 
 
 The migrations will be saved in the directory `database/migrations/`. The name will vary, as it takes the current date and time to make the file, The file that has `coffee.js` appended add the following:
@@ -282,7 +282,7 @@ exports.down = function (knex) {
 };
 ```
 
-This piece of code will create a relation called coffee within our database with the variables name and price. Also will generate a id and a created_at and updated_at timestamps for every entry. To run this migration:
+This piece of code will create a relation called coffee within our database with the variables name and price. Also will generate an id and a created_at and updated_at timestamps for every entry. To run this migration:
 
 
 We will do the sale with the file that ends in `tea.js`:
@@ -332,7 +332,7 @@ app.use('/', coffeeAPI);
 Middleware.postrouting(app);
 
 ```
-This lines tell the app to use the generated API. Note that we must require the `Middleware` at the beggining of the `app.js` file:
+These lines tell the app to use the generated API. Note that we must require the `Middleware` at the beginning of the `app.js` file:
 
 ```javascript
 const { Middleware } = require('chinchay');
@@ -349,11 +349,11 @@ We will get an error! Why? We have not configured the middleware yet!
 ### Temporaring Middleware Configuration
 
 
-On the [Configure the Middleware](#configuring-the-middleware) part we will dig on how to fully configure the middleware, for now lets add the following:
+On the [Configure the Middleware](#configuring-the-middleware) part we will dig on how to fully configure the middleware, for now let's add the following:
 
 #### access.js
 
-Creat an `access.js` file 
+Create an `access.js` file 
 
 ```
 $ touch access.js
@@ -372,7 +372,7 @@ module.exports = {
 
 #### thewall.js
 
-We need to add thewall to the project:
+We need to add TheWall to the project:
 
 ```
 $ npm i thewall -s
@@ -431,7 +431,7 @@ $ npm start
 
 Visit an API endpoint, for instance: [localhost:3000/api/coffee/find](http://localhost:3000/api/coffee/find)
 
-We will recieve a 403 Forbidden error. This is because we added the `--middleware` flag and did not provide a valid authentication. Lets create users and start requesting with a valid authentication!
+We will receive a 403 Forbidden error. This is because we added the `--middleware` flag and did not provide a valid authentication. Lets create users and start requesting with a valid authentication!
 
 
 ## Creating the users
@@ -504,7 +504,7 @@ module.exports = instance;
 ```
 
 :::danger
-  Password must **NEVER** be saved as plain text in the database and always should be encrypted.
+  Passwords must **NEVER** be saved as plain text in the database and always should be encrypted.
 :::
 
 We added three methods. One that overwrites the `save` method by encrypting the password before saving the user. For it to work we must add the following package to encrypt:
@@ -513,7 +513,7 @@ We added three methods. One that overwrites the `save` method by encrypting the 
   $ npm i bcrypt-nodejs -s
 ```
 
-The second method is to check that some given credentials are correct. And the third, will return the user with the given username/password. If there is no user with that combination it will reject with an error. Why do we throw a ChinchayError and not a regular Error? So that the controller be able to reject it with the correct code and message, we will talk more about this in the [Returning a 401 Code](#returning-a-401-code) section.
+The second method is to check that some given credentials are correct. And the third, will return the user with the given username/password. If there is no user with that combination it will reject with an error. Why do we throw a ChinchayError and not a regular Error? This will allow the controller to send the correct code and message, we will talk more about this in the [Returning a 401 Code](#returning-a-401-code) section.
 
 For adding the users routes, on the `app.js` add the following right after the `Middleware.prerouting(app)`:
 
@@ -632,7 +632,7 @@ curl --header "Content-Type: application/json" \
   http://localhost:3000/api/login
 ```
 
-We recieve our token!
+We receive our token!
 
 
 ### Token Encryption
@@ -652,11 +652,11 @@ curl --header "Content-Type: application/json" \
   http://localhost:3000/api/login
 ```
 
-In case you don't know, the error 500 is a "server-side" error. Meaning something has gone wrong in the server. It is usually the http way of saying "we do not know what the heck happen". Not truly the case though right? The problem is that the client (us) provided the wrong username/password combination. So how can we configure it so that this request respond with a more suitable code, such as 401 Unauthorized?
+In case you don't know, the error 500 is a "server-side" error. Meaning something has gone wrong in the server. It is usually the http way of saying "we do not know what the heck happened". Not truly the case though right? The problem is that the client (us) provided the wrong username/password combination. So how can we configure it so that this request responds with a more suitable code, such as 401 Unauthorized?
 
 #### ErrorHandler
 
-  Enter the.... ErrorHandler! The ErrorHandler is the one responsible for deciding the code to respond and an auxiliar message. It works hand by hand with the ChinchayError to map each error to a given code and message.
+  Enter the.... ErrorHandler! The ErrorHandler is the one responsible for deciding the code to respond and an auxiliary message. It works hand by hand with the ChinchayError to map each error to a given code and message.
 
   So if we look at the users model we can see the following: 
 
@@ -670,7 +670,7 @@ In case you don't know, the error 500 is a "server-side" error. Meaning somethin
   }
 ```
 
-We see that we threw here a Chinchay Error. The second parameters is the identifier we what to provide to this error. In this case 'wrong_credentials'. So we need to tell the Error Handler that when it recieves an Error with this identifier it should return a 401 code. 
+We see that we threw here a Chinchay Error. The second parameter is the identifier we want to provide to this error. In this case 'wrong_credentials'. So we need to tell the Error Handler that when it receives an Error with this identifier it should return a 401 code. 
 
 So we will add the following to the controller: 
 
@@ -701,11 +701,11 @@ Here we are indicating that the error 'wrong_credentials' should be mapped to th
   * admin: This will have access to everything. is kind of a superuser.
   * coffeeAdmin: Access to everything coffee related, can create, read, edit and delete coffees.
   * teaAdmin: Access to everything tea related, can create, read, edit and delete teas.
-  * teaDrinker: Access to a specific tea (the one its drinking). It can only read it. It cannot add, edit nor delete teas.
-  * coffeeDrinker: Access to a specific coffee (the one its drinking). It can only read it. It cannot add, edit nor coffee teas.
+  * teaDrinker: Access to a specific tea (the one it's drinking). It can only read it. It cannot add, edit or delete teas.
+  * coffeeDrinker: Access to a specific coffee (the one it's drinking). It can only read it. It cannot add, edit nor coffee teas.
 
 :::tip
-  I always recommend to create an admin role that has access to everything. 
+  I always recommend creating an admin role that has access to everything. 
 :::
 
 ### thewallfile
@@ -808,7 +808,7 @@ curl --header "Content-Type: application/json" \
   http://localhost:3000/api/users/1/add/access
 ```
 
-Now our user with id 1 is an admin! Lastly lets add the Middleware to the route we created:
+Now our user with id 1 is an admin! Lastly let's add the Middleware to the route we created:
 
 ```javascript
 router.post('/api/users/:id/add/access', Middleware.hasAccess, (req, res, next) => {
@@ -858,7 +858,7 @@ curl --header "Content-Type: application/json" \
 
 ### create more users
 
-Here we are going to create users. Note that only the admin can add access to to each user, so for the add/access use the access token of the admin! 
+Here we are going to create users. Note that only the admin can add access to each user, so for the add/access use the access token of the admin! 
 
 #### coffeeAdmin
 
@@ -930,30 +930,30 @@ curl --header "Content-Type: application/json" \
 
 ### play time
 
-So... its play time! You can now see what user can do what. Remember to first ask the access token for each user.
+So... it's play time! You can now see what user can do what. Remember to first ask the access token for each user.
 
   * What users can create a new coffee? 
   * What users can create a new tea? 
   * What users can access the data of the coffee latte? What about cappuccino?
   * What users can access the data of black tea? What about green tea?
-  * What users can access the view the data of a certain user?
+  * What users can access the data of a certain user?
 
 
 
 ## Configuring Access
 
-In your play time, did you tried out: `http://localhost:300/api/coffee/find`. Does it work correctly?
+In your play time, did you try out: `http://localhost:300/api/coffee/find`. Does it work correctly?
 
-If you try access that endpoint with the a coffeeDrinker, all the coffees will be return, where it should only return the coffees that he has access. TheWall filter on a per-endpoint basis, however in this case is the same endpoint, so TheWall is insufficient: Enter Chinchay's Access Module.
+If you try to access that endpoint with a coffeeDrinker, all the coffees will be returned, where it should only return the coffees that he has access ro. TheWall filter on a per-endpoint basis, however in this case is the same endpoint, so TheWall is insufficient: Enter Chinchay's Access Module.
 
 ### roles
 
 This module also works with roles. It has to type of roles:
 
-  * RESTRICTED ROLES: roles that has access to a particular entry. Its accessibility is limited. For instance a coffeeDrinker only has access to certain coffees.
-  * UNRESTRICTED_ROLES: roles that have complete access on a particular module or subdivision of the app. Usually used for a certain database relation. For instance a coffeeAdmin has unrestriced access to the coffees.
+  * RESTRICTED ROLES: roles that have access to a particular entry. Its accessibility is limited. For instance a coffeeDrinker only has access to certain coffees.
+  * UNRESTRICTED_ROLES: roles that have complete access on a particular module or subdivision of the app. Usually used for a certain database relation. For instance a coffeeAdmin has unrestricted access to the coffees.
 
-  ### Cofiguring access.js
+  ### Configuring access.js
 
   Let's replace the configuration of the `access.js` created [in this step](#access-js):
 
@@ -1009,7 +1009,7 @@ const { Table, ErrorHandler, Access } = require('chinchay');
 
 ## Conclusion
 
-So thats it! We have a functional API with different roles. We learned how to work with oAuth in Chinchay, how to configure TheWall and the Chinchay Access Module.
+So that's it! We have a functional API with different roles. We learned how to work with oAuth in Chinchay, how to configure TheWall and the Chinchay Access Module.
 
 For further reading go to the [Chinchay Documentation](../docs)
 

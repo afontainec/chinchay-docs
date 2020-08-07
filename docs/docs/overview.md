@@ -6,7 +6,7 @@ When building a large application order is a key factor, very easily the reposit
 
 ### How does it do it?
 
-The most fascinating and value piece of Chinchay its the flexible TableGateway model. It handles all the interaction from and to a certain table in the database. It allows you to create, read, update, delete, count, sum and many other operations, the best part: without even knowing any sql! However, if by any chance you are a sql master and want to go beyond, Chinchay will allow you to do so.
+The most fascinating and value piece of Chinchay it's the flexible TableGateway model. It handles all the interaction from and to a certain table in the database. It allows you to create, read, update, delete, count, sum and many other operations, the best part: without even knowing any sql! However, if by any chance you are a sql master and want to go beyond, Chinchay will allow you to do so.
 
 
 But that is just the beginning.... Chinchays will help you a **LOT** more. In my early programming years I had these problems:
@@ -24,7 +24,7 @@ Here goes how every problem was tackled:
 
 ## File Structure: Model-View-Controller (MVC) Architecture
 
-For starters, lets begin with a disclaimer: I did not reinvent the wheel. Chinchay uses the state-of-the-art, in this case it was MVC Architecture. If you do not know what that is, here are a list of useful links:
+For starters, let's begin with a disclaimer: I did not reinvent the wheel. Chinchay uses the state-of-the-art, in this case it was MVC Architecture. If you do not know what that is, here are a list of useful links:
 
 *  [Techterm article](https://techterms.com/definition/mvc)
 *  [Tutorialspoint definition](https://www.tutorialspoint.com/mvc_framework/mvc_framework_introduction.htm)
@@ -93,18 +93,18 @@ The next big thing was: how to do a _good_ api?
 
 And the answer is a flexible RESTful API. If you do not know what a RESTful API I recommend to read [this article](https://restfulapi.net/). In a nutshet a RESTful API is an architectural style presented by Roy Fielding that suggest a way to model the client-server interaction.
 
-Not everyone API that say its REST actually is REST. Most of the APIs out there who declare themselfs as REST APIs actually their are not. REST enforces some strict protocols which are hardly ever filfilled. Aaaand enter Chinchay, Chinchay will separate the code in **layered system**  which is **stateless** and **cacheable**. Moreover, to make a **uniform interface** it a has fully flexible **HATEOAS generator**.
+Not everyone API that say it's REST actually is REST. Most of the APIs out there who declare themselfs as REST APIs actually their are not. REST enforces some strict protocols which are hardly ever filfilled. Aaaand enter Chinchay, Chinchay will separate the code in **layered system**  which is **stateless** and **cacheable**. Moreover, to make a **uniform interface** it a has fully flexible **HATEOAS generator**.
 
 ### HATEOAS
 
-HATEOAS is one of the most distintive features of a REST API and is hardly ever present. HATEOAS tries to mimic our real-life browsing, when we visit a page all the posible links are presented (as buttons, images, etc). HATEOAS aims to do the same, which every API request a list of followup links are given. However, doing so its a pain in the *** for the developer, he is responsible to, for every API request, return all the followup link. So guess what does chinchay do? Yes it will make it veeery easy to do so with its [HATEOAS generator](./hateoas).
+HATEOAS is one of the most distintive features of a REST API and is hardly ever present. HATEOAS tries to mimic our real-life browsing, when we visit a page all the posible links are presented (as buttons, images, etc). HATEOAS aims to do the same, which every API request a list of followup links are given. However, doing so it's a pain in the *** for the developer, he is responsible to, for every API request, return all the followup link. So guess what does chinchay do? Yes it will make it veeery easy to do so with it's [HATEOAS generator](./hateoas).
 
 You can read more about [HATEOAS here](https://restfulapi.net/hateoas/).
 
 
 ### Client Queries
 
-Well so we now have a RESTful API with HATEOAS, is that a _good_ api? Well, not necessarily... A _GOOD_ API is an API that is both elegant and useful. The elegant :white_check_mark: (its REST, so yeah it is elegant) but how do we make it useful?
+Well so we now have a RESTful API with HATEOAS, is that a _good_ api? Well, not necessarily... A _GOOD_ API is an API that is both elegant and useful. The elegant :white_check_mark: (it's REST, so yeah it is elegant) but how do we make it useful?
 
 For it to be useful, the client must be able to extract the information it needs through it. Chinchay provides a complete flexible interface where the client can build specific queries to consult information. The backend developer does not need to do a different API endpoint for each client need, with a few endpoint and a flexible querying interface everything is possible. Read more on how to do so [here](./clientside).
 
@@ -112,24 +112,24 @@ For it to be useful, the client must be able to extract the information it needs
 
 If by this point you are thinking, wait the client can ask whatever he wants, so is it unsafe or how do we control he only access what he should access? Do not worry! Chinchay has you cover!
 
-You can easily transform your API in a oAuth 2.0 API, oAuth is a industry-standard protocol for authorization. In simple, you can protect so each users only access the endpoint you give him access to. 
+You can easily transform your API in a oAuth 2.0 API, oAuth is an industry-standard protocol for authorization. In simple terms, you can protect so each user only access the endpoint you give him access to. 
 
 So the whole process go like this:
 
-  1. The user authenticate with its credentials (usually a username and password) 
+  1. The user authenticate with it's credentials (usually a username and password) 
   2. If the credentials are correct an access token is generated and given to the user. This token has an expiration date.
   3. Every request the user does to the API it must provide the access token, otherwise the connecting is denied.
 
 
 ### So how does Chinchay make the API an oAuth 2.0 API?
 
-[The Chinchay Middleware](./middleware) will be in charge of inspect that the token is present, valid and that the user of that token has access to the given endpoint. The token is expected to be given as a [Bearer Token](https://stackoverflow.com/questions/25838183/what-is-the-oauth-2-0-bearer-token-exactly/25843058).
+[The Chinchay Middleware](./middleware) will be in charge of inspecting that the token is present, valid and that the user of that token has access to the given endpoint. The token is expected to be given as a [Bearer Token](https://stackoverflow.com/questions/25838183/what-is-the-oauth-2-0-bearer-token-exactly/25843058).
 
 The [Access Module](./middleware#access) will be in charge of generating the access token, the token follows the [json web token standard](https://jwt.io/), by generating the token with [the jsonwebtoken npm package](https://www.npmjs.com/package/jsonwebtoken). 
 
 To actually define which user has access to which endpoints, chinchay uses the [thewall npm package](https://www.npmjs.com/package/thewall). In the [Middleware documentation](./middleware) you will be guided on how to work with each of this tools.
 
-Moreover you might have one route that its accessible by different users but the content must be different. For instance, with chinchay (running locally) the route: _http://localhost/api/coffee/find_ will return all the coffees. If we have an customer1 user and a customer2 user, we might want to use that endpoint to return all the coffees that the user has access. So how do we filter them? With thewall we give access to both users to that route, but with the [Access Module](./middleware#access) we can add the corresponding filter so that when the information is fetched to the database only the corresponding coffees are given.
+Moreover you might have one route that it's accessible by different users but the content must be different. For instance, with chinchay (running locally) the route: _http://localhost/api/coffee/find_ will return all the coffees. If we have an customer1 user and a customer2 user, we might want to use that endpoint to return all the coffees that the user has access. So how do we filter them? With thewall we give access to both users to that route, but with the [Access Module](./middleware#access) we can add the corresponding filter so that when the information is fetched to the database only the corresponding coffees are given.
 
 ::: tip REMINDER
   Do remember that the using oAuth is optional, you might have an API that is accessible for everyone and if that's fine with you Chinchay will be fine as well.

@@ -1,6 +1,6 @@
 ## Overview
 
-  The ChinchayError is a class that extends the Error class. In simple its the same that the error class, but it has a user-defined identifier called `the chinchayCode`. This is used by the ErrorHandler to identify each error.
+  The ChinchayError is a class that extends the Error class. In simple it's the same that the error class, but it has a user-defined identifier called `the chinchayCode`. This is used by the ErrorHandler to identify each error.
 
 ### parameters
 
@@ -38,7 +38,7 @@ A friendly message to elaborate more on what happen. The `chinchayCode` is inten
 
 ## Map to Another Error
 
-Sometimes you do not want to create a new Error, rather you desire to transform a given error into a `ChinchayError`. For example, you are working with an external API and the its the API the one that throws the Error:
+Sometimes you do not want to create a new Error, rather you desire to transform a given error into a `ChinchayError`. For example, you are working with an external API and the it's the API the one that throws the Error:
 
 
 

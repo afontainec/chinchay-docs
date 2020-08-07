@@ -1,12 +1,12 @@
 ## Overview
 
-Next in line, we will see about the `find` method. This is an asynchronous method that returns an array of javascript object, where each javascript object represent an entry of the database that meets with the parameters requested. This is one of the most flexible and powerful tool. With no more overdues, lets get to it.
+Next in line, we will see about the `find` method. This is an asynchronous method that returns an array of javascript object, where each javascript object represent an entry of the database that meets with the parameters requested. This is one of the most flexible and powerful tool. With no more overdues, let's get to it.
 
 
 ### Parameters
 
   * Search: Javascript object with the definition of what should be searched.
-  * Columns: An array with the columns that should be return. If its null or 'all' will return all the columns.
+  * Columns: An array with the columns that should be return. If it's null or 'all' will return all the columns.
   * Options: A javascript object for more configurations, such us sorting, grouping, etc.
 
 ### Return value
@@ -117,7 +117,7 @@ It will return the complete object will all the columns, this is the default con
   Coffee.find({ price: 100 }, ['id', 'name']);
 ```
 
-If it is defined as an array, will return only the columns defined in the array. In this case, only the id and name of every entry where its price is 100.
+If it is defined as an array, will return only the columns defined in the array. In this case, only the id and name of every entry where it's price is 100.
 
 ```javascript
   Coffee.find({ price: 100 }, ['id as identifier']);
@@ -215,7 +215,7 @@ In this case will return the first two entries ordered by id in ascending order.
   Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
   :::
 
-  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
   ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 
@@ -250,7 +250,7 @@ In this case will return the first two entries ordered by id in ascending order.
   Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
   :::
 
-  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
   ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 

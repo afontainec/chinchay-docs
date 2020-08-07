@@ -1,13 +1,13 @@
 ## Overview
 
-HATEOAS is one of the most distintive features of a REST API and is hardly ever present. HATEOAS tries to mimic our real-life browsing, when we visit a page all the posible links are presented (as buttons, images, etc). HATEOAS aims to do the same, which every API request a list of followup links are given. However, doing so its a pain in the *** for the developer, he is responsible to, for every API request, return all the followup link. So guess what does chinchay do? Yes it will make it veeery easy to do so with its HATEOAS generator.
+HATEOAS is one of the most distintive features of a REST API and is hardly ever present. HATEOAS tries to mimic our real-life browsing, when we visit a page all the posible links are presented (as buttons, images, etc). HATEOAS aims to do the same, which every API request a list of followup links are given. However, doing so it's a pain in the *** for the developer, he is responsible to, for every API request, return all the followup link. So guess what does chinchay do? Yes it will make it veeery easy to do so with it's HATEOAS generator.
 
 You can read more about [HATEOAS here](https://restfulapi.net/hateoas/).
 
 
 ## HATEOAS Generator
 
-So, lets get started. Will exemplify with the controller of [Getting Started Tutorial](../gettingstarted/ejs).
+So, let's get started. Will exemplify with the controller of [Getting Started Tutorial](../gettingstarted/ejs).
 
 So the controller goes like this:
 
@@ -28,7 +28,7 @@ It is recommended to have 1 hateoas instance per controller. You may have 1 hate
 ## addLink
 
 So we have our instance, how do we inform which urls should he add to every request?
-Well its very simple, if we look at the controller we would see this auto-generated lines:
+Well it's very simple, if we look at the controller we would see this auto-generated lines:
 
 ```javascript
   HATEOAS.addLink('self', '/api/coffee/:id');
@@ -88,7 +88,7 @@ const create = (req, res) => {
 };
 ```
 
-Lets look to the `get(values)` method. This method recieves some _values_, in the previous example the `results`. For this it will create an array of all the defined links. if any links need to be compiled it will compiled and will use the values property to replace it. 
+Lets look to the `get(values)` method. This method receives some _values_, in the previous example the `results`. For this it will create an array of all the defined links. if any links need to be compiled it will compiled and will use the values property to replace it. 
 
   * values: A javascript object. The keys/properties it have will be used to compile every uri. For instance, if the uri is `'/api/coffee/:id'` and the values is `{id: 1}`, the compiled uri will be `'api/coffee/1'`.
   * return: The returned is an Array of javascript object. Each object have a `rel`, `href` and `type` property. The rel provides a human-readable value for undestanding what is, `href` the link to the resource and the `type` is the http verb for the link.

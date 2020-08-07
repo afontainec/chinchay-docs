@@ -99,7 +99,7 @@ So when we are indicating that when someone rans `chinchay` in the terminal the 
 
 The logic within this module is quite simple:
 
-1. `lector.js` recieves the command written by a user in the command line and invokes the corresponding fuction of the `interpreter.js`
+1. `lector.js` receives the command written by a user in the command line and invokes the corresponding fuction of the `interpreter.js`
 2. `interpreter.js` interprets the user input and decide what should be done.
 3. The rest of the files are the ones that actually **do the thing**. 
 
@@ -160,7 +160,7 @@ By running the previous commands on the repo it should run all the migrations ne
 
 ### Creating an App for Debugging
 
-If you need a running chinchay app, just build one in the chinchapp folder. Note that all its content is ignored in the gitignore file. I personally have a functional Angular app there working with Chinchay, however feel free to do the app that best fits your need! As it is in the gitignore only you will see it!
+If you need a running chinchay app, just build one in the chinchapp folder. Note that all it's content is ignored in the gitignore file. I personally have a functional Angular app there working with Chinchay, however feel free to do the app that best fits your need! As it is in the gitignore only you will see it!
 
 
 ## Documentation

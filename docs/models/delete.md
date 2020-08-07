@@ -61,7 +61,7 @@ An array of javascript object, where each javascript object represent an entry o
 
 ## delete
 
-So lets get into it, here are some examples on how to define what should be deleted:
+So let's get into it, here are some examples on how to define what should be deleted:
 
 :::warning
   This is an irreversible action. Once deleted it can not be undone.

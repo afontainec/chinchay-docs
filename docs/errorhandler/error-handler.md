@@ -1,7 +1,7 @@
 ## Overview
  I assume we all have been annoyed when working with an API and it returns an error with message "Something went wrong" and we are left there clueless. The ErrorHandler will map the Errors that are thrown in the server to corresponding HTTP codes and human-readable message so the API client can understand what happen and act accordingly. 
 
- The ErrorHandler works hand by hand with the [ChinchayError](./chinchay-error). It will use the `chinchayCode` to translate/map it to a http status code and its message.
+ The ErrorHandler works hand by hand with the [ChinchayError](./chinchay-error). It will use the `chinchayCode` to translate/map it to a http status code and it's message.
 
   
 ## examples
@@ -137,7 +137,7 @@
 
 ## getHTTPCodeAndMessage
 
-  If you have been reading through, well this part is going to seem a bit obvious. THe ErrorHandler has a `getHTTPCodeAndMessage` that recieves an error and return what `code` and `message` should be returned to the client.
+  If you have been reading through, well this part is going to seem a bit obvious. THe ErrorHandler has a `getHTTPCodeAndMessage` that receives an error and return what `code` and `message` should be returned to the client.
 
 
   ### Parameters
@@ -149,5 +149,5 @@
   * code&Message: A javascript object with two properties: `code`, and `message`. This are the http status code and a friendly human-readable message expected to be returned to the requesting client.
 
 
-  This is basically the only function of the ErrorHandler worth talking about. On previous releases this function was absent and ther where two separate function, `getHTTPCode` and `getHTTPMessage`. While they still exists (actually `getHTTPCodeAndMessage` call these functions) its direct use is deprecated and the `getHTTPCodeAndMessage` function is prefered. 
+  This is basically the only function of the ErrorHandler worth talking about. On previous releases this function was absent and ther where two separate function, `getHTTPCode` and `getHTTPMessage`. While they still exists (actually `getHTTPCodeAndMessage` call these functions) it's direct use is deprecated and the `getHTTPCodeAndMessage` function is prefered. 
 

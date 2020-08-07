@@ -1,6 +1,6 @@
 ## Overview
 
-Here we are going to talk about the `sum` method. This is an asynchronous method that returns the sum of a certain column of all the entries that matches with the given search. So lets dive into it!
+Here we are going to talk about the `sum` method. This is an asynchronous method that returns the sum of a certain column of all the entries that matches with the given search. So let's dive into it!
 
 
 ### Parameters
@@ -108,7 +108,7 @@ And that totally fine, however this can also be achieved using the third paramet
   Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
   :::
 
-  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
   ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 
@@ -158,7 +158,7 @@ This will no longer return a single integer it will return an array as follows:
   Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
   :::
 
-  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
   ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 

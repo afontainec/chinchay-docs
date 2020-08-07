@@ -99,12 +99,12 @@ $ knex migrate:latest
 
 For the migration to be taken into account!
 
-#### Where its created and why there?
+#### Where it's created and why there?
 
-On the chainfile we defined where the knex instance is. The knex will have its own configuration on where it should create the migration. So its up to knex to decide where the file is created!
+On the chainfile we defined where the knex instance is. The knex will have it's own configuration on where it should create the migration. So it's up to knex to decide where the file is created!
 
 ::: tip
-  1. For the knex configuration we recommend having a [knexfile](http://knexjs.org/#knexfile), its cleaner and more elegant!
+  1. For the knex configuration we recommend having a [knexfile](http://knexjs.org/#knexfile), it's cleaner and more elegant!
   2. I usually have a db directory in the root, where all the database thingies are.
 :::
 
@@ -137,7 +137,7 @@ As you may notice this is a [singleton](https://www.dofactory.com/javascript/des
   The tableName must match with the table created in the migration!
 :::
 
-#### Where its created and why there?
+#### Where it's created and why there?
 
 By default the file will be created in a model directory in the root of the repository. This is customizable by adding a model configuration to the chainfile as follows: 
 
@@ -154,9 +154,9 @@ module.exports = {
 
 ### The Controller
 
-  The next file created is the controller. This will control both the API and the view routes. For the view routes its quite simple, it will fetch, through the model, the needed data and render the ejs file. Things get more interesting with the API routes. 
+  The next file created is the controller. This will control both the API and the view routes. For the view routes it's quite simple, it will fetch, through the model, the needed data and render the ejs file. Things get more interesting with the API routes. 
 
-  A good function to analyze how the Chinchay controller adds value is the find function, so lets look at it first:
+  A good function to analyze how the Chinchay controller adds value is the find function, so let's look at it first:
   ```javascript
     const find = (req, res) => {
       const options = Table.extractOptions(req.query);
@@ -179,7 +179,7 @@ module.exports = {
 
   #### Client Queries
 
-  So its starts by extracting the options, columns and query from the query, what is that? Chinchay offers a flexible API where the client can query and decide what it really wants. You can do stuff like this:
+  So it's starts by extracting the options, columns and query from the query, what is that? Chinchay offers a flexible API where the client can query and decide what it really wants. You can do stuff like this:
 
   * `localhost:3000/api/coffee?`  Will return all the coffees
   * `localhost:3000/api/coffee?price=100` Will return all the coffees where the price = 100
@@ -191,7 +191,7 @@ module.exports = {
   #### HATEOAS
 
 
-  Then the model goes and find all the data, filtering and sorting according to what was determined in the options, columns and query. If its successful we can see how HATEOAS is added to the property links of every element. If we look at the beginning of the API functions we will see that the a HateoasGenerator is initialed. Here all the links that the HATEOAS should have are added. It comes with some default values, if you need to add more, edit or delete just go ahead. The default configuration will add a link as follows:
+  Then the model goes and find all the data, filtering and sorting according to what was determined in the options, columns and query. If it's successful we can see how HATEOAS is added to the property links of every element. If we look at the beginning of the API functions we will see that the a HateoasGenerator is initialed. Here all the links that the HATEOAS should have are added. It comes with some default values, if you need to add more, edit or delete just go ahead. The default configuration will add a link as follows:
 
   ```javascript
   {
@@ -216,7 +216,7 @@ module.exports = {
   But what happens when the the model throws an error and goes to the catch block? For instance, maybe we are trying to filter by an unexisting column? Enters the [ErrorHandler](./errorhandler). For many years this troubled me greatly. Should I return a 500 error or a 400? what should be the message to show in the frontend? To tackle this, the ErrorHandlers maps backend errors to a human-readable message and a http code. The ErrorHandler comes with some translations predefined but you can override them, add more, etc. For more information, check the [ErrorHandler Documentation](./errorhandler).
 
 
-#### Where its created and why there?
+#### Where it's created and why there?
 
 By default the file will be created in a controller directory in the root of the repository. This is customizable by adding a controller configuration to the chainfile as follows: 
 
@@ -276,7 +276,7 @@ This can be either `ejs`, `angular` or `disable`. So if you ran:
 $ chinchay new coffee --frontend angular
 ```
 
-The views generated will correspond to angular components, services and routes for the Angular router. If its ran with `ejs` the equivalent files will be created but in ejs.
+The views generated will correspond to angular components, services and routes for the Angular router. If it's ran with `ejs` the equivalent files will be created but in ejs.
 
 If you are building an API with no frontend, you may disable it creating zero view files:
 
@@ -284,7 +284,7 @@ If you are building an API with no frontend, you may disable it creating zero vi
 $ chinchay new coffee --frontend disable
 ```
 
-By default its set to `ejs`.
+By default it's set to `ejs`.
 
 
 ### backend flag
@@ -297,7 +297,7 @@ $ chinchay new coffee --backend disable
 
 The model, controller and corresponding routes will be ommitted.
 
-By default its enabled.
+By default it's enabled.
 
 ### Adding it to the chainfile
 
@@ -326,7 +326,7 @@ If you are developing a top secret app, and you need to protect your routes so t
 $ chinchay new coffee --middleware api
 ```
 
-Users accessing the api routes will have to show a valid token to pass. Whereare the ejs files are publicly accessible. If the command is ran with `--middleware frontend` its the other way around. As I guess you already figure it out, if the flag is defined and disable, all routes are public (this is the default configuration) and if its enable all the routes are protected.  Check the [Middleware documentation](./middleware) to see how to work around with it.
+Users accessing the api routes will have to show a valid token to pass. Whereare the ejs files are publicly accessible. If the command is ran with `--middleware frontend` it's the other way around. As I guess you already figure it out, if the flag is defined and disable, all routes are public (this is the default configuration) and if it's enable all the routes are protected.  Check the [Middleware documentation](./middleware) to see how to work around with it.
 
 ::: danger
   VERY IMPORTANT: if you are protecting your routes you **must** provide a secret for the middleware by defining the JWT_SECRET environment variable.

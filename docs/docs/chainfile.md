@@ -74,7 +74,7 @@ If these configurations are not set, the model, controller and routes will be ge
 
 ## views
 
-For the views its _almost_ the same. If you desire to use the ejs templating language it would be exactly the same: 
+For the views it's _almost_ the same. If you desire to use the ejs templating language it would be exactly the same: 
 
 ```javascript
 const path = require('path');
