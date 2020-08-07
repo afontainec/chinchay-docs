@@ -8,7 +8,7 @@ module.exports = {
       { text: 'The Model', link: '/models/' },
       { text: 'Middleware', link: '/middleware/' },
       { text: 'Error Handler', link: '/errorhandler/'},
-      { text: 'Collaborate!', link: 'https://apanotupyme.cl/pages/terminos-y-condiciones3'}
+      { text: 'Collaborate!', link: '/collaborate/'}
     ],
     displayAllHeaders: true,
     sidebar: {
