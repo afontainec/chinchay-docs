@@ -6,9 +6,10 @@ When building a large application order is a key factor, very easily the reposit
 
 ### How does it do it?
 
-The most fascinating and value piece of Chinchay its the flexible TableGateway model. It handles all the interaction from and to a certain table in the database, without you knowing any sql! We just one command you will be able to create, read, update, delete, count, sum and many other operations in the database, its true just that simple. If by any chance you are a sql master and want to go beyond, Chinchay will allow you and help you to organize more your queries.
+The most fascinating and value piece of Chinchay its the flexible TableGateway model. It handles all the interaction from and to a certain table in the database. It allows you to create, read, update, delete, count, sum and many other operations, the best part: without even knowing any sql! However, if by any chance you are a sql master and want to go beyond, Chinchay will allow you to do so.
 
-But that is just the beginning.... Chinchays will help you a LOT more. In my early years programming I had this problems:
+
+But that is just the beginning.... Chinchays will help you a **LOT** more. In my early programming years I had these problems:
 
 
 *  Organizing the files
