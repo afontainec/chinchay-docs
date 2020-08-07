@@ -88,6 +88,28 @@ If you look into de `.gitignore`, you may notice the content of chinchapp is ign
 
 ### cliApp
 
+Next in line is the cliApp, here is all the code in charge of handeling the Command Line Interface (CLI). If we look at the package.json we will se the following:
+
+```javascript
+  ...
+  "bin": {
+    "chinchay": "./cliApp/lector.js"
+  },
+  ...
+```
+
+So when we are indicating that when someone rans `chinchay` in the terminal the file `cliApp/lector.js` will be invoked.
+
+The logic within this module is quite simple:
+
+1. `lector.js` recieves the command written by a user in the command line and invokes the corresponding fuction of the `interpreter.js`
+2. `interpreter.js` interprets the user input and decide what should be done.
+3. The rest of the files are the ones that actually **do the thing**. 
+
+If we would have to do a parallel to a web app, the `lector.js` would be the `router`, the `interpreter` the `controller` and the rest are the `models`.
+
+Full disclosure, this is not the tiddiest part of the package and if you are looking where you could help, this is a strong candidate!
+
 ### db
 
 ### docs
