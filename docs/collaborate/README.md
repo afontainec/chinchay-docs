@@ -165,4 +165,9 @@ If you need a running chinchay app, just build one in the chinchapp folder. Note
 
 ## Documentation
 
+The documentation lives in [this repo](https://github.com/afontainec/chinchay-docs). For every functionality you do develop the corresponding documentation must be added, otherwise the pull request will not be approved. Actually this same text is written in that repo! It is build with vuepress.
+
+
 ### Versioning
+
+It is important to note that since version 2.0.0 the version of chinchay and chinchay-docs is synchronized. Therefore version 2.0.0 of the chinchay-docs documents chinchay@2.0.0.
