@@ -149,7 +149,18 @@ For example, the function `isAdmin` of the file `models/access.js` is located at
 
 ## Running Locally and Debugging
 
-### Chinchapp
+For debugging and developing first of all you must have postresql running in your computer. Create a database called `chinchay_test`. Once the database is created, migrate it:
+
+```
+npm i knex -g # install knex globally
+knex migrate:latest --env test
+```
+By running the previous commands on the repo it should run all the migrations needed to run the tests. For more guidance see the [Getting Started Tutorial](../gettingstarted/ejs). 
+
+
+### Creating an App for Debugging
+
+If you need a running chinchay app, just build one in the chinchapp folder. Note that all its content is ignored in the gitignore file. I personally have a functional Angular app there working with Chinchay, however feel free to do the app that best fits your need! As it is in the gitignore only you will see it!
 
 
 ## Documentation
