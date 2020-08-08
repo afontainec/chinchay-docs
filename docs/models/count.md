@@ -1,19 +1,19 @@
 ## Overview
 
-Here we are going to talk about the `count` method. This is an asynchronous method that returns the amount of entries that matches with the given search. So lets dive into it!
+Here we are going to talk about the `count` method. This is an asynchronous method that returns the amount of entries that matches with the given search. So let's dive into it!
 
 
 ### Parameters
 
   * Search: Javascript object with the definition of what should be searched.
-  * Options: A javascript object for more configurations, such us sorting, grouping, etc.
+  * Options: A javascript object for more configurations, such as sorting, grouping, etc.
 
-  In this tutorial we are going to see several examples. However for a fully detailed of how to set both of this parameters check the [find documentation](./find).
+  In this tutorial we are going to see several examples. However for a fully detailed tutorial of these parameters check the [find documentation](./find).
 
 
 ### Return value
 
-An integer indicating the amount of entries wich meets with the requested:
+An integer indicating the amount of entries which meets with the requested:
 
   ```javascript
   2
@@ -21,7 +21,7 @@ An integer indicating the amount of entries wich meets with the requested:
 
 ## Count: Search Examples  
 
-Lets go for the fun part: 
+Let's go for the fun part: 
 
 
 ```javascript
@@ -65,23 +65,23 @@ This will count all the coffees where the price is distinct to 100 and the name 
   Coffee.count({ price: ['in', [100, 90]]});
 ```
 
- This is one of my favorites, in this case will count all the entries where the price is either 90 or 100. 
+ This is one of my favorites, in this case it will count all the entries where the price is either 90 or 100. 
 
 ## startDate and endDate
 
-Lets assume you what to count all the coffees that where created before 2020? We could do it as follows:
+Let's assume you want to count all the coffees that were created before 2020? We could do it as follows:
 
 ```javascript
   Coffee.count({ created_at: ['<', '2020-01-01 00:00:00.000']});
 ```
 
-And that totally fine, however this can also be achieved using the third parameter: `options`. The `startDate` and `endDate` can be define to count values created at a certain interval.
+And that's totally fine, however this can also be achieved using the third parameter: `options`. The `startDate` and `endDate` can be defined to count values created at a certain interval.
 
  ```javascript
    Coffee.count({}, { startDate:'2018-11-21T11:55:00.000Z' });
  ```
  
- In this case itwill count all the entries where the created_at is after the given startDate, in this case, after 2018-11-21T11:55:00.000Z.
+ In this case it will count all the entries where the created_at is after the given startDate, in this case, after 2018-11-21T11:55:00.000Z.
 
   ```javascript
    Coffee.count({}, { endDate:'2018-11-21T12:00:00.000Z' });
@@ -98,9 +98,9 @@ And that totally fine, however this can also be achieved using the third paramet
 
 ## rawWhere
 
-  Now this is getting advanced, this is intended for people who knows SQL. Sometimes we have craaazy ideas and we need even more sophisticated queries. In the options we can pass a `rawWhere` property. 
+  Now this is getting advanced, this is intended for people who know SQL. Sometimes we have crazy ideas and we need even more sophisticated queries. In the options we can pass a `rawWhere` property. 
 
-  RawWhere allows you to be even more specific on how you want to filter your results, sometime we just what wierd queries. It can be given as a string or an array for sql injection. Lets look at some examples:
+  RawWhere allows you to be even more specific on how you want to filter your results, sometimes we just do weird queries. It can be given as a string or an array for sql injection. Let's look at some examples:
 
    ```javascript
    Coffee.count({}, { rawWhere: "name = 'expensive' or price = 100 "});
@@ -114,12 +114,12 @@ And that totally fine, however this can also be achieved using the third paramet
   Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
   :::
 
-  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attacks a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
   ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 
 
-  To prevent sql injections you can defined the rawSelect as an array. An example: 
+  To prevent sql injections you can define the rawSelect as an array. An example: 
 
   ```javascript
    Coffee.count({}, { rawWhere: ["name = ? or price = ? ", ["expensive", 100]] });
@@ -128,7 +128,7 @@ And that totally fine, however this can also be achieved using the third paramet
   In this case `expensive` and `100` are indicated as `?` and passed in a second parameter.
 
   :::warning
-  If by any chance a user input will be used to create the `rawWhere`, the `rawWhere` **MUST** by in array form and the user input passed as the second value of that array.
+  If by any chance a user input will be used to create the `rawWhere`, the `rawWhere` **MUST** be in array form and the user input passed as the second value of that array.
   :::
 
 
@@ -136,7 +136,7 @@ And that totally fine, however this can also be achieved using the third paramet
 
 ## Group By
 
-For some use cases grouping your response can be very helpful. For instance let assume we want to count all the entries by price, in other words how many coffees cost 1, how many cost 2, and so on. This can be achieved by the group by:
+For some use cases grouping your response can be very helpful. For instance, let's assume we want to count all the entries by price, in other words how many coffees cost 1, how many cost 2, and so on. This can be achieved by the group by:
 
 ```javascript
   Coffee.count({}, {groupBy: 'price' });
@@ -152,7 +152,7 @@ So there is 1 coffee priced at 12, and 2 coffees priced at 100.
 
   ### rawSelect
 
-  So know we can pass a RawSelect option that can be very powerful. It can be given as a string or an array for sql injection. Fo instance:
+  So now we can pass a RawSelect option that can be very powerful. It can be given as a string or an array for sql injection. For instance:
 
   ```javascript
    Coffee.count({}, { rawSelect: 'EXTRACT(MONTH FROM created_at) as month', groupBy: 'month'});
@@ -166,12 +166,12 @@ So there is 1 coffee priced at 12, and 2 coffees priced at 100.
   Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
   :::
 
-  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attacks a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
   ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 
 
-  To prevent sql injections you can defined the rawSelect as an array. An example: 
+  To prevent sql injections you can define the rawSelect as an array. An example: 
 
   ```javascript
    Coffee.count({}, { groupBy: 'month', rawSelect: ['EXTRACT(MONTH FROM ??) as month', ['created_at']] });
@@ -180,12 +180,12 @@ So there is 1 coffee priced at 12, and 2 coffees priced at 100.
   In this case the `created_at` is indicated as `??` and passed in a second parameter.
 
   :::warning
-  If by any chance a user input will be used to create the `rawSelect`, the `rawSelect` **MUST** by in array form and the user input passed as the second value of that array.
+  If by any chance a user input will be used to create the `rawSelect`, the `rawSelect` **MUST** be in array form and the user input passed as the second value of that array.
   :::
 
 ## Return as Query
 
-Last but definetely not least: `returnAsQuery`. If this parameter is defined as `true`, it will return a knex query object. With it you can use all of knex options to build even more sophisticated queries. Lets look at an example:
+Last but definitely not least: `returnAsQuery`. If this parameter is defined as `true`, it will return a knex query object. With it you can use all of knex options to build even more sophisticated queries. Let's look at an example:
 
 ```javascript
   const query = Coffee.count({}, { returnAsQuery: true });
@@ -214,7 +214,7 @@ Is equivalent to:
   ```
 
   :::tip
-  In my opinion is "cleaner" to just use the count method.
+  In my opinion it is "cleaner" to just use the count method.
   :::
 
 ## countIn
@@ -233,7 +233,7 @@ Is equivalent to:
   ```
 
   :::tip
-  In my personal opinion is "cleaner" to just use the count method.
+  In my personal opinion it is "cleaner" to just use the count method.
   :::
 
 

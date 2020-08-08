@@ -2,7 +2,7 @@
 
 ### Overview
 
-  For this tutorial we will have to servers running at the same time. One with the backend and another running the Angular app. 
+  For this tutorial we will have two servers running at the same time. One with the backend and another running the Angular app. 
 
 ## Backend Server
 
@@ -14,7 +14,7 @@ $ chinchay new coffee --frontend disable
 
   This will not create the ejs files. We will not be needing them, we are going to do the frontend with Angular.
 
-  The only new difference, its we need to configure so we do not get blocked by CORS. If you do not know what this is you can read [this blog](https://www.codecademy.com/articles/what-is-cors), but in short, by default the server will block any request that coming from another app. Therefore, it will block the requests of the frontend. On the backend, we add the following to our app.js. Its important that this should be defined *BEFORE* we indicate the app to use the coffeeAPI routes.
+  For this tutorial we will need to add one more thing, we need to configure the backend so that it will not block the frontend due to CORS. If you do not know what this is you can read [this blog](https://www.codecademy.com/articles/what-is-cors), but in short, by default the server will block any request that comes from another app. Therefore, it will block the requests of the frontend. On the backend, we add the following to our app.js. It's important that this should be defined *BEFORE* we indicate the app to use the coffeeAPI routes.
 
   ```javascript
     app.use((req, res, next) => {
@@ -24,7 +24,7 @@ $ chinchay new coffee --frontend disable
   });
   ``` 
 
-  Lets go and run the backend, run the following command on the backend directory:
+  Let's go and run the backend, run the following command on the backend directory:
 
 ```
 $ npm start
@@ -49,9 +49,9 @@ $ ng new testChinchayAngular && cd testChinchayAngular
 ```
 
 
-A prompt asking if you like to add the angular routing will show, press y to confirm we will like to add it and then select the stylesheet format of your preference. We will use CSS.
+A prompt asking if you like to add the angular routing will show, press `y` to confirm. Then select the stylesheet format of your preference. We will use CSS.
 
-Next, we will add couple of modules. In the app.module.ts file, found within the src/app directory we will add the `FormsModule` and the `HttpClientModule` to the imports:
+Next, we will add a couple of modules. In the app.module.ts file, found within the src/app directory we will add the `FormsModule` and the `HttpClientModule` to the imports:
 
 ```javascript
 import { BrowserModule } from '@angular/platform-browser';
@@ -103,7 +103,7 @@ This will create a coffee directory within src/app. This will include:
 * Index component: Where a list of all the coffees will display.
 * New component: To create a new coffee.
 * Edit component: To edit an existing coffee.
-* Show component: To view a coffee and its properties.
+* Show component: To view a coffee and it's properties.
 * Service: For connecting with the backend, to create, edit or retrieve data.
 * Router: Configuration for the routes.
 
@@ -152,13 +152,13 @@ $ ng serve
 
 This will make our app run on [localhost:4200](localhost:4200).
 
-Well, when you visit your app you get a Angular default webpage... To remove it, we go to `src/app/app.component.html` and leave only the router-outlet.
+Well, when you visit your app you get an Angular default webpage... To remove it, we go to `src/app/app.component.html` and leave only the router-outlet.
 
 ```html
 <router-outlet></router-outlet>
 ```
 
-Now we reload, and get an empty page. But lets navigate to [localhost:4200/coffee](localhost:4200) and we will see all our coffees! Go ahead and create more coffees!
+Now we reload, and get an empty page. But let's navigate to [localhost:4200/coffee](localhost:4200) and we will see all our coffees! Go ahead and create more coffees!
 
 Important: remember that the backend must be running!
 

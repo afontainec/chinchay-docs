@@ -1,18 +1,18 @@
 ## Overview
 
- The `delete` method. This is an asynchronous method that will delete entries of the database. It will return an array of javascript object, where each javascript object represent an entry of the database that was removed. 
+ The `delete` method. This is an asynchronous method that will delete entries of the database. It will return an array of javascript objects, where each javascript object represents an entry of the database that was removed. 
  
 
  ### Parameters
 
   * Search: Javascript object with the criteria to define what should be deleted.
-  * Options: A javascript object for more configurations, such us sorting, grouping, etc.
+  * Options: A javascript object for more configurations, such as sorting, grouping, etc.
 
-  In this tutorial we are going to see several examples. However for a fully detailed of how the search and option parameters work, check the [find documentation](./find).
+  In this tutorial we are going to see several examples. However for a fully detailed description of how the search and option parameters work, check the [find documentation](./find).
 
 ### Return value
 
-An array of javascript object, where each javascript object represent an entry of the database that has been removed. An example could be:
+An array of javascript objects, where each javascript object represents an entry of the database that has been removed. An example could be:
 
   ```javascript
    [{
@@ -61,7 +61,7 @@ An array of javascript object, where each javascript object represent an entry o
 
 ## delete
 
-So lets get into it, here are some examples on how to define what should be deleted:
+So let's get into it, here are some examples on how to define what should be deleted:
 
 :::warning
   This is an irreversible action. Once deleted it can not be undone.
@@ -115,7 +115,7 @@ This will delete all the entries where the name is 'latte' and it was created af
 
 ## deleteById
 
-What if we want to remove just one entry? the method `deleteById` will only delete the entry for the given id. Lets look at an example: 
+What if we want to remove just one entry? the method `deleteById` will only delete the entry for the given id. Let's look at an example: 
 
 
 ```javascript

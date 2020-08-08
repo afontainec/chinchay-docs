@@ -1,6 +1,6 @@
 ## Getting Started with Chinchay + ejs
 
-This tutorial will walk you through building your fist app with Chinchay! We will use [ejs](https://ejs.co/) as our templating language to you generate HTML files with plain JavaScript. 
+This tutorial will walk you through building your first app with Chinchay! We will use [ejs](https://ejs.co/) as our templating language to generate HTML files with plain JavaScript. 
 
 ### Requirements
   * [npm](https://www.npmjs.com/get-npm)
@@ -19,20 +19,20 @@ Create a nodejs app called: test_chinchay
 $ express test_chinchay && cd test_chinchay
 ```
 <br/>
-We will install drivers to use PostgresSQL database. we will use knexjs and pg
+We will install drivers to use PostgresSQL database. we will use knex.js and pg
 
 ```
 $ npm install pg -s
 $ npm install knex -s
 ```
 <br/>
-Also we will use ejs instead of jade. So we need to run
+Also we will use ejs instead of jade. So we need to run:
 
 ```
 $ npm install ejs -s
 ```
 <br/>
-Lets run the app to see what we have so far!
+let's run the app to see what we have so far!
 
 ```
 $ npm install
@@ -40,25 +40,25 @@ $ npm start
 ```
 <br/>
 
-Visit [http://localhost:3000](http://localhost:3000) to see the defaut express web app
+Visit [http://localhost:3000](http://localhost:3000) to see the default express web app.
 
 ## Create Postgresql Database
 
 In this tutorial we will not dig in how Postgres fully work. For more information on how to work around Postgres visit [https://www.postgresql.org/](https://www.postgresql.org/).
 
-In order to connect to Postgres, we need to create a database. If you have postgresql installed you can run
+In order to connect to Postgres, we need to create a database. If you have postgresql installed you can run:
 ```
 $ psql
 ```
 <br/>
-This should open up postgresql console. Run the following command:
+This should open up the postgresql console. Run the following command:
 
 ```
 postgres=# CREATE DATABASE test_chinchay;
 ```
 *NOTE:* Depending on your default user and psql version the syntax of the previous line may vary.
 
-if its successful close psql, run:
+if it's successful close psql, run:
 ```
 postgres=# \q
 ```
@@ -66,7 +66,7 @@ postgres=# \q
 
 ## Connecting to the Database
 
-In this tutorial we will not dig in how knex fully work. For more information on how to work around knex [click here](https://knex.org/).
+In this tutorial we will not dig in how knex fully works. For more information on how to work around knex [click here](https://knex.org/).
 
 First of all, we highly recommend to install knex globally:
 
@@ -174,7 +174,7 @@ module.exports = {
 ```
 _NOTE:_ If your Postgres user it is not postgres change it accordingly in the connection URL.
 
-We will not get in details of how this file works, but basically we are telling knex wjere we want to save the migrations, the seeds and what is the url to connect to the database. Note that the knexfile defines this variables for every environment by separate.
+We will not get in details of how this file works, but basically we are telling knex where we want to save the migrations, the seeds and what is the url to connect to the database. Note that the knexfile defines these variables for every environment by separate.
 
 
 Now we need to add the following code to the knex.js file:
@@ -190,7 +190,7 @@ Now knex is configured to connect to the database.
 
 ## Using Chinchay
 
-Now its the simple part. But before we need to create one last file:
+Now it's the simple part. But before we need to create one last file:
 * .chainfile.js: This file holds all of the configurations for chinchay.
 <br/>
 Go ahead and create this file.
@@ -229,13 +229,13 @@ $ npm install chinchay -g
 <br/>
 Installing chinchay globally will allow you to run chinchay CLI.
 
-Lets build a new relation called coffee and the files to create, view, update and delete entries to it:
+let's build a new relation called coffee and the files to create, view, update and delete entries to it:
 
 ```
 $ chinchay new coffee
 ```
 <br/>
-This will create a model, a controllers, views, routes and a knex migration in the directories defined in .chainfile.js.
+This will create a model, a controller, views, routes and a knex migration in the directories defined in .chainfile.js.
 
 
 The migrations will be saved in the directory database/migrations/. The name will vary, as it takes the current date and time to make the file, but it will be appended by an coffee.js
@@ -258,7 +258,7 @@ exports.down = function (knex) {
 };
 ```
 <br/>
-This piece of code will create a relation called coffee within our database with the variables name and price. Also will generate a id and a created_at and updated_at timestamps for every entry. To run this migration:
+This piece of code will create a relation called coffee within our database with the variables name and price. Also will generate an id and a created_at and updated_at timestamps for every entry. To run this migration:
 
 ```
 $ knex migrate:latest
@@ -281,7 +281,7 @@ app.use('/', coffee);
 app.use('/', coffeeAPI);
 ```
 <br/>
-This lines makes the app use the routes for the CRUD operations to the coffee relation.
+These lines make the app use the routes for the CRUD operations to the coffee relation.
 <br/>
 Now run the app:
 ```
