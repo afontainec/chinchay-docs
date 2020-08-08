@@ -386,7 +386,7 @@ Now create a `thewall` instance:
 
   ### Return value
 
-  * accesses: Array of javascript object. Where each javascript object represent a role. 
+  * accesses: Array of javascript object. Where each javascript object represents a role. 
 
   ### Examples
 

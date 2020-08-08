@@ -56,7 +56,7 @@
 
 ## errorTranslate
 
-  Lets dig a bit deeper in the `errorTranslate` parameter. It is a javascript object, that indicates the message and code that should be returned for each chinchayError code. If there is no message nor code indicated it will assume it is a 500 error.
+  Let's dig a bit deeper in the `errorTranslate` parameter. It is a javascript object, that indicates the message and code that should be returned for each chinchayError code. If there is no message nor code indicated it will assume it is a 500 error.
 
    
 ### default Error Translate and Replace

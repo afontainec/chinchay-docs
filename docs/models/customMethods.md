@@ -1,6 +1,6 @@
 ## Overview
 
-If you want to extend the class and add your own methods it is very easy! Here we are going to talk of how to add methods to your models that fits with your special needs!
+If you want to extend the class and add your own methods it is very easy! Here we are going to talk of how to add methods to your models that fit with your special needs!
 
 ## Creating custom methods
 
@@ -25,7 +25,7 @@ module.exports = instance;
 
 ```
 
-Lets assume we what to add a method called `findByName`, where it will return all the entries where the name matches the given input. We can easily add it at such: 
+Let's assume we want to add a method called `findByName`, where it will return all the entries where the name matches the given input. We can easily add it at such: 
 
 
 ```javascript
@@ -51,7 +51,7 @@ const instance = new Coffee();
 module.exports = instance;
 ```
 
-We have added a `findByName` method that parse the input to the search paremeter and call the find function.
+We have added a `findByName` method that parses the input to the search parameter and calls the find function.
 
 Here another example:
 
@@ -83,7 +83,7 @@ We have added an `expensive` method that will return all the coffee of a price h
 
 ## Overwriting existing methods
 
-You may want to overwrite existing methods to change same aspect. For instance, let assume you have a users relation in the database. Were each user has a username and a password. When you `findById` you do not want to return the password property. Let's look at the example: 
+You may want to overwrite existing methods to change some aspects. For instance, let's assume you have a users relation in the database. Where each user has a username and a password. When you `findById` you do not want to return the password property. Let's look at the example: 
 
 ```javascript
 const { Table } = require('chinchay');

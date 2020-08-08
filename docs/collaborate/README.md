@@ -78,7 +78,7 @@ To get you started the file structure is as follows:
   └── test
 ```
 
-There are more files and directories but this is the "main skeleton". Lets dig into each directory:
+There are more files and directories but this is the "main skeleton". Let's dig into each directory:
 
 ### chinchapp
 

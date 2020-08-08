@@ -1,6 +1,6 @@
 ## Defining Chinchay Codes
 
-One big question is how to build Chinchay Codes? Lets keep in mind that the `chinchayCode` is intended to be machine-readable, therefore it is not necessary for it to be self explanatory, so keep it short. One tempting option is to number them, error 1, error 2, and so forth. However I would advice against that option, eventhough it is not intended for it to be easily understood by humans, it does not mean it has to be crazy difficult. I would suggest something that would give a hint of what happen. Some examples:
+One big question is how to build Chinchay Codes? Let's keep in mind that the `chinchayCode` is intended to be machine-readable, therefore it is not necessary for it to be self explanatory, so keep it short. One tempting option is to number them, error 1, error 2, and so forth. However I would advice against that option, eventhough it is not intended for it to be easily understood by humans, it does not mean it has to be crazy difficult. I would suggest something that would give a hint of what happen. Some examples:
 
 #### don'ts
 
@@ -117,5 +117,5 @@ There are plenty of more errors, here is a [complete list](https://www.restapitu
 
 If you are deploying to production it's a must to monitor the health of your server. This will let you know when something unexpected happen and act accordingly. There are plenty of tools to monitor the health of your code and let you know whenever a code 4XX or 5XX occurs, amount of requests, , CPU usage, logs analyzers and much more.
 
-In my experience, I usually do not do much of error handling at the beggining, just the basic and obvious errors. All the rest I just return 500 and place an alert that would notify me everytime an error 500 occurs. When this alert triggers, I then analyze the request, see what happened and what would be the correct code and message, add it to the errorHandler and move on. This allows me to only populate the errorHandler with real cases, rather than overthinking everything that can go wrong.
+In my experience, I usually do not do much of error handling at the beginning, just the basic and obvious errors. All the rest I just return 500 and place an alert that would notify me everytime an error 500 occurs. When this alert triggers, I then analyze the request, see what happened and what would be the correct code and message, add it to the errorHandler and move on. This allows me to only populate the errorHandler with real cases, rather than overthinking everything that can go wrong.
 

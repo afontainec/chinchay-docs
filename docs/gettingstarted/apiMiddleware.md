@@ -49,7 +49,7 @@ $ npm install knex -s
 Also we will use ejs instead of jade. So we need to run
 
 
-Lets run the app to see what we have so far!
+Let's run the app to see what we have so far!
 
 ```
 $ npm install
@@ -378,7 +378,7 @@ We need to add TheWall to the project:
 $ npm i thewall -s
 ```
 
-Lets create a thewallfile that will hold all the configurations:
+Let's create a thewallfile that will hold all the configurations:
 
 ```
 $ touch thewallfile.js
@@ -431,12 +431,12 @@ $ npm start
 
 Visit an API endpoint, for instance: [localhost:3000/api/coffee/find](http://localhost:3000/api/coffee/find)
 
-We will receive a 403 Forbidden error. This is because we added the `--middleware` flag and did not provide a valid authentication. Lets create users and start requesting with a valid authentication!
+We will receive a 403 Forbidden error. This is because we added the `--middleware` flag and did not provide a valid authentication. Let's create users and start requesting with a valid authentication!
 
 
 ## Creating the users
 
-Lets create our users:
+Let's create our users:
 
 ```
 $ chinchay new users --middleware api --frontend disable
@@ -525,7 +525,7 @@ const usersAPI = require('./routes/usersAPI');
 app.use('/', usersAPI);
 ```
 
-Lets populate our database with a user:
+Let's populate our database with a user:
 
 ```
 curl --header "Content-Type: application/json" \
@@ -816,7 +816,7 @@ router.post('/api/users/:id/add/access', Middleware.hasAccess, (req, res, next) 
 });
 ```
 
-ITS TIME! Lets test our API(and not get a forbidden error)!
+ITS TIME! Let's test our API(and not get a forbidden error)!
 
 ```
 curl --header "Content-Type: application/json" \

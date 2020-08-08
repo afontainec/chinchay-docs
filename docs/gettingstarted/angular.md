@@ -24,7 +24,7 @@ $ chinchay new coffee --frontend disable
   });
   ``` 
 
-  Lets go and run the backend, run the following command on the backend directory:
+  Let's go and run the backend, run the following command on the backend directory:
 
 ```
 $ npm start

@@ -1,17 +1,17 @@
 ## Overview
 
-Next in line, we will see about the `find` method. This is an asynchronous method that returns an array of javascript object, where each javascript object represent an entry of the database that meets with the parameters requested. This is one of the most flexible and powerful tool. With no more overdues, let's get to it.
+Next in line, we will see about the `find` method. This is an asynchronous method that returns an array of javascript objects, where each javascript object represents an entry of the database that meets with the parameters requested. This is one of the most flexible and powerful tool. With no more overdues, let's get to it.
 
 
 ### Parameters
 
   * Search: Javascript object with the definition of what should be searched.
   * Columns: An array with the columns that should be return. If it's null or 'all' will return all the columns.
-  * Options: A javascript object for more configurations, such us sorting, grouping, etc.
+  * Options: A javascript object for more configurations, such as sorting, grouping, etc.
 
 ### Return value
 
-An array of javascript object, where each javascript object represent an entry of the database that meets with the parameters requested. An example could be:
+An array of javascript objects, where each javascript object represents an entry of the database that meets with the parameters requested. An example could be:
 
   ```javascript
    [{
@@ -44,7 +44,7 @@ An array of javascript object, where each javascript object represent an entry o
 
 ## Simple Queries
 
-The first parameter of the `find` method is the `search`: a javascript object where you define what you want to search for. Lets see some examples:
+The first parameter of the `find` method is the `search`: a javascript object where you define what you want to search for. Let's see some examples:
 
 ```javascript
   Coffee.find({ price: 100 });
@@ -89,7 +89,7 @@ This will return all the coffees where the price is distinct to 100 and the name
   Coffee.find({ price: ['in', [100, 90]]});
 ```
 
- This is one of my favorites, in this case will return all the entries where the price is either 90 or 100. 
+ This is one of my favorites, in this case it will return all the entries where the price is either 90 or 100. 
 
 ### General Rule
 
@@ -98,20 +98,20 @@ This will return all the coffees where the price is distinct to 100 and the name
 
 ## columns
 
-Sometimes the entries have way to many information and you only desire to access some few attributes of each entry, or there are sensible information you do not want to expose. In this cases the second parameter can be used: the `columns`. Let's look at some examples:
+Sometimes the entries have way too much information and you only desire to access some few attributes of each entry, or there is sensible information you do not want to expose. In this case the second parameter can be used: the `columns`. Let's look at some examples:
 
 ```javascript
   Coffee.find({ price: 100 });
 ```
 
-By default it will return the complete object will all the columns.
+By default it will return the complete object with all the columns.
 
 
 ```javascript
   Coffee.find({ price: 100 }, 'all');
 ```
 
-It will return the complete object will all the columns, this is the default configuration.
+It will return the complete object with all the columns, this is the default configuration.
 
 ```javascript
   Coffee.find({ price: 100 }, ['id', 'name']);
@@ -123,37 +123,37 @@ If it is defined as an array, will return only the columns defined in the array.
   Coffee.find({ price: 100 }, ['id as identifier']);
 ```
 
-In this case it will the id of return all the entries where the price is 100. However, instead of calling it id it will call it `identifier`.
+In this case it will return the ids of all the entries where the price is 100. However, instead of calling it id it will call it `identifier`.
 
 
 
 ## startDate and endDate
 
-Lets assume you what to access all the coffees that where created before 2020? We could do it as follows:
+Let's assume you want to access all the coffees that were created before 2020? We could do it as follows:
 
 ```javascript
   Coffee.find({ created_at: ['<', '2020-01-01 00:00:00.000']);
 ```
 
-And that totally fine, however this can also be achieved using the third parameter: `options`. The `startDate` and `endDate` can be define to return values created at a certain interval.
+And that's totally fine, however this can also be achieved using the third parameter: `options`. The `startDate` and `endDate` can be defined to return values created at a certain interval.
 
  ```javascript
    Coffee.find({}, 'all', { startDate:'2018-11-21T11:55:00.000Z' });
  ```
  
- In this case will return all the entries where the created_at is after the given startDate, in this case, after 2018-11-21T11:55:00.000Z.
+ In this case it will return all the entries where the created_at is after the given startDate, in this case, after 2018-11-21T11:55:00.000Z.
 
   ```javascript
    Coffee.find({}, 'all', { endDate:'2018-11-21T12:00:00.000Z' });
  ```
  
- In this case will return all the entries where the created_at is after the given startDate, in this case, before 2018-11-21T12:00:00.000Z..
+ In this case it will return all the entries where the created_at is after the given startDate, in this case, before 2018-11-21T12:00:00.000Z..
 
   ```javascript
    Coffee.find({}, 'all', { endDate:'2018-11-21T12:00:00.000Z', startDate: '2018-11-21T11:55:00.000Z&' });
  ```
  
- In this case will return all the entries where the created_at is in between the given startDate and endDate, in this case, between 2018-11-21T11:55:00.000Z and 2018-11-21T12:00:00.000Z.
+ In this case it will return all the entries where the created_at is in between the given startDate and endDate, in this case, between 2018-11-21T11:55:00.000Z and 2018-11-21T12:00:00.000Z.
  
 
 
@@ -165,34 +165,34 @@ With the options, you can sort and limit your responses. Let see some examples:
    Coffee.find({}, 'all', { orderBy:'id', limit: '2' });
 ```
  
-In this case will return the first two entries ordered by id in ascending order.
+In this case it will return the first two entries ordered by id in ascending order.
 
 ```javascript
    Coffee.find({}, 'all', { orderBy:['id', 'desc'], limit: '2' });
 ```
  
- In this case will return the first two entries ordered by id in descending order. 
+ In this case it will return the first two entries ordered by id in descending order. 
 
 ```javascript
    Coffee.find({}, 'all', { orderBy:['id', 'asc'], limit: '2', offset: 1 });
 ```
 
- In this case will return the second and third entries ordered by id in ascending order. It skips the first one because of the offset given. 
+ In this case it will return the second and third entries ordered by id in ascending order. It skips the first one because of the offset given. 
 
 
  ```javascript
    Coffee.find({}, 'all', { orderBy: [["price","desc"],["id", "asc"]] });
 ```
  
- In this case will return the entries ordered by price in a descending order. In case that some entries have the same price, then they will be ordered by id in ascending order.
+ In this case it will return the entries ordered by price in a descending order. In case that some entries have the same price, then they will be ordered by id in ascending order.
 
 ## rawSelect and RawWhere
 
-  Now this is getting advanced, this is intended for people who knows SQL. Sometimes we have craaazy ideas and we need even more sophisticated queries. In the options we can pass a `rawSelect` and a `rawWhere` property. 
+  Now this is getting advanced, this is intended for people who know SQL. Sometimes we have craaazy ideas and we need even more sophisticated queries. In the options we can pass a `rawSelect` and a `rawWhere` property. 
 
   ### rawSelect
 
-  RawSelect allows you to be even more specific on what you want to ask for. It can be given as a string or an array for sql injection. Fo instance:
+  RawSelect allows you to be even more specific on what you want to ask for. It can be given as a string or an array for sql injection. For instance:
 
   ```javascript
    Coffee.find({}, 'all', { rawSelect: 'EXTRACT(MONTH FROM created_at) as month'});
@@ -215,12 +215,12 @@ In this case will return the first two entries ordered by id in ascending order.
   Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
   :::
 
-  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attacks a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
   ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 
 
-  To prevent sql injections you can defined the rawSelect as an array. An example: 
+  To prevent sql injections you can define the rawSelect as an array. An example: 
 
   ```javascript
    Coffee.find({}, 'all', { clearSelect: true, rawSelect: ['EXTRACT(MONTH FROM ??) as month', ['created_at']] });
@@ -229,12 +229,12 @@ In this case will return the first two entries ordered by id in ascending order.
   In this case the `created_at` is indicated as `??` and passed in a second parameter.
 
   :::warning
-  If by any chance a user input will be used to create the `rawSelect`, the `rawSelect` **MUST** by in array form and the user input passed as the second value of that array.
+  If by any chance a user input will be used to create the `rawSelect`, the `rawSelect` **MUST** be in array form and the user input passed as the second value of that array.
   :::
 
   ### rawWhere
 
-  RawWhere allows you to be even more specific on how you want to filter your results, sometime we just what weird queries. It can be given as a string or an array for sql injection. Let's look at some examples:
+  RawWhere allows you to be even more specific on how you want to filter your results, sometimes we just do weird queries. It can be given as a string or an array for sql injection. Let's look at some examples:
 
    ```javascript
    Coffee.find({}, 'all', { rawWhere: "name = 'expensive' or price = 100 "});
@@ -250,12 +250,12 @@ In this case will return the first two entries ordered by id in ascending order.
   Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
   :::
 
-  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attacks a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
   ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 
 
-  To prevent sql injections you can defined the rawSelect as an array. An example: 
+  To prevent sql injections you can define the rawSelect as an array. An example: 
 
   ```javascript
    Coffee.find({}, 'all', { rawWhere: ["name = ? or price = ? ", ["expensive", 100]] });
@@ -264,7 +264,7 @@ In this case will return the first two entries ordered by id in ascending order.
   In this case `expensive` and `100` are indicated as `?` and passed in a second parameter.
 
   :::warning
-  If by any chance a user input will be used to create the `rawWhere`, the `rawWhere` **MUST** by in array form and the user input passed as the second value of that array.
+  If by any chance a user input will be used to create the `rawWhere`, the `rawWhere` **MUST** be in array form and the user input passed as the second value of that array.
   :::
 
 
@@ -278,7 +278,7 @@ So with the `rawSelect` a whole world opens. Let assume we want to count how man
   Coffee.find({}, [], {groupBy: 'price', rawSelect: 'count(*) as amount' });
 ```
 
-That query will return the amount of coffees at each price. For this previous example it might be easier to go with the [count method](./count), however it a good example to show how powerful this can be.
+That query will return the amount of coffees at each price. For this previous example it might be easier to go with the [count method](./count), however it is a good example to show how powerful this can be.
 
 ## Return as Query
 
@@ -338,11 +338,11 @@ const result = await Coffee.findIdIn([1,2,3]);
 const  result = await Coffee.find({id: ['in', [1,2,3]]});
 ```
 
-After the array, it can receive a column, search and options paramenters. (in that order!). all that applied for the `find` method also can be used in the `findIdIn` method. 
+After the array, it can receive a column, search and options parameters. (in that order!). all that applied for the `find` method also can be used in the `findIdIn` method. 
 
 ## findIn
 
-The previous, can be extrapolated to not only id. Lets assume we want to find all that entries where the price is either 12 y 13.
+The previous, can be extrapolated to not only id. Let's assume we want to find all those entries where the price is either 12 y 13.
 
 ```javascript
 const result = await Coffee.findIn('price', [12, 13]);
@@ -354,11 +354,11 @@ const result = await Coffee.findIn('price', [12, 13]);
 const  result = await Coffee.find({price: ['in', [12, 13]]});
 ```
 
-After the array, it can receive a search, columns and options paramenters. (in that order!). All that applied for the `find` method also can be used in the `findIn` method. 
+After the array, it can receive a search, columns and options parameters. (in that order!). All that applied for the `find` method also can be used in the `findIn` method. 
 
 ## arrayOfIds
 
-If you want to get all of the ids of the entries that matches a particular search, the arrayOfIds method can be very handy. The following are equivalent:
+If you want to get all of the ids of the entries that match a particular search, the arrayOfIds method can be very handy. The following are equivalent:
 
 ```javascript
 const result = await Coffee.arrayOfIds({'price': 12});
@@ -370,7 +370,7 @@ const temp = await Coffee.find({'price': 12});
 const result = Object.values(temp);
 ```
 
-After the array, it can receive a search and options paramenters. All that applied for the `find` method also can be used in the `findIn` method. 
+After the array, it can receive a search and options parameters. All that applied for the `find` method also can be used in the `findIn` method. 
 
 
 

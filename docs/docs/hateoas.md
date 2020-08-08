@@ -60,7 +60,7 @@ So, 6 links are added. This generate a HATEOAS as such:
 ```
 
 
- Lets explain a bit the method `addLink(name, url, type)`
+ Let's explain a bit the method `addLink(name, url, type)`
 
 * **name**: the name defines a human-readable name for that link. It will be assigned to property `rel`.
 * **url**: Is the url of the given link. It is assigned to the property `href`. Note that variables can be passed for the url. For instance the self url is given an `:id` which is then replaced by the corresponding id.

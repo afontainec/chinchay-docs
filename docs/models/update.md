@@ -1,19 +1,19 @@
 ## Overview
 
- The `update` method. This is an asynchronous method that will update/edit entries of the database. It will return an array of javascript object, where each javascript object represent an entry of the database that was edited. 
+ The `update` method. This is an asynchronous method that will update/edit entries of the database. It will return an array of javascript objects, where each javascript object represents an entry of the database that was edited. 
  
 
  ### Parameters
 
   * Search: Javascript object with the criteria to define what should be updated.
   * newValues: Javascript object indicating which columns must be updated.
-  * Options: A javascript object for more configurations, such us sorting, grouping, etc.
+  * Options: A javascript object for more configurations, such as sorting, grouping, etc.
 
-  In this tutorial we are going to see several examples. However for a fully detailed of how the search and option parameters work, check the [find documentation](./find).
+  In this tutorial we are going to see several examples. However for a fully detailed description of how the search and option parameters work, check the [find documentation](./find).
 
 ### Return value
 
-An array of javascript object, where each javascript object represent an entry of the database that has been edited. An example could be:
+An array of javascript objects, where each javascript object represents an entry of the database that has been edited. An example could be:
 
   ```javascript
    [{
