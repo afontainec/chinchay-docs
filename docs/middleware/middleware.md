@@ -6,7 +6,7 @@ So how do we set it up?
 
 ## hasAccess
 
-Lets look to the API route created with the `chinchay new` command:
+Let's look to the API route created with the `chinchay new` command:
 
 ```javascript
   router.get('/api/coffee/find', (req, res, next) => {

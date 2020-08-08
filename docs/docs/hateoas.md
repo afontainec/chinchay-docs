@@ -1,6 +1,6 @@
 ## Overview
 
-HATEOAS is one of the most distintive features of a REST API and is hardly ever present. HATEOAS tries to mimic our real-life browsing, when we visit a page all the posible links are presented (as buttons, images, etc). HATEOAS aims to do the same, which every API request a list of followup links are given. However, doing so it's a pain in the *** for the developer, he is responsible to, for every API request, return all the followup link. So guess what does chinchay do? Yes it will make it veeery easy to do so with it's HATEOAS generator.
+HATEOAS is one of the most distinctive features of a REST API and is hardly ever present. HATEOAS tries to mimic our real-life browsing, when we visit a page all the possible links are presented (as buttons, images, etc). HATEOAS aims to do the same, in which every API request a list of followup links are given. However, doing so it's a pain in the *** for the developer, he is responsible to, for every API request, return all the followup links. So guess what does chinchay do? Yes it will make it veeery easy to do so with it's HATEOAS generator.
 
 You can read more about [HATEOAS here](https://restfulapi.net/hateoas/).
 
@@ -21,9 +21,6 @@ const HATEOAS = new HateoasGenerator();
 
 So here we are creating one instance of the HATEOAS generator for this specific controller.
 
-:::tip
-It is recommended to have 1 hateoas instance per controller. You may have 1 hateoas instance (created in a separated file) for many controller but hardly ever that is recommended. You may also have more several instances in one controller, however usally that is a sign that the controller needs some refactoring and to be splitted in several controller.
-:::
 
 ## addLink
 
@@ -65,13 +62,13 @@ So, 6 links are added. This generate a HATEOAS as such:
 
  Lets explain a bit the method `addLink(name, url, type)`
 
-* **name**: the name defines a human-readable name for that link. It will be assign to property `rel`.
-* **url**: Is the url of the given link. It is assign to the property `href`. Note that variables can be passed for the url. For instanse the self url is given an `:id` which is then replaced by the corresponding id.
-* **type**: The http verb. It will be assing to the property `type`.
+* **name**: the name defines a human-readable name for that link. It will be assigned to property `rel`.
+* **url**: Is the url of the given link. It is assigned to the property `href`. Note that variables can be passed for the url. For instance the self url is given an `:id` which is then replaced by the corresponding id.
+* **type**: The http verb. It will be assigned to the property `type`.
 
 ## get
 
-Lets look now when and how are this links added to each response. If we look the create function we see the the `links` property is added to the `json.data` which is the send as the response:
+Let's look now when and how are these links added to each response. If we look the create function we see the the `links` property is added to the `json.data` which is the send as the response:
 
 ```javascript
 const create = (req, res) => {
@@ -88,10 +85,10 @@ const create = (req, res) => {
 };
 ```
 
-Lets look to the `get(values)` method. This method receives some _values_, in the previous example the `results`. For this it will create an array of all the defined links. if any links need to be compiled it will compiled and will use the values property to replace it. 
+Let's look at the `get(values)` method. This method receives some _values_, in the previous example the `results`. It will create an array of all the defined links. It will use the _values_ property to compile each link. 
 
-  * values: A javascript object. The keys/properties it have will be used to compile every uri. For instance, if the uri is `'/api/coffee/:id'` and the values is `{id: 1}`, the compiled uri will be `'api/coffee/1'`.
-  * return: The returned is an Array of javascript object. Each object have a `rel`, `href` and `type` property. The rel provides a human-readable value for undestanding what is, `href` the link to the resource and the `type` is the http verb for the link.
+  * values: A javascript object. The keys/properties it will use to compile every uri. For instance, if the uri is `'/api/coffee/:id'` and the _values_ is `{id: 1}`, the compiled uri will be `'api/coffee/1'`.
+  * return: An array of javascript objects, where each object has a `rel`, `href` and `type` property. The rel provides a human-readable value for understanding what is, `href` the link to the resource and the `type` is the http verb for the link.
 
 Take a look at the find function to check out how the HATEOAS is added when the results is an array:
 
@@ -118,5 +115,5 @@ const find = (req, res) => {
 
 ## removeLink
 
-This method is not used in the controller but is quite self explatory. If at any time you desire the dynamically delete links you can call `removeLink(name)` and the link with the given name will no longer be added when the `get` method is called.
+This method is not used in the controller but is quite self explanatory. If at any time you desire to dynamically delete links you can call `removeLink(name)` and the link with the given name will no longer be added when the `get` method is called.
 

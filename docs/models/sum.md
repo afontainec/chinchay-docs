@@ -94,7 +94,7 @@ And that totally fine, however this can also be achieved using the third paramet
 
   Now this is getting advanced, this is intended for people who knows SQL. Sometimes we have craaazy ideas and we need even more sophisticated queries. In the options we can pass a `rawWhere` property. 
 
-  RawWhere allows you to be even more specific on how you want to filter your results, sometime we just what wierd queries. It can be given as a string or an array for sql injection. Lets look at some examples:
+  RawWhere allows you to be even more specific on how you want to filter your results, sometime we just what wierd queries. It can be given as a string or an array for sql injection. Let's look at some examples:
 
    ```javascript
    Coffee.sum('id', {}, { rawWhere: "name = 'expensive' or price = 100 "});
@@ -177,7 +177,7 @@ This will no longer return a single integer it will return an array as follows:
 
 ## Return as Query
 
-Last but definetely not least: `returnAsQuery`. If this parameter is defined as `true`, it will return a knex query object. With it you can use all of knex options to build even more sophisticated queries. Lets look at an example:
+Last but definetely not least: `returnAsQuery`. If this parameter is defined as `true`, it will return a knex query object. With it you can use all of knex options to build even more sophisticated queries. Let's look at an example:
 
 ```javascript
   const query = Coffee.sum('price', {}, { returnAsQuery: true });

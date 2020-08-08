@@ -22,7 +22,7 @@ One big question is how to build Chinchay Codes? Lets keep in mind that the `chi
 
 ### Recicling chinchayCode
 
-A common question is should I create a different `chinchayCode` for every posible Error or should I reuse them?
+A common question is should I create a different `chinchayCode` for every possible Error or should I reuse them?
 
 It truly depends on the case. Keep in mind that the mission here is to give to the client the correct correct and understandables messages. So do not try to overoptimize the chinchayCodes. However if two errors are very similar, will have the same message and the same code, well yeah, then please do recycle! This will maintain a shorter `errorTranslate`, easier to read or debug.
 

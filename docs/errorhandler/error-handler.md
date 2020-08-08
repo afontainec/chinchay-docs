@@ -1,5 +1,5 @@
 ## Overview
- I assume we all have been annoyed when working with an API and it returns an error with message "Something went wrong" and we are left there clueless. The ErrorHandler will map the Errors that are thrown in the server to corresponding HTTP codes and human-readable message so the API client can understand what happen and act accordingly. 
+ I assume we all have been annoyed when working with an API and it returns an error with the message "Something went wrong" and we are left there clueless. The ErrorHandler will map the Errors that are thrown in the server to corresponding HTTP codes and human-readable message so the API client can understand what happen and act accordingly. 
 
  The ErrorHandler works hand by hand with the [ChinchayError](./chinchay-error). It will use the `chinchayCode` to translate/map it to a http status code and it's message.
 
@@ -105,7 +105,7 @@
   { code: 422, message: 'Could not be processed.' }
   ```
 
-  Moreover, we can all together remove the defaults. By passing the second parameter `replace` as `true`. Lets look at an example:
+  Moreover, we can all together remove the defaults. By passing the second parameter `replace` as `true`. Let's look at an example:
 
   ```javascript
   const ERROR_TRANSLATE  = {

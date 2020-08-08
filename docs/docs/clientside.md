@@ -68,7 +68,7 @@ curl --header "Content-Type: application/json" \
 
  ### Description
 
-This URL can be called either with PUT, PATCH or POST. It receives a JSON object and, in the database, updates the values defined in the JSON for the entry with id = :id. It will response if it was successful the update and the entry updated. 
+This URL can be called either with PUT, PATCH or POST. It receives a JSON object and, in the database, updates the values defined in the JSON for the entry with id = :id. It will respond if it was successful and the updated entry. 
 
 :::tip
 The [RESTful API](https://restfulapi.net/http-methods/) recommends the PUT verb for edits/updates, so we recommend you to prefer that verb.
@@ -317,7 +317,7 @@ curl --request GET 'http://localhost:3000/api/coffee/find?price=["in", [90, 100]
 
 ### Columns
 
-Sometimes we don't want to get all the information, just the essential stuff. The columns options comes handy. In an array you can specify all the columns you want to get.
+Sometimes we don't want to get all the information, just the essential stuff. The columns options come handy. In an array you can specify all the columns you want to get.
 
 
 #### Examples
@@ -430,9 +430,9 @@ It just does not end here! There are some more options to do your querying even 
 
  ### Description
 
-Returns an the amount with all the entries matching the given query. The user can customize the result by adding a query, all of the query examples given for the _find_ endpoint also work for the _count_ endpoint.
+Returns the amount with all the entries matching the given query. The user can customize the result by adding a query, all of the query examples given for the _find_ endpoint also work for the _count_ endpoint.
 
- in our first example we would look when no query is given (therefore counts all the entries), and then dig into all the options that can be added to filter and customize your search.
+ In our first example we would look when no query is given (therefore counts all the entries), and then dig into all the options that can be added to filter and customize your search.
 
 
  ### Example

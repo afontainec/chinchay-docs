@@ -6,7 +6,7 @@ When building a large application order is a key factor, very easily the reposit
 
 ### How does it do it?
 
-The most fascinating and value piece of Chinchay it's the flexible TableGateway model. It handles all the interaction from and to a certain table in the database. It allows you to create, read, update, delete, count, sum and many other operations, the best part: without even knowing any sql! However, if by any chance you are a sql master and want to go beyond, Chinchay will allow you to do so.
+The most fascinating and valuable piece of Chinchay it's the flexible TableGateway model. It handles all the interaction from and to a certain table in the database. It allows you to create, read, update, delete, count, sum and many other operations, the best part: without even knowing any sql! However, if by any chance you are a sql master and want to go beyond, Chinchay will allow you to do so.
 
 
 But that is just the beginning.... Chinchay will help you a **LOT** more. In my early programming years I had these problems:
@@ -37,7 +37,7 @@ The [Command Line Interface](./cli) will allow you to generate files in this pat
 
 ## Updating the Database
 
-Chinchay works with [Postgres](https://www.postgresql.org/about/). This is the [database system](https://en.wikipedia.org/wiki/Database) that stores the data. As you may know the data is saved in tables. So how do we actually create or modify these tables?
+Chinchay works with [PostgresQL](https://www.postgresql.org/about/). This is the [database system](https://en.wikipedia.org/wiki/Database) that stores the data. As you may know the data is saved in tables. So how do we actually create or modify these tables?
 
 ### Schema Migrations
 
@@ -82,9 +82,9 @@ Chinchay works with [Postgres](https://www.postgresql.org/about/). This is the [
 
   When you use the [Chinchay Command Line Interface](./cli) to create migrations it will use this. For more information on migrating with knex go to the [documentation](http://knexjs.org/). 
 
-### Why postgres and not another database system?
+### Why postgresQL and not another database system?
 
-To be honest, just because. PostgresQL is one of the most popular databases and it seemed like a good starting point. At the moment we are working to make Chinchay compatible with mysql and other databases, actually if you are a database expert help us out making Chinchay compatible with more databases!
+To be honest, just because. PostgreSQL is one of the most popular databases and it seemed like a good starting point. At the moment we are working to make Chinchay compatible with mysql and other databases, actually if you are a database expert help us out making Chinchay compatible with more databases!
 
 
 ## REST API
@@ -118,7 +118,7 @@ You can easily transform your API into an oAuth 2.0 API, oAuth is an industry-st
 
 So the whole process go like this:
 
-  1. The user authenticate with it's credentials (usually a username and password) 
+  1. The user authenticates with it's credentials (usually a username and password) 
   2. If the credentials are correct an access token is generated and given to the user. This token has an expiration date.
   3. Every request the user does to the API it must provide the access token, otherwise the connecting is denied.
 
@@ -131,7 +131,7 @@ The [Access Module](./middleware#access) will be in charge of generating the acc
 
 To actually define which user has access to which endpoints, chinchay uses the [TheWall npm package](https://www.npmjs.com/package/thewall). In the [Middleware documentation](./middleware) you will be guided on how to work with each of these tools.
 
-Moreover you might have one route that it's accessible by different users but the content must be different. For instance, with chinchay (running locally) the route: _http://localhost/api/coffee/find_ will return all the coffees. If we have an customer1 user and a customer2 user, we might want to use that endpoint to return all the coffees that the user has access. So how do we filter them? With TheWall we give access to both users to that route, but with the [Access Module](./middleware#access) we can add the corresponding filter so that when the information is fetched to the database only the corresponding coffees are given.
+Moreover you might have one route that it's accessible by different users but the content must be different. For instance, with chinchay (running locally) the route: _http://localhost/api/coffee/find_ will return all the coffees. If we have a customer1 user and a customer2 user, we might want to use that endpoint to return all the coffees that the user has access to. So how do we filter them? With TheWall we give access to both users to that route, but with the [Access Module](./middleware#access) we can add the corresponding filter so that when the information is fetched to the database only the corresponding coffees are given.
 
 ::: tip REMINDER
   Do remember that the using oAuth is optional, you might have an API that is accessible for everyone and if that's fine with you Chinchay will be fine as well.

@@ -113,7 +113,7 @@ This will set the price to 100 of all the entries where the name is 'latte' and 
 
 ## updateById
 
-What if we want to edit just one entry? the method `updateById` will only update the entry for the given id. Lets look at an example: 
+What if we want to edit just one entry? the method `updateById` will only update the entry for the given id. Let's look at an example: 
 
 
 ```javascript

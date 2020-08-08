@@ -24,4 +24,4 @@ Cada vez que un consumidor te haga una consulta nueva, o bien responda a una con
 
 ## Respuesta de Apaño Tu Pyme
 
-Puede aparecer que en una conversación de una consulta hayan mensajes escritos por Apaño tu Pyme, en pos de que el consumidor tenga respuestas lo antes posible, Apaño tu Pyme puede ver y responderle al consumidor.
+Puede aparecer que en una conversación de una consulta hayan mensajes escritos por Apaño tu Pyme, en pos de que el consumidor tenga respuestas lo antes possible, Apaño tu Pyme puede ver y responderle al consumidor.

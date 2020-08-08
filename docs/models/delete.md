@@ -115,7 +115,7 @@ This will delete all the entries where the name is 'latte' and it was created af
 
 ## deleteById
 
-What if we want to remove just one entry? the method `deleteById` will only delete the entry for the given id. Lets look at an example: 
+What if we want to remove just one entry? the method `deleteById` will only delete the entry for the given id. Let's look at an example: 
 
 
 ```javascript

@@ -52,7 +52,7 @@ Si su tiene código Sku y/o código de barras, le recomendamos ponerlo acá, per
 Hay hay 2 opciones disponibles, las cuales de detallan a continuación.
   * **No rastrear inventario:** Esta Opción no limita la cantidad disponible de algún producto/servicio, los clientes pueden comprar una cantidad ilimitada de este producto.
   ::: warning
-  Si Usted elige esta opción, debe hacer seguimiento de la venta de su producto para evitar ventas fuera de Stock. ***En caso de que usted venda fuera de stock [Contactanos](./contact.html)!! para cancelar las ventas y notificar a los clientes lo antes posible***
+  Si Usted elige esta opción, debe hacer seguimiento de la venta de su producto para evitar ventas fuera de Stock. ***En caso de que usted venda fuera de stock [Contactanos](./contact.html)!! para cancelar las ventas y notificar a los clientes lo antes possible***
   :::
   * **Rastree el inventario de este producto:** Esta Opción limita la cantidad de productos/servicios a ofrecer a través de ApañoTuPyme.
     * **Cantidad:** En este caso usted debe definir la cantidad de stock del producto para evitar la venta fuera de stock. Cuando las ventas alcancen esta Cantidad el producto cambiará su estado a **Agotado**, en caso de que en el futuro usted aumente el stock de este producto, este valor puede ser editado.
@@ -73,7 +73,7 @@ A continuación mostraremos un ejemplo de como agregar la variante **Talla** y *
   ![](../assets/images/product/product_add_variant.png)
 2. A continuación definimos Las 2 variantes y sus posibles opciones separados por "," como muestra la siguiente imagen.
   ![](../assets/images/product/variant_init.png)
-Después de guardar los cambios, los **Detalles de Variantes** mostrara todas las combinaciones posible de su producto.
+Después de guardar los cambios, los **Detalles de Variantes** mostrara todas las combinaciones possible de su producto.
   ![](../assets/images/product/saved_varient.png)
 3. A continuación podemos editar las variantes para poder definir el precio, imagen y cantidad de stock para cada opción del producto. Las Imágenes disponibles para elegir son las cargadas en [Cargar Imágenes De Productos](#cargar-imagenes-de-productos)
   ![](../assets/images/product/edit_variant.png)
@@ -107,6 +107,6 @@ Si actualmente estás promocionando este producto/servicio en Redes Sociales, Ma
   ![](../assets/images/product/additional_field.png)
 
 ## Aprobación de Publicación de Producto
-Ahora el producto está listo para su publicación. Este producto aparecerá en el **Listado de Productos** de [ApañoTuPyme Dashboard](https://pyme.apanotupyme.cl/index.php?p=login) donde después es posible editarlo. Este producto estará en estado de **Aprobación Pendiente**, nosotros revisaremos que todo en tu producto este en orden y listo para la publicación. En caso de que haya algo mal configurado, te avisaremos vía Email para poder arreglar estos detalles y poder seguir avanzando en el proceso. Finalmente si todo esta en orden, aprobaremos tu producto y se publicara automáticamente a **ApañoTuPyme** y el estado de tu producto cambiara a **Aprobado**. Cuando esto suceda te enviaremos un e-mail de asunto **Producto Aprobado para Publicación** para notificarte que el producto ya esta publicado.
+Ahora el producto está listo para su publicación. Este producto aparecerá en el **Listado de Productos** de [ApañoTuPyme Dashboard](https://pyme.apanotupyme.cl/index.php?p=login) donde después es possible editarlo. Este producto estará en estado de **Aprobación Pendiente**, nosotros revisaremos que todo en tu producto este en orden y listo para la publicación. En caso de que haya algo mal configurado, te avisaremos vía Email para poder arreglar estos detalles y poder seguir avanzando en el proceso. Finalmente si todo esta en orden, aprobaremos tu producto y se publicara automáticamente a **ApañoTuPyme** y el estado de tu producto cambiara a **Aprobado**. Cuando esto suceda te enviaremos un e-mail de asunto **Producto Aprobado para Publicación** para notificarte que el producto ya esta publicado.
 
 
