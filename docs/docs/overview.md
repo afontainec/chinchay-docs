@@ -2,14 +2,14 @@
 
 Ufff this is a tough question.... What Chinchay aims to do is to facilitate how things are structured in your repository and speed up your development.
 
-When building a large application order is a key factor, very easily the reposity becomes a big plate of spaghetti! Basically just chaos.
+When building a large application order is a key factor, very easily the repository becomes a big plate of spaghetti! Basically just chaos.
 
 ### How does it do it?
 
 The most fascinating and value piece of Chinchay it's the flexible TableGateway model. It handles all the interaction from and to a certain table in the database. It allows you to create, read, update, delete, count, sum and many other operations, the best part: without even knowing any sql! However, if by any chance you are a sql master and want to go beyond, Chinchay will allow you to do so.
 
 
-But that is just the beginning.... Chinchays will help you a **LOT** more. In my early programming years I had these problems:
+But that is just the beginning.... Chinchay will help you a **LOT** more. In my early programming years I had these problems:
 
 
 *  Organizing the files
@@ -17,7 +17,7 @@ But that is just the beginning.... Chinchays will help you a **LOT** more. In my
 *  Making a _good_ api
 *  Managing user access: who can access what
 
-It was then that I decided to build a tool that would allow me to tackle each of this issues. This tool include both a Command Line Interface as a packages and other tools to tackle each problem.
+It was then that I decided to build a package that would allow me to tackle each of these issues. This package includes both a Command Line Interface and many tools to solve each problem.
 
 Here goes how every problem was tackled:
 
@@ -31,13 +31,13 @@ For starters, let's begin with a disclaimer: I did not reinvent the wheel. Chinc
 *  [The stackexchange forum](https://softwareengineering.stackexchange.com/questions/127624/what-is-mvc-really)
 *  [The always useful Wikipedia article](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 
-But in a nutshell, the code is logically separated in three areas. The model, where the logical-business code is written. They are the gateway to the database and would do most of the "important" job. The view manages all the UI logic and the controller is the interface that connects the view with the model.
+But in a nutshell, the code is logically separated in three areas. The model, where the logical-business code is written. They are the gateway to the database and would do most of the "important" work. The view manages all the UI logic and the controller is the interface that connects the view with the model.
 
 The [Command Line Interface](./cli) will allow you to generate files in this pattern to keep everything organized and clean.
 
 ## Updating the Database
 
-Chinchay works with [Postgres](https://www.postgresql.org/about/). This is the [database system](https://en.wikipedia.org/wiki/Database) that stores the data. As you may know the data is saved in tables. So how do we actually create or modify this tables?
+Chinchay works with [Postgres](https://www.postgresql.org/about/). This is the [database system](https://en.wikipedia.org/wiki/Database) that stores the data. As you may know the data is saved in tables. So how do we actually create or modify these tables?
 
 ### Schema Migrations
 
@@ -47,11 +47,11 @@ Chinchay works with [Postgres](https://www.postgresql.org/about/). This is the [
   * [perk article about migration and knex](http://perkframework.com/v1/guides/database-migrations-knex.html)
   *  [The always useful Wikipedia article](https://en.wikipedia.org/wiki/Schema_migration)
 
-  I guess you are asking yourself how does this actually works, the answer is: knex.
+  I guess you are asking yourself how this actually works, the answer is: knex.
 
 #### knex
 
-  [knex](http://knexjs.org/) is the magical tool that will manage all the migrations. Everytime you need to make a change to the database you make a knex migration as follows:
+  [knex](http://knexjs.org/) is the magical tool that will manage all the migrations. Every time you need to make a change to the database you make a knex migration as follows:
 
   ```
   $ knex migrate:make migration_name
@@ -84,35 +84,37 @@ Chinchay works with [Postgres](https://www.postgresql.org/about/). This is the [
 
 ### Why postgres and not another database system?
 
-To be honest, just because. Postgres is one of the most popular databases and it seemed as a good starting point. At the moment we are working to make Chinchay compatible with mysql and other databases, actually if you are a database expert help us out making Chinchay compatible with more databases!
+To be honest, just because. PostgresQL is one of the most popular databases and it seemed like a good starting point. At the moment we are working to make Chinchay compatible with mysql and other databases, actually if you are a database expert help us out making Chinchay compatible with more databases!
 
 
 ## REST API
 
 The next big thing was: how to do a _good_ api?
 
-And the answer is a flexible RESTful API. If you do not know what a RESTful API I recommend to read [this article](https://restfulapi.net/). In a nutshet a RESTful API is an architectural style presented by Roy Fielding that suggest a way to model the client-server interaction.
+And the answer is a flexible RESTful API. If you do not know what a RESTful API is, I recommend reading [this article](https://restfulapi.net/). In a nutshell a RESTful API is an architectural style presented by Roy Fielding that suggests a way to model the client-server interaction.
 
-Not everyone API that say it's REST actually is REST. Most of the APIs out there who declare themselfs as REST APIs actually their are not. REST enforces some strict protocols which are hardly ever filfilled. Aaaand enter Chinchay, Chinchay will separate the code in **layered system**  which is **stateless** and **cacheable**. Moreover, to make a **uniform interface** it a has fully flexible **HATEOAS generator**.
+Not every API that says it's REST actually is REST. Most of the APIs out there who declare themselves as REST APIs actually are not. REST enforces some strict protocols which are hardly ever fulfilled. Aaaand enter Chinchay, Chinchay will separate the code in a **layered system**  which is **stateless** and **cacheable**. Moreover, to make a **uniform interface** it has a fully flexible **HATEOAS generator**.
 
 ### HATEOAS
 
-HATEOAS is one of the most distintive features of a REST API and is hardly ever present. HATEOAS tries to mimic our real-life browsing, when we visit a page all the posible links are presented (as buttons, images, etc). HATEOAS aims to do the same, which every API request a list of followup links are given. However, doing so it's a pain in the *** for the developer, he is responsible to, for every API request, return all the followup link. So guess what does chinchay do? Yes it will make it veeery easy to do so with it's [HATEOAS generator](./hateoas).
+HATEOAS is one of the most distinctive features of a REST API and is hardly ever present. HATEOAS tries to mimic our real-life browsing, when we visit a page all the possible links are presented (as buttons, images, etc). HATEOAS aims to do the same, in which every API request a list of followup links are given. However, doing so it's a pain in the *** for the developer, he is responsible to, for every API request, return all the followup links. So guess what does chinchay do? Yes it will make it veeery easy to do so with it's [HATEOAS generator](./hateoas).
 
 You can read more about [HATEOAS here](https://restfulapi.net/hateoas/).
 
 
 ### Client Queries
 
-Well so we now have a RESTful API with HATEOAS, is that a _good_ api? Well, not necessarily... A _GOOD_ API is an API that is both elegant and useful. The elegant :white_check_mark: (it's REST, so yeah it is elegant) but how do we make it useful?
+Well so we now have a RESTful API with HATEOAS, is that a _good_ api? Well, not necessarily... A _GOOD_ API is an API that is both elegant and useful. 
+  * Elegant: :white_check_mark: (it's REST, so yeah it is elegant) 
+  * but how do we make it useful?
 
-For it to be useful, the client must be able to extract the information it needs through it. Chinchay provides a complete flexible interface where the client can build specific queries to consult information. The backend developer does not need to do a different API endpoint for each client need, with a few endpoint and a flexible querying interface everything is possible. Read more on how to do so [here](./clientside).
+For it to be useful, the client must be able to extract the information it needs through it. Chinchay provides a complete flexible interface where the client can build specific queries to consult information. The backend developer does not need to do a different API endpoint for each client need, with a few endpoints and a flexible querying interface everything is possible. Read more on how to do so [here](./clientside).
 
 ### oAuth 2.0
 
-If by this point you are thinking, wait the client can ask whatever he wants, so is it unsafe or how do we control he only access what he should access? Do not worry! Chinchay has you cover!
+If by this point you are thinking, wait, the client can ask whatever he wants, so is it unsafe or how do we control him to only access what he should access? Do not worry! Chinchay has you covered!
 
-You can easily transform your API in a oAuth 2.0 API, oAuth is an industry-standard protocol for authorization. In simple terms, you can protect so each user only access the endpoint you give him access to. 
+You can easily transform your API into an oAuth 2.0 API, oAuth is an industry-standard protocol for authorization. In simple terms, you can protect so each user only access the endpoint you give him access to. 
 
 So the whole process go like this:
 
@@ -127,9 +129,9 @@ So the whole process go like this:
 
 The [Access Module](./middleware#access) will be in charge of generating the access token, the token follows the [json web token standard](https://jwt.io/), by generating the token with [the jsonwebtoken npm package](https://www.npmjs.com/package/jsonwebtoken). 
 
-To actually define which user has access to which endpoints, chinchay uses the [thewall npm package](https://www.npmjs.com/package/thewall). In the [Middleware documentation](./middleware) you will be guided on how to work with each of this tools.
+To actually define which user has access to which endpoints, chinchay uses the [TheWall npm package](https://www.npmjs.com/package/thewall). In the [Middleware documentation](./middleware) you will be guided on how to work with each of these tools.
 
-Moreover you might have one route that it's accessible by different users but the content must be different. For instance, with chinchay (running locally) the route: _http://localhost/api/coffee/find_ will return all the coffees. If we have an customer1 user and a customer2 user, we might want to use that endpoint to return all the coffees that the user has access. So how do we filter them? With thewall we give access to both users to that route, but with the [Access Module](./middleware#access) we can add the corresponding filter so that when the information is fetched to the database only the corresponding coffees are given.
+Moreover you might have one route that it's accessible by different users but the content must be different. For instance, with chinchay (running locally) the route: _http://localhost/api/coffee/find_ will return all the coffees. If we have an customer1 user and a customer2 user, we might want to use that endpoint to return all the coffees that the user has access. So how do we filter them? With TheWall we give access to both users to that route, but with the [Access Module](./middleware#access) we can add the corresponding filter so that when the information is fetched to the database only the corresponding coffees are given.
 
 ::: tip REMINDER
   Do remember that the using oAuth is optional, you might have an API that is accessible for everyone and if that's fine with you Chinchay will be fine as well.
