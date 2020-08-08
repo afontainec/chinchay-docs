@@ -84,11 +84,11 @@ module.exports = {
         path: '/models/sum',
         children: []
       }, {
-        title: 'Miscelaneous',   // required
-        path: '/models/miscelaneous',
+        title: 'Miscellaneous',   // required
+        path: '/models/miscellaneous',
         children: []
       }, {
-        title: 'Creating my own methods',   // required
+        title: 'Creating your own methods',   // required
         path: '/models/customMethods',
         children: []
       }],

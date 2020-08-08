@@ -1,6 +1,6 @@
 ## Overview
 
-The chainfile is where all the configuratios of Chinchay are defined. It a file that must be named `.chainfile.js` and must be on the root of the repository.
+The chainfile is where all the configurations of Chinchay are defined. It is a file that must be named `.chainfile.js` and must be on the root of the repository.
 
 Here we are going to indicate all the configurations:
 
@@ -18,7 +18,7 @@ module.exports = {
 };
 ```
 
-Where the knex.js file exports the knex instance. Check the [Getting started tutorial](../ettingstarted/ejs.html#connecting-to-the-database), there you can see an example of a knex.js file. 
+Where the knex.js file exports the knex instance. Check the [Getting started tutorial](../gettingstarted/ejs.html#connecting-to-the-database), there you can see an example of a knex.js file. 
 
 ## Model + Controller + Routes
 
@@ -38,7 +38,7 @@ module.exports = {
 
 where `models.directory` is the path of the directory where all the models should be located. 
 
-For controllers and routes is analogous, so if we want to create a reposity with the following structure:
+For controllers and routes is analogous, so if we want to create a repository with the following structure:
 
     .
     ├── server
@@ -65,7 +65,7 @@ module.exports = {
 };
 ```
 
-If these configurations are not set, the model, controller and routes will be generate in a `models`, `controllers` and `routes` directory in the root of the repository. If the directory does not exist it will create it.
+If these configurations are not set, the model, controller and routes will be generated in a `models`, `controllers` and `routes` directory in the root of the repository. If the directory does not exist it will create it.
 
 ::: tip
   I always group all the backend-related (models, controllers, routes, etc) in a server folder.
@@ -74,7 +74,7 @@ If these configurations are not set, the model, controller and routes will be ge
 
 ## views
 
-For the views its _almost_ the same. If you desire to use the ejs templating language it would be exactly the same: 
+For the views it's _almost_ the same. If you desire to use the ejs templating language it would be exactly the same: 
 
 ```javascript
 const path = require('path');
@@ -96,7 +96,7 @@ module.exports = {
 };
 ```
 
-In this cases the ejs files will be created within the `frontend/views` directory.
+In this case the ejs files will be created within the `frontend/views` directory.
 
 However, if the app is an angular app, the root of the Angular app must be provided as follows:
 
@@ -137,7 +137,7 @@ The most common use case is that the root of the Angular app is the same as the 
 
 ## frontend
 
-A `frontend` property can be added to the chainfile. this is equivalent to add the flag `--frontend` when running `chinchay new`. See the [cli documentation](./cli.html#frontend-flag) for more information.
+A `frontend` property can be added to the chainfile. This is equivalent to adding the flag `--frontend` when running `chinchay new`. See the [cli documentation](./cli.html#frontend-flag) for more information.
 
 This can be either:
 
@@ -170,11 +170,11 @@ This can be either:
 
 ## backend
 
-A `backend` property can be added to the chainfile. this is equivalent to add the flag `--backend` when running `chinchay new`. See the [cli documentation](./cli.html#backend-flag) for more information.
+A `backend` property can be added to the chainfile. This is equivalent to adding the flag `--backend` when running `chinchay new`. See the [cli documentation](./cli.html#backend-flag) for more information.
 
 This can be either:
 
-  * enable: Model, Controler and routes are generated.
+  * enable: Model, Controller and routes are generated.
   * disable: No models, controllers and routes will be generated.
 
   So if we want to disable the backend:
@@ -200,13 +200,13 @@ This can be either:
 
 ```
 
-## middleware + access + thewall
+## middleware + access + TheWall
 
-Last, but definetely not least, how to restrict data access in your app. If you are designing an API that can be accessible by authentificated users only, and moreover, different users has access to different data, you will have to configure thewall, access and middleware property.
+Last, but definitely not least, how to restrict data access in your app. If you are designing an API that can be accessible by authenticated users only, and moreover, different users have access to different data, you will have to configure TheWall, access and middleware property.
 
 ### Middleware
 
-  Lets start with the middleware. The value can be either `frontend`, `api`, `enable` or `disable`. This is equivalent to the flag `--middleware` and will determine which routes will required a _valid token_ to be granted access. So if you only what to protect the API routes, the chainfile will look as follows:
+  Let's start with the middleware. The value can be either `frontend`, `api`, `enable` or `disable`. This is equivalent to the flag `--middleware` and will determine which routes will require a _valid token_ to be granted access. So if you only what to protect the API routes, the chainfile will look as follows:
 
   ```javascript
   module.exports = {
@@ -230,14 +230,14 @@ Last, but definetely not least, how to restrict data access in your app. If you 
 For more information check the full [Middleware Documentation](./middleware).
 
 ::: tip NOTE
-  A valid token is an oAuth 2.0 token generated with json web token and added as a Bearer Token. IF you don know what is all this, check the [Middleware Documentation](./middleware) and/or the [oAuth introduction](./overview.html#oAuth-2.0).
+  A valid token is an oAuth 2.0 token generated with a json web token and added as a Bearer Token. If you don't know what is all this, check the [Middleware Documentation](./middleware) and/or the [oAuth introduction](./overview.html#oAuth-2.0).
 :::
 
 
 
-### thewall
+### TheWall
 
-For most case uses just providing a valid token is not enough. Usually we have different user roles. For instance maybe, a venue-owner will be able to access some data, a client some other data and an admin can access everything. To configure this, Chinchay uses [thewall](https://www.npmjs.com/package/thewall). If you desire to use this functionality, a thewall property should be provided in the chainfile with the path to a file that exports a thewall instance. For example: 
+For most cases, just providing a valid token is not enough. Usually we have different user roles. For instance maybe, a venue-owner will be able to access some data, a client some other data and an admin can access everything. To configure this, Chinchay uses [TheWall](https://www.npmjs.com/package/thewall). If you desire to use this functionality, a thewall property should be provided in the chainfile with the path to a file that exports a thewall instance. For example: 
 
   ```javascript
   module.exports = {
@@ -264,7 +264,7 @@ As you may have notice is very similar to the knex property. For more informatio
 
 ### access
 
-Sometimes, just filtering who can access a route is not enough. Some routes must be accessible by different users but the content that route returns should differ. Here is where the access property comes to help. Where you can set which user roles has unrestricted access, for instance an admin may be able to access everything, and which roles are restricted. On the chainfile a `access` property should be defined to the path to the file that defines which roles are restricted and to which data are restricted. For example:
+Sometimes, just filtering who can access a route is not enough. Some routes must be accessible by different users but the content that route returns should differ. Here is where the access property comes to help. Where you can set which user roles have unrestricted access, for instance an admin may be able to access everything, and which roles are restricted. On the chainfile an `access` property should be defined to the path to the file that defines which roles are restricted and to which data are restricted. For example:
 
   ```javascript
   module.exports = {

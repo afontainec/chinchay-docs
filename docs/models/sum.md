@@ -1,20 +1,20 @@
 ## Overview
 
-Here we are going to talk about the `sum` method. This is an asynchronous method that returns the sum of a certain column of all the entries that matches with the given search. So lets dive into it!
+Here we are going to talk about the `sum` method. This is an asynchronous method that returns the sum of a certain column of all the entries that matches with the given search. So let's dive into it!
 
 
 ### Parameters
 
   * column: Column/variable/property to sum.
   * Search: Javascript object with the definition of what should be searched.
-  * Options: A javascript object for more configurations, such us sorting, grouping, etc.
+  * Options: A javascript object for more configurations, such as sorting, grouping, etc.
 
-  In this tutorial we are going to see several examples. However for a fully detailed of how to work with the search and options parameters check the [find documentation](./find).
+  In this tutorial we are going to see several examples. However for a fully detailed description of how to work with the search and options parameters check the [find documentation](./find).
 
 
 ### Return value
 
-An integer indicating the sum of entries wich meets with the requested:
+An integer indicating the sum of entries which meets with the requested:
 
   ```javascript
   2
@@ -22,7 +22,7 @@ An integer indicating the sum of entries wich meets with the requested:
 
 ## sum: Search Examples  
 
-Lets go for the fun part: 
+Let's go for the fun part: 
 
 
 ```javascript
@@ -59,23 +59,23 @@ This will sum the ids of all the coffees where the price is distinct to 100 and 
   Coffee.sum('price', { price: ['in', [100, 90]]});
 ```
 
- In this case will sum the price of all the entries where the price is either 90 or 100. 
+ In this case it will sum the price of all the entries where the price is either 90 or 100. 
 
 ## startDate and endDate
 
-Lets assume you what to sum the price of all the coffees that where created before 2020? We could do it as follows:
+Let's assume you want to sum the price of all the coffees that were created before 2020? We could do it as follows:
 
 ```javascript
   Coffee.sum('price', { created_at: ['<', '2020-01-01 00:00:00.000'] });
 ```
 
-And that totally fine, however this can also be achieved using the third parameter: `options`. The `startDate` and `endDate` can be define to sum values created at a certain interval.
+And that's totally fine, however this can also be achieved using the third parameter: `options`. The `startDate` and `endDate` can be defined to sum values created at a certain interval.
 
  ```javascript
    Coffee.sum('price', {}, { startDate:'2018-11-21T11:55:00.000Z' });
  ```
  
- In this case will sum the price of all the entries where the created_at is after the given startDate, in this case, after 2018-11-21T11:55:00.000Z.
+ In this case it will sum the price of all the entries where the created_at is after the given startDate, in this case, after 2018-11-21T11:55:00.000Z.
 
   ```javascript
    Coffee.sum('price', {}, { endDate:'2018-11-21T12:00:00.000Z' });
@@ -92,9 +92,9 @@ And that totally fine, however this can also be achieved using the third paramet
 
 ## rawWhere
 
-  Now this is getting advanced, this is intended for people who knows SQL. Sometimes we have craaazy ideas and we need even more sophisticated queries. In the options we can pass a `rawWhere` property. 
+  Now this is getting advanced, this is intended for people who know SQL. Sometimes we have craaazy ideas and we need even more sophisticated queries. In the options we can pass a `rawWhere` property. 
 
-  RawWhere allows you to be even more specific on how you want to filter your results, sometime we just what wierd queries. It can be given as a string or an array for sql injection. Lets look at some examples:
+  RawWhere allows you to be even more specific on how you want to filter your results, sometimes we just do weird queries. It can be given as a string or an array for sql injection. Let's look at some examples:
 
    ```javascript
    Coffee.sum('id', {}, { rawWhere: "name = 'expensive' or price = 100 "});
@@ -108,12 +108,12 @@ And that totally fine, however this can also be achieved using the third paramet
   Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
   :::
 
-  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attacks a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
   ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 
 
-  To prevent sql injections you can defined the rawSelect as an array. An example: 
+  To prevent sql injections you can define the rawSelect as an array. An example: 
 
   ```javascript
    Coffee.sum('id', {}, { rawWhere: ["name = ? or price = ? ", ["expensive", 100]] });
@@ -122,7 +122,7 @@ And that totally fine, however this can also be achieved using the third paramet
   In this case `expensive` and `100` are indicated as `?` and passed in a second parameter.
 
   :::warning
-  If by any chance a user input will be used to create the `rawWhere`, the `rawWhere` **MUST** by in array form and the user input passed as the second value of that array.
+  If by any chance a user input will be used to create the `rawWhere`, the `rawWhere` **MUST** be in array form and the user input passed as the second value of that array.
   :::
 
 
@@ -130,7 +130,7 @@ And that totally fine, however this can also be achieved using the third paramet
 
 ## Group By
 
-For some use cases grouping your response can be very helpful. For instance let assume we want to sum the price of all the entries by name, in other words what is the sum of the prices of the coffees named 'latte', what is the sum of the prices of the coffees named 'capuccino', and so on. This can be achieved by the group by:
+For some use cases grouping your response can be very helpful. For instance, let's assume we want to sum the price of all the entries by name, in other words what is the sum of the prices of the coffees named 'latte', what is the sum of the prices of the coffees named 'cappuccino', and so on. This can be achieved by the group by:
 
 ```javascript
   Coffee.sum('price', {}, {groupBy: 'name' });
@@ -139,12 +139,12 @@ For some use cases grouping your response can be very helpful. For instance let 
 This will no longer return a single integer it will return an array as follows:
 
 ```javascript
-[ { sum: 100, name: 'latte' }, { sum: 200, name: 'capuccino' } ]
+[ { sum: 100, name: 'latte' }, { sum: 200, name: 'cappuccino' } ]
 ```
 
   ### rawSelect
 
-  So know we can pass a RawSelect option that can be very powerful. It can be given as a string or an array for sql injection. Fo instance:
+  So now we can pass a RawSelect option that can be very powerful. It can be given as a string or an array for sql injection. For instance:
 
   ```javascript
    Coffee.sum('price', {}, { rawSelect: 'EXTRACT(MONTH FROM created_at) as month', groupBy: 'month'});
@@ -158,12 +158,12 @@ This will no longer return a single integer it will return an array as follows:
   Be very careful with this as it can be used as [sql injection](https://www.acunetix.com/websitesecurity/sql-injection/). As Uncle Ben once said, _with great power comes great responsability_. 
   :::
 
-  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attack a website can recieve, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
+  [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attacks a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
   ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
 
 
-  To prevent sql injections you can defined the rawSelect as an array. An example: 
+  To prevent sql injections you can define the rawSelect as an array. An example: 
 
   ```javascript
    Coffee.sum('price', {}, { groupBy: 'month', rawSelect: ['EXTRACT(MONTH FROM ??) as month', ['created_at']] });
@@ -172,12 +172,12 @@ This will no longer return a single integer it will return an array as follows:
   In this case the `created_at` is indicated as `??` and passed in a second parameter.
 
   :::warning
-  If by any chance a user input will be used to create the `rawSelect`, the `rawSelect` **MUST** by in array form and the user input passed as the second value of that array.
+  If by any chance a user input will be used to create the `rawSelect`, the `rawSelect` **MUST** be in array form and the user input passed as the second value of that array.
   :::
 
 ## Return as Query
 
-Last but definetely not least: `returnAsQuery`. If this parameter is defined as `true`, it will return a knex query object. With it you can use all of knex options to build even more sophisticated queries. Lets look at an example:
+Last but definitely not least: `returnAsQuery`. If this parameter is defined as `true`, it will return a knex query object. With it you can use all of knex options to build even more sophisticated queries. Let's look at an example:
 
 ```javascript
   const query = Coffee.sum('price', {}, { returnAsQuery: true });

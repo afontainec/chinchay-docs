@@ -1,7 +1,7 @@
 ## Overview
- I assume we all have been annoyed when working with an API and it returns an error with message "Something went wrong" and we are left there clueless. The ErrorHandler will map the Errors that are thrown in the server to corresponding HTTP codes and human-readable message so the API client can understand what happen and act accordingly. 
+ I assume we all have been annoyed when working with an API and it returns an error with the message "Something went wrong" and we are left there clueless. The ErrorHandler will map the Errors that are thrown in the server to corresponding HTTP codes and human-readable messages so the API client can understand what happened and act accordingly. 
 
- The ErrorHandler works hand by hand with the [ChinchayError](./chinchay-error). It will use the `chinchayCode` to translate/map it to a http status code and its message.
+ The ErrorHandler works hand by hand with the [ChinchayError](./chinchay-error). It will use the `chinchayCode` to translate/map it to a http status code and it's message.
 
   
 ## examples
@@ -52,16 +52,16 @@
   }
   ```
 
-  In this case the `ERROR_TRANSLATE` do not have an entry for the given error, in this case it will return with a 500 case. Anytime it encounters an error that he does not know how to translate, it will return a 500 code.
+  In this case the `ERROR_TRANSLATE` does not have an entry for the given error, in this case it will return with a 500 case. Anytime it encounters an error that he does not know how to translate, it will return a 500 code.
 
 ## errorTranslate
 
-  Lets dig a bit deeper in the `errorTranslate` parameter. It is a javascript object, that indicates the message and code that should be returned for each chinchayError code. If there is no message nor code indicated it will assume it is a 500 error.
+  Let's dig a bit deeper in the `errorTranslate` parameter. It is a javascript object, that indicates the message and code that should be returned for each chinchayError code. If there is no message nor code indicated it will assume it is a 500 error.
 
    
 ### default Error Translate and Replace
 
-  There are some default Errors that has already being mapped. For instance: 
+  There are some default Errors that have already been mapped. For instance: 
 
 
   ```javascript
@@ -77,11 +77,11 @@
   ```javascript
   {
     code: 400,
-    message: 'Error: Nothing to update or unexistant column'
+    message: 'Error: Nothing to update or non existent column'
   }
   ```
 
-  Here we didn't even pass an `errorTranslate`, so why is it not returning a 500 error? The error handler has some default translates. We can overwrite them: 
+  Here we didn't even pass an `errorTranslate`, so why is it not returning a 500 error? The error handler has some default translations. We can overwrite them: 
 
   ```javascript
   const ERROR_TRANSLATE  = {
@@ -105,7 +105,7 @@
   { code: 422, message: 'Could not be processed.' }
   ```
 
-  Moreover, we can all together remove the defaults. By passing the second parameter `replace` as `true`. Lets look at an example:
+  Moreover, we can all together remove the defaults. By passing the second parameter, `replace` as `true`. Let's look at an example:
 
   ```javascript
   const ERROR_TRANSLATE  = {
@@ -131,13 +131,13 @@
   ```
 
   :::warning Disclaimer
-  For the chinchayCode `empty_update` I consider way more suitable the `400` code that the `422` or `500`. The previous examples where just to show how to work with the default configurations. 
+  For the chinchayCode `empty_update` I consider way more suitable the `400` code than the `422` or `500`. The previous examples were just to show how to work with the default configurations. 
   :::
 
 
 ## getHTTPCodeAndMessage
 
-  If you have been reading through, well this part is going to seem a bit obvious. THe ErrorHandler has a `getHTTPCodeAndMessage` that recieves an error and return what `code` and `message` should be returned to the client.
+  If you have been reading through, well this part is going to seem a bit obvious. THe ErrorHandler has a `getHTTPCodeAndMessage` that receives an error and returns what `code` and `message` should be returned to the client.
 
 
   ### Parameters
@@ -146,8 +146,8 @@
 
   ### Return value
 
-  * code&Message: A javascript object with two properties: `code`, and `message`. This are the http status code and a friendly human-readable message expected to be returned to the requesting client.
+  * code&Message: A javascript object with two properties: `code`, and `message`. This is the http status code and a friendly human-readable message expected to be returned to the requesting client.
 
 
-  This is basically the only function of the ErrorHandler worth talking about. On previous releases this function was absent and ther where two separate function, `getHTTPCode` and `getHTTPMessage`. While they still exists (actually `getHTTPCodeAndMessage` call these functions) its direct use is deprecated and the `getHTTPCodeAndMessage` function is prefered. 
+  This is basically the only function of the ErrorHandler worth talking about. On previous releases this function was absent and there were two separate functions, `getHTTPCode` and `getHTTPMessage`. While they still exist (actually `getHTTPCodeAndMessage` calls these functions) it's direct use is deprecated and the `getHTTPCodeAndMessage` function is preferred. 
 

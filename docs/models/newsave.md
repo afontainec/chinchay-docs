@@ -3,7 +3,7 @@
 The new method will return a javascript object representing a _new_ and empty entry.
 
 ::: warning
-  **Important:** this entry it is not saved on the database until the save method is called.
+  **Important:** this entry is not saved on the database until the save method is called.
 :::
 
 Using the example of the [Getting Started tutorial](../gettingstarted/ejs) the following:
@@ -35,13 +35,13 @@ The previous code will save an entry where the name is 'cappuccino' and the pric
 
 ## Save several at once
 
-The same method can be used to save several instances at once. To do some an array of javascript objects must be passed. Each object will represent one database entry.
+The same method can be used to save several instances at once. To do this an array of javascript objects must be passed. Each object will represent one database entry.
 
 ```javascript
   coffee.save([{ name: 'cappuccino', price: 5 }, { name: 'latte' }]);
 ```
 
-This will save two entries, the first named cappuchino at a price of 5, and the second named latte and without a given price. The previous is equivalent to:
+This will save two entries, the first named cappuccino at a price of 5, and the second named latte and without a given price. The previous is equivalent to:
 
 ```javascript
   Promise.all([coffee.save({ name: 'cappuccino', price: 5 }), coffee.save({ name: 'latte' })]);
