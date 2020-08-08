@@ -81,7 +81,7 @@ module.exports = instance;
 
 We have added an `expensive` method that will return all the coffee of a price higher than 100 ordered by price.
 
-## Overwriting exisiting methods
+## Overwriting existing methods
 
 You may want to overwrite existing methods to change same aspect. For instance, let assume you have a users relation in the database. Were each user has a username and a password. When you `findById` you do not want to return the password property. Let's look at the example: 
 

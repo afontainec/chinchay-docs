@@ -34,7 +34,7 @@
   };
   ```
 
-  In this example, coffeeAdmin has unrestricted access to the coffees, but no access to the teas, whereas the coffeeDriker has restricted access to coffee.
+  In this example, coffeeAdmin has unrestricted access to the coffees, but no access to the teas, whereas the coffeeDrinker has restricted access to coffee.
 
   For Chinchay to use this, the path of the configuration file must be provided in the `.chainfile.js`:
 
@@ -145,10 +145,10 @@ Now create a `thewall` instance:
 
   ### Parameter
 
-  * user: javacript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+  * user: javascript object representing the requesting user. It should hold the TheWall roles in a `access` property.
 
   :::tip Common Use
-  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
   :::
 
   ### Return Value
@@ -183,10 +183,10 @@ Now create a `thewall` instance:
 
   ### Parameter
 
-  * user: javacript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+  * user: javascript object representing the requesting user. It should hold the TheWall roles in a `access` property.
 
   :::tip Common Use
-  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
   :::
 
   * to: module or subdivision at issue. 
@@ -242,10 +242,10 @@ Now create a `thewall` instance:
 
   ### Parameter
 
-  * user: javacript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+  * user: javascript object representing the requesting user. It should hold the TheWall roles in a `access` property.
 
   :::tip Common Use
-  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
   :::
 
   * to: module or subdivision at issue. 
@@ -300,7 +300,7 @@ Now create a `thewall` instance:
 
 
   :::tip Common Use: access
-  The most common way of using this method is by passing the `req.user.acess` property as the `access` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  The most common way of using this method is by passing the `req.user.access` property as the `access` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
   :::
 
   ### Return value
@@ -395,7 +395,7 @@ Now create a `thewall` instance:
   Access.find({ user_id: 1 });
   ```
 
-  To find all the users who have coffeeDriker role on coffee 4.
+  To find all the users who have coffeeDrinker role on coffee 4.
   ```javascript
   Access.find({ role: 'coffeeDrinker', filter: '4' });
   ```
@@ -408,12 +408,12 @@ Now create a `thewall` instance:
 
   ### Parameter
 
-  * user: javacript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+  * user: javascript object representing the requesting user. It should hold the TheWall roles in a `access` property.
   * to: The subdivision/module at issue.
   * filterId: the given specific filter being asked.
 
   :::tip Common Use
-  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particulary the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
   ::: 
 
   ### Return value
@@ -451,7 +451,7 @@ Now create a `thewall` instance:
 
   ### Parameter
 
-  * user: javacript object representing the user.
+  * user: javascript object representing the user.
 
   ### Return value
 
@@ -474,5 +474,5 @@ Now create a `thewall` instance:
 ## Token Encryption
 
 :::danger
-This is **VERY IMPORTANT**: The token is a jsonwebtoken encrypted by the [environment variable](https://en.wikipedia.org/wiki/Environment_variable) `JWT_SECRET`. You must define your own `JWT_SECRET` that must be kept confidential. If this variable is not defined, Chinchay will use a default secret, this will make your app prone to cyberattacks. 
+This is **VERY IMPORTANT**: The token is a jsonwebtoken encrypted by the [environment variable](https://en.wikipedia.org/wiki/Environment_variable) `JWT_SECRET`. You must define your own `JWT_SECRET` that must be kept confidential. If this variable is not defined, Chinchay will use a default secret, this will make your app prone to cyber-attacks. 
 :::

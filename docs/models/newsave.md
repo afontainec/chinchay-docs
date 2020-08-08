@@ -41,7 +41,7 @@ The same method can be used to save several instances at once. To do some an arr
   coffee.save([{ name: 'cappuccino', price: 5 }, { name: 'latte' }]);
 ```
 
-This will save two entries, the first named cappuchino at a price of 5, and the second named latte and without a given price. The previous is equivalent to:
+This will save two entries, the first named cappuccino at a price of 5, and the second named latte and without a given price. The previous is equivalent to:
 
 ```javascript
   Promise.all([coffee.save({ name: 'cappuccino', price: 5 }), coffee.save({ name: 'latte' })]);

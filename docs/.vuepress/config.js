@@ -85,7 +85,7 @@ module.exports = {
         children: []
       }, {
         title: 'Miscelaneous',   // required
-        path: '/models/miscelaneous',
+        path: '/models/miscellaneous',
         children: []
       }, {
         title: 'Creating my own methods',   // required

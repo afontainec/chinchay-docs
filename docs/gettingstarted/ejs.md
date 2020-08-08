@@ -19,7 +19,7 @@ Create a nodejs app called: test_chinchay
 $ express test_chinchay && cd test_chinchay
 ```
 <br/>
-We will install drivers to use PostgresSQL database. we will use knexjs and pg
+We will install drivers to use PostgresSQL database. we will use knex.js and pg
 
 ```
 $ npm install pg -s
@@ -40,7 +40,7 @@ $ npm start
 ```
 <br/>
 
-Visit [http://localhost:3000](http://localhost:3000) to see the defaut express web app.
+Visit [http://localhost:3000](http://localhost:3000) to see the default express web app.
 
 ## Create Postgresql Database
 

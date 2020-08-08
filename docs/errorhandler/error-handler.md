@@ -77,7 +77,7 @@
   ```javascript
   {
     code: 400,
-    message: 'Error: Nothing to update or unexistant column'
+    message: 'Error: Nothing to update or non existent column'
   }
   ```
 
@@ -149,5 +149,5 @@
   * code&Message: A javascript object with two properties: `code`, and `message`. This are the http status code and a friendly human-readable message expected to be returned to the requesting client.
 
 
-  This is basically the only function of the ErrorHandler worth talking about. On previous releases this function was absent and ther where two separate function, `getHTTPCode` and `getHTTPMessage`. While they still exists (actually `getHTTPCodeAndMessage` call these functions) it's direct use is deprecated and the `getHTTPCodeAndMessage` function is prefered. 
+  This is basically the only function of the ErrorHandler worth talking about. On previous releases this function was absent and they were two separate function, `getHTTPCode` and `getHTTPMessage`. While they still exists (actually `getHTTPCodeAndMessage` call these functions) it's direct use is deprecated and the `getHTTPCodeAndMessage` function is preferred. 
 

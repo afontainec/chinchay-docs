@@ -1,6 +1,6 @@
 ## Overview
 
-There are several more miscelaneous function that can be used. So here we will look at them.
+There are several more miscellaneous function that can be used. So here we will look at them.
 
 
 ## columnsNames

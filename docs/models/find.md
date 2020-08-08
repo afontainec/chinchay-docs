@@ -234,7 +234,7 @@ In this case will return the first two entries ordered by id in ascending order.
 
   ### rawWhere
 
-  RawWhere allows you to be even more specific on how you want to filter your results, sometime we just what wierd queries. It can be given as a string or an array for sql injection. Let's look at some examples:
+  RawWhere allows you to be even more specific on how you want to filter your results, sometime we just what weird queries. It can be given as a string or an array for sql injection. Let's look at some examples:
 
    ```javascript
    Coffee.find({}, 'all', { rawWhere: "name = 'expensive' or price = 100 "});
@@ -282,7 +282,7 @@ That query will return the amount of coffees at each price. For this previous ex
 
 ## Return as Query
 
-Last but definetely not least: `returnAsQuery`. If this parameter is defined as `true`, it will return a knex query object. With it you can use all of knex options to build even more sophisticated queries. Let's look at an example:
+Last but definitely not least: `returnAsQuery`. If this parameter is defined as `true`, it will return a knex query object. With it you can use all of knex options to build even more sophisticated queries. Let's look at an example:
 
 ```javascript
   const query = Coffee.find({}, [], { returnAsQuery: true });

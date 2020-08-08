@@ -12,7 +12,7 @@ This tutorial will walk you through building your first API with Chinchay! It wi
 
 * [TheWall npm package](https://www.npmjs.com/package/thewall). To actually define which user has access to which endpoints.
 
- * The [Access Module](./middleware#access) will be in charge of generating the access token, the token follows the [json web token standard](https://jwt.io/), by generating the token with [the jsonwebtoken npm package](https://www.npmjs.com/package/jsonwebtoken). Also will be incharge of filtering who has access to which data within a given endpoint.
+ * The [Access Module](./middleware#access) will be in charge of generating the access token, the token follows the [json web token standard](https://jwt.io/), by generating the token with [the jsonwebtoken npm package](https://www.npmjs.com/package/jsonwebtoken). Also will be in charge of filtering who has access to which data within a given endpoint.
 
 
 
@@ -39,7 +39,7 @@ Create a nodejs app called: tutorial-chinchay-api
 $ express tutorial-chinchay-api && cd tutorial-chinchay-api
 ```
 <br/>
-We will install drivers to use PostgresSQL database. we will use knexjs and pg
+We will install drivers to use PostgresSQL database. we will use knex.js and pg
 
 ```
 $ npm install pg -s
@@ -57,7 +57,7 @@ $ npm start
 ```
 <br/>
 
-You can visit [http://localhost:3000](http://localhost:3000) to see the defaut express web app... but we are here for the API so let's move on!
+You can visit [http://localhost:3000](http://localhost:3000) to see the default express web app... but we are here for the API so let's move on!
 
 ### Create Postgresql Database
 
@@ -638,7 +638,7 @@ We receive our token!
 ### Token Encryption
 
 :::danger
-This is **VERY IMPORTANT**: The token is a jsonwebtoken encrypted by the [environment variable](https://en.wikipedia.org/wiki/Environment_variable) `JWT_SECRET`. You must define your own `JWT_SECRET` that must be kept confidential. If this variable is not defined, Chinchay will use a default secret, this will make your app prone to cyberattacks. 
+This is **VERY IMPORTANT**: The token is a jsonwebtoken encrypted by the [environment variable](https://en.wikipedia.org/wiki/Environment_variable) `JWT_SECRET`. You must define your own `JWT_SECRET` that must be kept confidential. If this variable is not defined, Chinchay will use a default secret, this will make your app prone to cyber-attacks. 
 :::
 
 ### #Returning a 401 Code
@@ -826,7 +826,7 @@ curl --header "Content-Type: application/json" \
   http://localhost:3000/api/coffee/new
 ```
 
-Note we added an Authorization Header, Replace `ACCESS_TOKEN` with the token recieved [earlier](#getting-the-token).
+Note we added an Authorization Header, Replace `ACCESS_TOKEN` with the token received [earlier](#getting-the-token).
 
 ### populate ddbb
 

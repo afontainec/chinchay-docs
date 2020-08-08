@@ -20,7 +20,7 @@ One big question is how to build Chinchay Codes? Lets keep in mind that the `chi
   ```
 
 
-### Recicling chinchayCode
+### Recycling chinchayCode
 
 A common question is should I create a different `chinchayCode` for every possible Error or should I reuse them?
 
@@ -28,7 +28,7 @@ It truly depends on the case. Keep in mind that the mission here is to give to t
 
 ## Global ErrorHandler
 
-One interesting way of organizing the ErrorHandler is to have 1 errorHandler for the whole proyect. In one file, `errorhandlerfile.js` we will store the `errorTranslate` parameter:
+One interesting way of organizing the ErrorHandler is to have 1 errorHandler for the whole project. In one file, `errorhandlerfile.js` we will store the `errorTranslate` parameter:
 
 ```javascript
   module.exports = {
@@ -73,7 +73,7 @@ with:
 
 #### pros
 
-The main reason to use it this way is because the `errorTranslate` parameter requires spaces. If you have a complete mapping of errors, your controllers will endup being more errorTranslate than controller. This look ugly. 
+The main reason to use it this way is because the `errorTranslate` parameter requires spaces. If you have a complete mapping of errors, your controllers will end up being more errorTranslate than controller. This look ugly. 
 
 Moreover, it is quite common for controllers to have very similar `errorTranslate`. This will lead to a lot of copy/pasting. On the long run this is hell, imagine you have 10 controller and you found one new Error you haven't thought before. Even worst, this error can happen in every controller, you will have to add it to the 10 controller. With a centralized errorHandler it is just one change.  
 
@@ -91,7 +91,7 @@ Success, when everything go as expected.
 
 ### 400
 
-This is basically a "it's not my fault" code. Whenever an error is thrown because the client made a wierd request.
+This is basically a "it's not my fault" code. Whenever an error is thrown because the client made a weird request.
 
 ### 401 
 
@@ -107,7 +107,7 @@ Not Found. What you are looking for has not been found.
 
 ### 500
 
-This is basically "not a clue what happen". It oficially means "Internal Server Error", but it is usually used as something we did not expect to happen, occurred.
+This is basically "not a clue what happen". It officially means "Internal Server Error", but it is usually used as something we did not expect to happen, occurred.
 
 ### And More
 

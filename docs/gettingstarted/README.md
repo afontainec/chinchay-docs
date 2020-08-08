@@ -3,7 +3,7 @@
 Welcome to the **Chinchay Getting Started**
 
 
-Let's get started! Here you will find tutorials to build an app with Chinchay from scratch. We are working on more integrations, spoiler alert: coming soon Chinchay + Vuej.js.
+Let's get started! Here you will find tutorials to build an app with Chinchay from scratch. We are working on more integrations, spoiler alert: coming soon Chinchay + Vue.js.
 
 
 [[toc]]
