@@ -1,6 +1,6 @@
 ## Overview
 
-The middleware has one function and one main function: does the user requesting a certain API endpoint has access to it?
+The middleware has one function and one main function: does the user requesting a certain API endpoint have access to it?
 
 So how do we set it up?
 
@@ -28,7 +28,7 @@ Note you must have imported the Middleware first:
   const { Middleware } = require('chinchay');
 ```
 
-So before actually running the controller function, the `Middleware.hasAccess` will be ran, checking that the Bearer token is present, valid and that the user can access it. Only then the controller function will be ran, otherwise it will reject the connection with a 401 code. 
+So before actually running the controller function, the `Middleware.hasAccess` will run, checking that the Bearer token is present, valid and that the user can access it. Only then the controller function will run, otherwise it will reject the connection with a 401 code. 
 
 ## Configuring: prerouting and postrouting
 

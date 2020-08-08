@@ -1,11 +1,11 @@
 ## Overview
 
- The Access Module has two Functions. The first one is to be in charge of generating an access token. This token follows the json web token standard, by generating the token with the [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) npm package. The routes protected by the Middleware will expect request to hold this token as a Bearer token.
+ The Access Module has two Functions. The first one is to be in charge of generating an access token. This token follows the json web token standard, by generating the token with the [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) npm package. The routes protected by the Middleware will expect requests to hold this token as a Bearer token.
 
-  Second, it restrict which users can access different content, functionalities, functions, etc. It work with roles, were each user can have many roles. Each role will give him access to certain data and/or functionalities. There are two types of roles:
+  Second, it restricts which users can access different content, functionalities, functions, etc. It works with roles, where each user can have many roles. Each role will give him access to certain data and/or functionalities. There are two types of roles:
 
-  * RESTRICTED ROLES: roles that has access to a particular entry. Its accessibility is limited to that entry. For example, let's assume you have an app with information about coffees, if a user can only access 1 particular coffee, he should be granted a restricted role.
-  * UNRESTRICTED_ROLES: roles that have complete access on a particular module or subdivision of the app. Usually used for a certain database relation. let's assume you have an app with information about coffees and teas, if a user can access all the coffees but not the teas, he should be granted an unrestricted role to coffees.
+  * RESTRICTED ROLES: roles that have access to a particular entry. Its accessibility is limited to that entry. For example, let's assume you have an app with information about coffees, if a user can only access 1 particular coffee, he should be granted a restricted role.
+  * UNRESTRICTED_ROLES: roles that have complete access on a particular module or subdivision of the app. Usually used for a certain database relation. Let's assume you have an app with information about coffees and teas, if a user can access all the coffees but not the teas, he should be granted an unrestricted role in coffees.
 
   This module works side by side with [TheWall](https://www.npmjs.com/package/thewall). and will require a working instance of TheWall to work properly.
 
@@ -15,7 +15,7 @@
 
   ### Restricted and Unrestricted Roles
 
-  To configure it, we need to pass it a configuration file indicating which roles are unrestricted and which are restricted. For example let's create a `access.js` file with the following:
+  To configure it, we need to pass it a configuration file indicating which roles are unrestricted and which are restricted. For example let's create an `access.js` file with the following:
 
   ```javascript
   const UNRESTRICTED_ROLES = {
@@ -100,7 +100,7 @@ Now create a `thewall` instance:
   ```
   
   
-  For more information as to how add TheWall instance look at the [API tutorial](../gettingstarted/apiMiddleware) and/or the [Chainfile Docs](../chainfile.html#middleware-access-thewall).
+  For more information as to how to add TheWall instance look at the [API tutorial](../gettingstarted/apiMiddleware) and/or the [Chainfile Docs](../chainfile.html#middleware-access-thewall).
   
 
 ### bootstrap
@@ -145,10 +145,10 @@ Now create a `thewall` instance:
 
   ### Parameter
 
-  * user: javascript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+  * user: javascript object representing the requesting user. It should hold the TheWall roles in an `access` property.
 
   :::tip Common Use
-  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will be absent.
   :::
 
   ### Return Value
@@ -179,14 +179,14 @@ Now create a `thewall` instance:
 
   ### Overview
 
-  Check if the given user has complete access to a particular module or subdivision of the app, in otherwords if it hold an unrestricted role for the asked module/subdivision. If the user is admin it will assume it has access to it.
+  Check if the given user has complete access to a particular module or subdivision of the app, in other words if it holds an unrestricted role for the asked module/subdivision. If the user is admin it will assume it has access to it.
 
   ### Parameter
 
-  * user: javascript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+  * user: javascript object representing the requesting user. It should hold the TheWall roles in an `access` property.
 
   :::tip Common Use
-  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will be absent.
   :::
 
   * to: module or subdivision at issue. 
@@ -198,7 +198,7 @@ Now create a `thewall` instance:
   
   ### Examples
 
-  This examples assumes [this configuration](#configure).
+  This example assumes [this configuration](#configure).
 
   ```javascript
   req.user = {
@@ -236,16 +236,16 @@ Now create a `thewall` instance:
 
   ### Overview
 
-  Returns all the ids/filters to which a given user has access on a particular module or subdivision of the app. In otherwords it will return an Array with all the `filter` property of every access it has to a given module/subdivision.
+  Returns all the ids/filters to which a given user has access on a particular module or subdivision of the app. In other words it will return an Array with all the `filter` property of every access it has to a given module/subdivision.
 
   This method is intended to be used only for users that do not have unrestricted access.
 
   ### Parameter
 
-  * user: javascript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+  * user: javascript object representing the requesting user. It should hold the TheWall roles in an `access` property.
 
   :::tip Common Use
-  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will be absent.
   :::
 
   * to: module or subdivision at issue. 
@@ -257,7 +257,7 @@ Now create a `thewall` instance:
   
   ### Examples
 
-  This examples assumes [this configuration](#configure).
+  This example assumes [this configuration](#configure).
 
   ```javascript
   req.user = {
@@ -287,9 +287,9 @@ Now create a `thewall` instance:
 
   ### Overview
 
-  This is one of the most useful methods. Its intended to filter the `search` parameter of [The Model](../models/find.html#parameters) so it does not access data it should not. It will either edit, remove or add properties to the search in order to return only what it is accessible by the user.
+  This is one of the most useful methods. It's intended to filter the `search` parameter of [The Model](../models/find.html#parameters) so it does not access data it should not. It will either edit, remove or add properties to the search in order to return only what it is accessible by the user.
 
-  It is usually used in a controller right before the [find](../models/find) or [count](../models/count) method of the model are called.
+  It is usually used in a controller right before the [find](../models/find) or [count](../models/count) method of the model is called.
 
   ### Parameter
 
@@ -300,7 +300,7 @@ Now create a `thewall` instance:
 
 
   :::tip Common Use: access
-  The most common way of using this method is by passing the `req.user.access` property as the `access` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  The most common way of using this method is by passing the `req.user.access` property as the `access` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will be absent.
   :::
 
   ### Return value
@@ -378,7 +378,7 @@ Now create a `thewall` instance:
 
   ### Overview
 
-    This is intendend for searching access. It translate directly to [TheWall](https://www.npmjs.com/package/thewall) `findAccess` function.
+    This is intended for searching access. it translates directly to [TheWall](https://www.npmjs.com/package/thewall) `findAccess` function.
 
   ### Parameter
 
@@ -404,16 +404,16 @@ Now create a `thewall` instance:
 
   ### Overview
 
-   It will indicate of the given user has or not access to the requested id. This is equivalent to asking, does the user have a role with access to the requested filter?
+   It will indicate if the given user has or not access to the requested id. This is equivalent to asking, does the user have a role with access to the requested filter?
 
   ### Parameter
 
-  * user: javascript object representing the requesting user. It should hold the TheWall roles in a `access` property.
+  * user: javascript object representing the requesting user. It should hold the TheWall roles in an `access` property.
   * to: The subdivision/module at issue.
   * filterId: the given specific filter being asked.
 
   :::tip Common Use
-  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will absent.
+  The most common way of using this method is by passing the `req.user` property as the `user` parameter. Note that this property is added by the middleware and if this latter is not configured correctly, particularly the `Middleware.prerouting(app)` is missing, the `req.user` property will be absent.
   ::: 
 
   ### Return value

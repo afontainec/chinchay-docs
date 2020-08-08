@@ -264,7 +264,7 @@ As you may have notice is very similar to the knex property. For more informatio
 
 ### access
 
-Sometimes, just filtering who can access a route is not enough. Some routes must be accessible by different users but the content that route returns should differ. Here is where the access property comes to help. Where you can set which user roles have unrestricted access, for instance an admin may be able to access everything, and which roles are restricted. On the chainfile a `access` property should be defined to the path to the file that defines which roles are restricted and to which data are restricted. For example:
+Sometimes, just filtering who can access a route is not enough. Some routes must be accessible by different users but the content that route returns should differ. Here is where the access property comes to help. Where you can set which user roles have unrestricted access, for instance an admin may be able to access everything, and which roles are restricted. On the chainfile an `access` property should be defined to the path to the file that defines which roles are restricted and to which data are restricted. For example:
 
   ```javascript
   module.exports = {
