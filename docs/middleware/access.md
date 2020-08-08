@@ -378,7 +378,7 @@ Now create a `thewall` instance:
 
   ### Overview
 
-    This is intended for searching access. it translates directly to [TheWall](https://www.npmjs.com/package/thewall) `findAccess` function.
+    This is intended for searching access. it translations directly to [TheWall](https://www.npmjs.com/package/thewall) `findAccess` function.
 
   ### Parameter
 
