@@ -1,25 +1,36 @@
 ## Overview: What is Chinchay?
 
-Ufff this is a tough question.... What Chinchay aims to do is to facilitate how things are structured in your repository and speed up your development.
+Ufff this is a tough question.... going technical, [Chinchay](https://www.npmjs.com/package/chinchay) is a npm package that works on top of [express.js](https://expressjs.com/) (and therefore [node.js](https://nodejs.org/es/)) and connects to a [postgreSQL](https://www.postgresql.org/) database through [knex.js](http://knexjs.org/), a SQL query builder.
 
 When building a large application order is a key factor, very easily the repository becomes a big plate of spaghetti! Basically just chaos.
 
-### How does it do it?
+### What Chinchay Aims To Solve
 
-The most fascinating and valuable piece of Chinchay it's the flexible TableGateway model. It handles all the interaction from and to a certain table in the database. It allows you to create, read, update, delete, count, sum and many other operations, the best part: without even knowing any sql! However, if by any chance you are a sql master and want to go beyond, Chinchay will allow you to do so.
-
-
-But that is just the beginning.... Chinchay will help you a **LOT** more. In my early programming years I had these problems:
+Chinchay aims to speed up your development without compromising code quality. In my early programming years I had these problems:
 
 
 *  Organizing the files
+*  Following industry best practices
 *  Managing the updates to the database
 *  Making a _good_ api
 *  Managing user access: who can access what
+*  Managing HTTP status codes are responses correctly
+*  Avoid copy-pasting programming, specially for [CRUD](https://www.codecademy.com/articles/what-is-crud) operations. I was doing over and over the same operations with minimal changes. 
 
 It was then that I decided to build a package that would allow me to tackle each of these issues. This package includes both a Command Line Interface and many tools to solve each problem.
 
-Here goes how every problem was tackled:
+
+### So what does Chinchay actually do?
+
+* Use [Chinchay’s CLI](./docs/cli) to automate [CRUD](https://www.codecademy.com/articles/what-is-crud) (Create, Read, Update, Delete) operations. It will follow a [MVC(Model View Controller)](https://techterms.com/definition/mvc) architecture pattern. With it, I can assure you coding will not be tedious nor time consuming. Chinchay tries not to be highly-opinionated and favours flexibility, therefore is fully customizable through the [.chainfile.js](./docs/chainfile).  
+* [Chinchay’s CLI](./docs/cli) will create an API following the [REST](https://restfulapi.net/) application architecture.
+* If you do not use the Chinchay CLI, Chinchay does offer a [HATEOAS generator](./docs/hateoas) that can be added to your API, one step forward towards a RESTful API. 
+* Chinchay provides an [ErrorHandler](./errorhandler/) to manage HTTP status codes, returning meaningful messages and codes.
+* Protect your app, so that only authorized users access the data. Use Chinchay [Access Module](./middleware/access), [Chinchay’s middleware](./middleware/middleware) and Chinchay’s sister package [TheWall](https://www.npmjs.com/package/thewall) to fully control who can access what. See the [API tutorial](./gettingstarted/apiMiddleware) for a complete guide!
+* Chinchay’s CLI will also create Frontend views to work with the generated API. It can either be with [ejs](https://ejs.co/) or [Angular](https://angular.io/). [Currently working in more frontend options!]
+*  Chinchay allows API clients to customize their queries. With just a couple of endpoints and a very simple syntax, API clients can query what they need. Obviously this can be limited and disabled as needed. See [API: Client Querying](./docs/clientside) for more!
+* Last, But definitely not least, Chinchay offers a flexible and extendable [Table Gateway Model](./models/). To organize and manage your database queries without even knowing any SQL.
+
 
 
 ## File Structure: Model-View-Controller (MVC) Architecture
@@ -41,7 +52,7 @@ Chinchay works with [PostgresQL](https://www.postgresql.org/about/). This is the
 
 ### Schema Migrations
 
-  A schema migration is a piece of code that does one change to the database. It usually has the code to revert that change. For instance if we add the column user_id to the table coffees but then you regret that decision, you can rollback that migration. Here are some interesting articles you might find interesting:
+  A schema migration is a piece of code that does one change to the database. Not only has the code to effectuate that change, but also has the code to revert that change. For instance if we add the column user_id to the table coffees but then regret that decision, we can rollback that migration, removing the column user_id. Here are some articles you might find interesting:
 
   * [science direct article](https://www.sciencedirect.com/topics/computer-science/schema-migration)
   * [perk article about migration and knex](http://perkframework.com/v1/guides/database-migrations-knex.html)
