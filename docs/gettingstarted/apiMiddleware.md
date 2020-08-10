@@ -1009,7 +1009,7 @@ const { Table, ErrorHandler, Access } = require('chinchay');
 
 ## Conclusion
 
-So that's it! We have a functional API with different roles. We learned how to work with oAuth in Chinchay, how to configure TheWall and the Chinchay Access Module.
+So that's it! We have a functional API with different roles. We learned how to work with oAuth in Chinchay, how to configure TheWall and the Chinchay Access Module. A repository with the complete code of this tutorial can be found [here](https://github.com/afontainec/tutorial-chinchay-api).
 
 For further reading go to the [Chinchay Documentation](../docs)
 
