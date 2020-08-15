@@ -291,26 +291,26 @@ Here are some examples of how to work with more complex queries. In the query yo
 #### Examples
 
  ```
- curl --request GET 'http://localhost:3000/api/coffee/find?price=[">", 105]'
+ curl --request GET "http://localhost:3000/api/coffee/find?price=[\">\",105]" --globoff
  ```
  In this case it will return all the entries where the price is greater than 105. 
 
 ```
-curl --request GET 'http://localhost:3000/api/coffee/find?price=["<>", 90]'
+curl --request GET "http://localhost:3000/api/coffee/find?price=[\"<>\",90]" --globoff
 ```
  In this case it will return all the entries where the price is distinct to 90. 
 
  ```
-curl --request GET 'http://localhost:3000/api/coffee/find?price=["in", [90, 100]]'
+curl --request GET "http://localhost:3000/api/coffee/find?price=[\"in\",[90,100]]" --globoff
 ```
 
  This is one of my favorites, in this case it will return all the entries where the price is either 90 or 100. 
 
 ```
-  curl --request GET 'http://localhost:3000/api/coffee/find?price=["not in", [90, 100]]'
+  curl --request GET "http://localhost:3000/api/coffee/find?price=[\"not%20in\",[90,100]]" --globoff
 ```
 
- In this case it will return all the entries except the ones where the price is either 90 or 100. 
+ Note that whitespace when uri encoded transforms to `%20`, therefore  `[\"not%20in\",[90,100]]` translates to `["not in",[90,100]]`. In this case it will return all the entries except the ones where the price is either 90 or 100. 
 
  And much more! Any postgresql command is supported!
 
@@ -341,14 +341,14 @@ Sometimes we don't want to get all the information, just the essential stuff. Th
   ```
 
  ```
- curl --request GET 'http://localhost:3000/api/coffee/find?columns=["id", "price"]'
+ curl --request GET "http://localhost:3000/api/coffee/find?columns=[\"id\",\"price\"]" --globoff
  ```
  In this case it will only return the id and price columns of each entry.
 
   ```
- curl --request GET 'http://localhost:3000/api/coffee/find?columns=["price as p"]'
+ curl --request GET "http://localhost:3000/api/coffee/find?columns=[\"price%20as%20p\"]" --globoff
  ```
- In this case it will only return the price columns of each entry, but rather than be called as price it will be called as p. As follows:
+  Note that whitespace when uri encoded transforms to `%20`, therefore  `[\"price%20as%20p\"]` translates to `["price as p"]`. In this case it will only return the price columns of each entry, but rather than be called as price it will be called as p. As follows:
 
    ```javascript
   {
@@ -388,7 +388,7 @@ It just does not end here! There are some more options to do your querying even 
  In this case it will return all the entries where the created_at is before the given endDate, in this case, before 2018-11-21T12:00:00.000Z.
 
    ```
- curl --request GET 'http://localhost:3000/api/coffee/find?startDate=2018-11-21T11:55:00.000Z&endDate=endDate=2018-11-21T12:00:00.000Z'
+ curl --request GET "http://localhost:3000/api/coffee/find?startDate=2018-11-21T11:55:00.000Z&endDate=2018-11-21T12:00:00.000Z"
  ```
  
  In this case it will return all the entries where the created_at is in between the given startDate and endDate, in this case, between 2018-11-21T11:55:00.000Z and 2018-11-21T12:00:00.000Z.
@@ -396,25 +396,25 @@ It just does not end here! There are some more options to do your querying even 
  #### Order by, limit and offset
 
   ```
- curl --request GET 'http://localhost:3000/api/coffee/find?orderBy=id&limit=2'
+ curl --request GET "http://localhost:3000/api/coffee/find?orderBy=id&limit=2"
  ```
  
  In this case it will return the first two entries ordered by id in ascending order.
 
  ```
- curl --request GET 'http://localhost:3000/api/coffee/find?orderBy=["id", "desc"]&limit=2'
+ curl --request GET "http://localhost:3000/api/coffee/find?orderBy=[\"id\",\"desc\"]&limit=2" --globoff
  ```
  
  In this case it will return the first two entries ordered by id in descending order. 
 
  ```
- curl --request GET 'http://localhost:3000/api/coffee/find?orderBy=["id", "asc"]&limit=2&offset=1'
+ curl --request GET "http://localhost:3000/api/coffee/find?orderBy=[\"id\",\"asc\"]&limit=2&offset=1" --globoff
  ```
  
  In this case it will return the second and third entries ordered by id in ascending order. It skips the first one because of the offset given. 
 
  ```
- curl --request GET 'http://localhost:3000/api/coffee/find?orderBy=[["price","desc"],["id", "asc"]]'
+ curl --request GET "http://localhost:3000/api/coffee/find?orderBy=[[\"price\",\"desc\"],[\"id\",\"asc\"]]" --globoff
  ```
  
  In this case it will return the entries ordered by price in a descending order. In case that some entries have the same price, then they will be ordered by id in ascending order.
@@ -461,7 +461,7 @@ curl --request GET 'http://localhost:3000/api/coffee/count?price=100'
 
 
  ```
- curl --request GET 'http://localhost:3000/api/coffee/count?price=[">", 105]'
+ curl --request GET "http://localhost:3000/api/coffee/count?price=[\">\",105]" --globoff
  ```
  In this case it will count all the entries where the price is greater than 105. 
 
@@ -470,7 +470,7 @@ curl --request GET 'http://localhost:3000/api/coffee/count?price=100'
  If you want to know how many entries are of each price, you can group your answers by price. 
 
  ```
- curl --request GET 'http://localhost:3000/api/coffee/count?groupBy=price'
+ curl --request GET "http://localhost:3000/api/coffee/count?groupBy=price" --globoff
  ```
  In this case it will count all the entries and group them by price, as follows:
 
@@ -491,10 +491,7 @@ curl --request GET 'http://localhost:3000/api/coffee/count?price=100'
 }
 ```
 
- ```
- curl --request GET 'http://localhost:3000/api/coffee/count?groupBy=price'
- ```
- Moreover, you can order the list from the price most repeated up to the least repeated:
+ Moreover, you can order the list from the price least repeated up to the most repeated:
 
  ```
  curl --request GET 'http://localhost:3000/api/coffee/count?groupBy=price&orderBy=count'
