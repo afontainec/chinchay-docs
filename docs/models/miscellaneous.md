@@ -96,12 +96,44 @@ All the options properties have been removed from `req.query`. In this example o
   { price: '100', columns: 'name' }
 ```
 
-Whereas the options has the options properties:
+Whereas options:
 
 ```javascript
 { orderBy: 'id', limit: '2' }
 ```
 
+
+#### SecurityMode 
+
+The `extractOptions` has an insecure mode, where it can be configured to extract also the `rawSelect` and the `rawWhere`. By default this modality is disabled, to enable it:
+
+```javascript
+  req.query = { orderBy: 'id', limit: '2', price: '100', rawSelect: 'name as n' };
+  const options = Table.extractOptions(req.query, { securityMode: false });
+```
+
+Options will include the rawSelect: 
+
+```javascript
+{ orderBy: 'id', limit: '2', rawSelect: 'name as n' }
+```
+
+On the other hand: 
+
+```javascript
+  req.query = { orderBy: 'id', limit: '2', price: '100', rawSelect: 'name as n' };
+  const options = Table.extractOptions(req.query);
+```
+
+Options: 
+
+```javascript
+{ orderBy: 'id', limit: '2' }
+```
+
+:::danger
+  This is very dangerous. Why? Because through `rawSelect` and `rawQuery` sql commands can be injected to do harm, even delete the database! It is save to use if you are 100% sure that no malicious user will ever have access to it.
+:::
 ### extractColumns
 
 This will remove from the `req.query` the columns property. It will return an array of all the columns, in the case there are no columns defined, it will return `'all'`. So in the previous example, after the line: 
