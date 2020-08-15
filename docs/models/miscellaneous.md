@@ -105,7 +105,7 @@ Whereas options:
 
 #### SecurityMode 
 
-The `extractOptions` has an insecure mode, where it can be configured to extract also the `rawSelect` and the `rawWhere`. By default this modality is disabled, to enable it:
+The `extractOptions` has an insecure mode, where it can be configured to extract also the `rawSelect` and the `rawWhere`. By default this mode is disabled, to enable it:
 
 ```javascript
   req.query = { orderBy: 'id', limit: '2', price: '100', rawSelect: 'name as n' };
