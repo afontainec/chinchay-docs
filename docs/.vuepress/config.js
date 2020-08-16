@@ -100,7 +100,12 @@ module.exports = {
         title: 'Middleware',   // required
         path: '/middleware/middleware',
         children: []
-      }], '/errorhandler/': [{
+      }, {
+        title: 'httpResponse',   // required
+        path: '/middleware/http-response',
+        children: []
+      }], 
+      '/errorhandler/': [{
         title: 'ChinchayError',   // required
         path: '/errorhandler/chinchay-error',
         children: []
