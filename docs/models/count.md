@@ -183,6 +183,15 @@ So there is 1 coffee priced at 12, and 2 coffees priced at 100.
   If by any chance a user input will be used to create the `rawSelect`, the `rawSelect` **MUST** be in array form and the user input passed as the second value of that array.
   :::
 
+
+## countDistinct
+
+For counting distinct values the  `countDistinct` property comes handy. For instace, if we want to count how many different prices are there, we could use the `countDistinct` as follows:
+
+```javascript
+  const query = Coffee.count({}, { countDistinct: 'price' });
+```
+
 ## Return as Query
 
 Last but definitely not least: `returnAsQuery`. If this parameter is defined as `true`, it will return a knex query object. With it you can use all of knex options to build even more sophisticated queries. Let's look at an example:
