@@ -46,3 +46,14 @@ This will save two entries, the first named cappuccino at a price of 5, and the 
 ```javascript
   Promise.all([coffee.save({ name: 'cappuccino', price: 5 }), coffee.save({ name: 'latte' })]);
 ```
+
+### Batch Size
+
+  When the input is an array, they will be saved by batches, the default batch size is of 1000. Therefore if the array is of length 3010, the entries will be saved in 4 batches, 3 of 1000 entries and a fourth with 10 entries. You can modify the batch size as follows:
+
+
+  ```javascript
+    coffee.save(longArrayOfEntries, 100);
+  ```
+
+  Here the batches will be of size 100.
