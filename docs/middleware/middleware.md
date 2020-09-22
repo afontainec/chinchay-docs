@@ -61,4 +61,8 @@ When running the `chinchay new`, you can pass a `--middleware` to automatically 
 This is **VERY IMPORTANT**: The token is a jsonwebtoken encrypted by the [environment variable](https://en.wikipedia.org/wiki/Environment_variable) `JWT_SECRET`. You must define your own `JWT_SECRET` that must be kept confidential. If this variable is not defined, Chinchay will use a default secret, this will make your app prone to cyber-attacks. 
 :::
 
+## Token Expiration Date
+
+By default the token will expire in 7 days since generated. However you can override this conduct by defining the  `TOKEN_EXPIRATION_WINDOW` on the `.chainfile`, click [here](../docs/chainfile.html#TOKEN_EXPIRATION_WINDOW) for more information.
+
 
