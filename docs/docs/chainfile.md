@@ -287,3 +287,32 @@ Sometimes, just filtering who can access a route is not enough. Some routes must
 ```
 
 For more information on how to configure the access.js file check the full [Middleware Documentation](./middleware).
+
+
+### TOKEN_EXPIRATION_WINDOW
+
+
+The access token generated for the Middleware will be valid for 7 days. THis behaviour can be changed by adding a `TOKEN_EXPIRATION_WINDOW` property:
+
+  ```javascript
+  module.exports = {
+  models: {
+    directory: path.join(__dirname, 'server', 'models'),
+  },
+  controllers: {
+    directory: path.join(__dirname, 'server', 'controllers'),
+  },
+  routes: {
+    directory: path.join(__dirname, 'server', 'routes'),
+  },
+  views: {
+    angular: path.join(__dirname, 'frontend'),
+  },
+  knex:  path.join(__dirname, 'knex.js'),
+  middleware: 'api',
+  access: path.join(__dirname, 'access.js'),
+  TOKEN_EXPIRATION_WINDOW: 3600
+};
+```
+
+This must be given in **seconds**, therefore in the previous example each token will be valid for 3600 seconds, A.K.A. 1 hour.
