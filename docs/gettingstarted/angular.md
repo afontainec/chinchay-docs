@@ -51,34 +51,6 @@ $ ng new testChinchayAngular && cd testChinchayAngular
 
 A prompt asking if you like to add the angular routing will show, press `y` to confirm. Then select the stylesheet format of your preference. We will use CSS.
 
-Next, we will add a couple of modules. In the app.module.ts file, found within the src/app directory we will add the `FormsModule` and the `HttpClientModule` to the imports:
-
-```javascript
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    FormsModule,
-    HttpClientModule,
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-
-```
-
 We are now ready to run our chinchay command.
 
 
@@ -106,8 +78,41 @@ This will create a coffee directory within src/app. This will include:
 * Show component: To view a coffee and it's properties.
 * Service: For connecting with the backend, to create, edit or retrieve data.
 * Router: Configuration for the routes.
+* Module: Module that will hold all the components and routing.
 
 <br>
+
+ 
+Next, we will add the generated module to the app. In the app.module.ts file, found within the src/app directory, we will add the `CoffeeModule` to the imports:
+
+```javascript
+import { CoffeeModule } from './coffee/coffee.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    FormsModule,
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    CoffeeModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+```
+
 
 ## Connecting Backend and Frontend
 
