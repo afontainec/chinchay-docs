@@ -298,4 +298,4 @@ Enjoy!
 
 For more information to work around Chinchay CLI:
 
-[See the Command Line Interface Documentation!](../docs/cli)
+[See the Command Line Interface Documentation!](/docs/cli.html)

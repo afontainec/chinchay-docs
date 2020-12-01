@@ -6,7 +6,7 @@
 
 ## Backend Server
 
-  For the backend server, follow [the getting started ](./ejs). The only difference, is when running the chinchay new command, you can add the flag `--frontend disable` as follows:
+  For the backend server, follow [the getting started ](ejs.html). The only difference, is when running the chinchay new command, you can add the flag `--frontend disable` as follows:
 
 ```
 $ chinchay new coffee --frontend disable
@@ -147,4 +147,4 @@ Enjoy!
 
 For more information to work around Chinchay CLI:
 
-[See the Command Line Interface Documentation!](../docs/cli)
+[See the Command Line Interface Documentation!](/docs/cli.html)
