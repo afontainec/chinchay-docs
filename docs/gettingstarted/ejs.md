@@ -284,10 +284,12 @@ app.use('/', coffeeAPI);
 These lines make the app use the routes for the CRUD operations to the coffee relation.
 <br/>
 Now run the app:
+
 ```
 $ npm start
 ```
 <br/>
+
 and visit [localhost:3000/coffee](localhost:3000/coffee)
 
 Click new to create a coffee!
@@ -296,4 +298,4 @@ Enjoy!
 
 For more information to work around Chinchay CLI:
 
-[See the Command Line Interface Documentation!](https://afontainec.github.io/chinchay/clidocs)
+[See the Command Line Interface Documentation!](../docs/cli)
