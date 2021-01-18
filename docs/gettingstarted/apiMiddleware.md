@@ -36,7 +36,8 @@ $ npm install express -g
 
 Create a nodejs app called: tutorial-chinchay-api
 ```
-$ express tutorial-chinchay-api && cd tutorial-chinchay-api
+$ express tutorial-chinchay-api 
+$ cd tutorial-chinchay-api
 ```
 <br/>
 We will install drivers to use PostgresSQL database. we will use knex.js and pg

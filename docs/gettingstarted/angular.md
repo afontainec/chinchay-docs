@@ -45,7 +45,8 @@ $ npm install -g @angular/cli
 Then we simply create the angular app called testChinchayAngular
 
 ```
-$ ng new testChinchayAngular && cd testChinchayAngular
+$ ng new testChinchayAngular
+$ cd testChinchayAngular
 ```
 
 
