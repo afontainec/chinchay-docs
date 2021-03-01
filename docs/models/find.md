@@ -96,6 +96,27 @@ This will return all the coffees where the price is distinct to 100 and the name
  As a general rule, you can define the property of the `search` as an array with two values, key=["command",value]. The query will translate to SQL as follows `WHERE  key command value`.
 
 
+ ## Queries for and/or
+
+ If you need to do `and` `or` operations you can do as follows:
+
+```javascript
+  Coffee.find({ price: [100, 'or', 200] });
+```
+
+This will return all the coffees where the price is 100 or 200.
+
+```javascript
+  Coffee.find({ price: [['>', 100], 'and', ['<', 200]] });
+```
+
+This will return all the coffees where the price is between 100 and 200.
+
+### General Rule
+
+ As a general rule, you can define the property of the `search` as an array with three values, key=[firstSearch, command,secondSearch]. Where the firstSearch and the secondSearch follows the same logic as the previous examples and the command must be and/or.
+
+
 ## columns
 
 Sometimes the entries have way too much information and you only desire to access some few attributes of each entry, or there is sensible information you do not want to expose. In this case the second parameter can be used: the `columns`. Let's look at some examples:
