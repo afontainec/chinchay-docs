@@ -1,11 +1,35 @@
 ## Overview
 
-Here we are going to talk about the `sum` method. This is an asynchronous method that returns the sum of a certain column of all the entries that matches with the given search. So let's dive into it!
+Here we are going to talk about the `sum`, `min` and `max` method. This is an asynchronous method that returns the aggregation function of a certain column of all the entries that matches with the given search. So let's dive into it!
 
+
+## Sum
+
+This will sum over a given column/variable/property.
+
+```javascript
+  Coffee.sum('price');
+```
+
+## Max
+
+This will find the maximmum value of the given column/variable/property.
+
+```javascript
+  Coffee.max('price');
+```
+
+## Min
+
+This will find the minimmum value of the given column/variable/property.
+
+```javascript
+  Coffee.min('price');
+```
 
 ### Parameters
 
-  * column: Column/variable/property to sum.
+  * column: Column/variable/property to aggregate.
   * Search: Javascript object with the definition of what should be searched.
   * Options: A javascript object for more configurations, such as sorting, grouping, etc.
 
@@ -14,7 +38,7 @@ Here we are going to talk about the `sum` method. This is an asynchronous method
 
 ### Return value
 
-An integer indicating the sum of entries which meets with the requested:
+An integer indicating the aggregation of entries which meets with the requested:
 
   ```javascript
   2
@@ -22,7 +46,7 @@ An integer indicating the sum of entries which meets with the requested:
 
 ## sum: Search Examples  
 
-Let's go for the fun part: 
+Let's go for the fun part, note this examples are for sum but will work for both min and max as well: 
 
 
 ```javascript

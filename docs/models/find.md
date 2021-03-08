@@ -178,6 +178,20 @@ And that's totally fine, however this can also be achieved using the third param
  
 
 
+## distinct
+
+The `distinct` option can be passed to select a distinct column, it will overwrite the columns attribute. For example:  
+
+
+```javascript
+  Coffee.find({ }, 'all', { distinct: 'price' });
+```
+
+It will return all the distinct prices.
+
+
+
+
 ## Order by, limit and offset
 
 With the options, you can sort and limit your responses. Let see some examples: 
