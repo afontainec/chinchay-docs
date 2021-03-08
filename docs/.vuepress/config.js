@@ -80,8 +80,8 @@ module.exports = {
         path: '/models/delete',
         children: []
       }, {
-        title: 'Sum',   // required
-        path: '/models/sum',
+        title: 'Sum, Min & Max',   // required
+        path: '/models/aggregation',
         children: []
       }, {
         title: 'Miscellaneous',   // required
