@@ -83,6 +83,12 @@ This will set the price to 100 of all the entries where id = 1 or id = 2. Will r
 
 This will set the price to 100 of all the entries. Will return an array with all the updated entries.
 
+```javascript
+  Coffee.update({id: ['in', [10,20]] }, { price: knex.raw('CASE WHEN id = 10 THEN 33 WHEN ID = 20 THEN 22 END') })
+```
+
+You can also pass knex.raw objects. This allows even further customization. In this case, the price will be set to 33 when the id is 10 and to 22 when the id 20.
+
 
 :::tip
   There is a lot you can do with the search, (first parameter). Look at the [find documentation](./find) to learn how to work with it. 
