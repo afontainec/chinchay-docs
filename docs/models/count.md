@@ -116,7 +116,7 @@ And that's totally fine, however this can also be achieved using the third param
 
   [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attacks a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
-  ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
+  ![SQL INJECTION](/sql-injections.png)
 
 
   To prevent sql injections you can define the rawSelect as an array. An example: 
@@ -168,7 +168,7 @@ So there is 1 coffee priced at 12, and 2 coffees priced at 100.
 
   [Sql injection](https://www.acunetix.com/websitesecurity/sql-injection/) is one of the most typical and dangerous attacks a website can receive, so it is important to be extremely careful about it. If you do not know what it is, this meme should explain it:
 
-  ![SQL INJECTION](https://chinchay-docs.herokuapp.com/assets/sql-injections.png)
+  ![SQL INJECTION](/sql-injections.png)
 
 
   To prevent sql injections you can define the rawSelect as an array. An example: 
