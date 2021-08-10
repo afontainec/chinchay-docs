@@ -1,4 +1,4 @@
-![Chinchay](https://chinchay-docs.herokuapp.com/assets/banner-getting-started.png)
+![Chinchay](/banner-getting-started.png)
 
 Welcome to the **Chinchay Getting Started**
 
