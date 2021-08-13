@@ -189,7 +189,16 @@ The `distinct` option can be passed to select a distinct column, it will overwri
 
 It will return all the distinct prices.
 
+## distinctOn
 
+The `distinctOn` option can be passed to select the first row it encouters for the expression given in the option `distinctOn`. Note it must be accompanied with an `orderBy` option to determined what is the first row it encounters, moreover the `orderBy` should include the expression given in the `distinctOn`. Check the psql [documentation](https://www.postgresql.org/docs/current/sql-select.html#SQL-DISTINCT) for more info. For example:  
+
+
+```javascript
+  Coffee.find({}, 'all', { distinctOn: 'name', orderBy: ['name', ['price', 'asc']] });
+```
+
+It will return one row per `name`, this row will be the first in encounters per `name`, ordered by `name` and `price`. Note that the `name` must be in the `orderBy` as well.
 
 
 ## Order by, limit and offset
