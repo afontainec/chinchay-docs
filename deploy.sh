@@ -18,7 +18,7 @@ git init
 git add -A
 git commit -m 'chore: deploy'
 
-git push -f https://github.com/afontainec/chinchay-docs.git master:gh-pages
+git push -f https://$GH_CHINCHAY_DOCS@github.com/afontainec/chinchay-docs.git master:gh-pages
 
 cd ../../../
 git add .
