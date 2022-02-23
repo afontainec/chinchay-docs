@@ -447,11 +447,12 @@ Now create a `thewall` instance:
 
   ### Overview
 
-   It will generate an access token for the given user. It will expire in 7 days. 
+   It will generate an access token for the given user. You can optionally give a custom time expiration, but by default it will expire in 7 days.
 
   ### Parameter
 
   * user: javascript object representing the user.
+  * expirationWindow: optional custom expiration window in seconds. If it's not given, the default is 7 days. 
 
   ### Return value
 
